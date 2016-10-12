@@ -2,8 +2,9 @@ import java.util.Hashtable;
 import java.util.ArrayList;
 
 public class Migracion{
+
     private ArrayList<Ciudad>listaCiudades;
-    // private Grafo mapa;
+
     private int[][]flujoEmigrantes ={{0,1,0,1,0,1,0,0,0},
                                    {1,0,1,0,0,0,0,0,0},
                                    {0,45,0,0,34,0,0,0,0},
@@ -23,11 +24,10 @@ public class Migracion{
                                    {0,0,0,0,0,1,0,0,1},
                                    {0,0,0,1,1,0,0,0,1},
                                    {0,0,0,0,0,0,1,1,0}};
-    // public Migracion(){
-    //     this.listaCiudades = new ArrayList<Ciudad>();
-    //     this.mapa = new Grafo();
-    //     // this.flujoEmigrantes = new Grafo();
-    // }
+
+    public Migracion(){
+        this.listaCiudades = new ArrayList<Ciudad>();
+    }
 
     public ArrayList<Reporte> flujoEmigrantes(String nombreCiudad){
 
@@ -63,35 +63,82 @@ public class Migracion{
         }
     }
 
-    // public void mostrarFlujoEmigrantes(String nombreCiudad){
-        
-        
-    // }
+    public void mostrarFlujoEmigrantes(String nombreCiudad){
+    
+    
+    }
 
-    // public String fechaMigracion(String nombre, String apellido){
-        
-    
-    // }
+    public String fechaMigracion(String nombre, String apellido){
+        String res = "";
+        ArrayList<PersonaEmigrante> listaGeneralEmigrantes = listaGeneral();
+        PersonaEmigrante emigrante_encontrado = null;
+        PersonaEmigrante emigrante;
+        String name;
+        String last_name;
+        Boolean encontrado = false;
+        int index = 0;
+        while(!encontrado && index <= listaGeneralEmigrantes.size()){
+            emigrante = listaGeneralEmigrantes.get(index);
+            name = emigrante.getNombre();
+            apellido = emigrante.getApellido();
+            if(name.equals(nombre) && apellido.equals(apellido)){
+                emigrante_encontrado = emigrante;
+                encontrado = true;
+            }
+            index++;
+        }
+        if(emigrante_encontrado != null){
+            res = emigrante_encontrado.getFecha();
+        }else{
+            res = "noencontrado";
+        }
+        return res;
+    }
 
-    // public ArrayList<PersonaSaliente> listaGeneral(){
-    
-    
-    // }
+    public void registrarCiudad(Ciudad ciudad){
+        this.listaCiudades.add(ciudad);
+    }
 
-    // public Grafo representacionMatrizDePesos(ArrayList<PersonaSaliente> listaEmigrantes){
-    
-    
-    // }
+    public ArrayList<PersonaEmigrante> listaGeneral(){
+        ArrayList<PersonaEmigrante> listaEmigrantesGeneral = new ArrayList<PersonaEmigrante>();
+        ArrayList<PersonaEmigrante> listaEmigrantesParticular;
+        ArrayList<Ciudad> list = this.listaCiudades;
+        if(!list.isEmpty()){
+            for(Ciudad ciudad: list){
+                listaEmigrantesParticular = ciudad.getListaEmigrantes();
+                if(!listaEmigrantesParticular.isEmpty()){
+                    for(PersonaEmigrante emigrante: listaEmigrantesParticular){
+                        listaEmigrantesGeneral.add(emigrante);
+                    }
+                }
+            } 
+        }
+        return listaEmigrantesGeneral; 
+    }
 
-    // public void mostrarMatrizDePesos(){
-    
-    
-    // }
+    public void representacionMatrizDePesos(ArrayList<PersonaEmigrante> listaEmigrantes){
+        String origen;
+        String destino;
+        int cantidad;
+        if(!listaEmigrantes.isEmpty()){
+            for(PersonaEmigrante emigrante: listaEmigrantes){
+                origen = emigrante.getNacidoEn();
+                destino = emigrante.getDestino();
+                System.out.println(origen);
+                System.out.println(destino);
+            }
+        }
+    }
 
-    // public void menu(){
+    public void mostrarMatrizDePesos(){
     
     
-    // }
+    }
+
+    public void menu(){
+    
+    
+    }
 
         public  int tablas(String nombreCiudad){
             Hashtable<String,Integer> tabla = new Hashtable<String,Integer>();
@@ -123,15 +170,34 @@ public class Migracion{
         }
 
     public static void main(String args[]){
+        Migracion migracion = new Migracion();
+        Ciudad cochabamba = new Ciudad();
+        Ciudad lapaz = new Ciudad();
+        cochabamba.setNombre("Cochabamba");
+        cochabamba.setCodigo(4);
+        lapaz.setNombre("La Paz");
+        lapaz.setCodigo(1);
+        PersonaEmigrante pedro = new PersonaEmigrante("Jose Pedro","Dominguez Serrano","masculino","9350610CB","Cochabamba",35,"La Paz","01/01/1993"); 
+        PersonaEmigrante juan = new PersonaEmigrante("Juan","Serrano","masculino","5678543LP","La Paz",45,"Cochabamba","01/01/1999"); 
+        cochabamba.registrarEmigrante(pedro);
+        lapaz.registrarEmigrante(juan);
+        migracion.registrarCiudad(cochabamba);
+        migracion.registrarCiudad(lapaz);
+         for(PersonaEmigrante emigrante: migracion.listaGeneral()){
+            System.out.println(emigrante.getNombre());
+         }
+         String fecha = migracion.fechaMigracion("Jose Pedro","Dominguez Serrano");
+         System.out.println(fecha);
+         migracion.representacionMatrizDePesos(migracion.listaGeneral());
 
-        Migracion probando=new Migracion();
-        probando.tablas("cochabamba");
-        probando.tablas2(4);
-        probando.flujoEmigrantes("cochabamba");
-    
+        ArrayList<Reporte> reportes =  migracion.flujoEmigrantes("cochabamba");
+        for(Reporte reporte: reportes){
+            System.out.println(reporte.getNombreCiudad());
+            System.out.println(reporte.getFlujo());
+        
+        
+        }
+        
     }
-
-
-
 
 }

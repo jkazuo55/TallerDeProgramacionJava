@@ -13,7 +13,7 @@ public class Ciudad{
 
 	//===========Metodos setters ==============
 
-	public void setNonbre(String nombre){
+	public void setNombre(String nombre){
 		this.nombre=nombre;
 	}
 	public void setCodigo(int codigo){
@@ -28,6 +28,9 @@ public class Ciudad{
 	public int getCodigo(){
 		return this.codigo;
 	}
+        public ArrayList<PersonaEmigrante> getListaEmigrantes(){
+            return this.listaEmigrantes;
+        }
 
 	//=========== Metodos operacionales===========
 

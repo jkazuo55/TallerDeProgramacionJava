@@ -181,6 +181,22 @@ public class Migracion{
             tablas2.put(8,"tarija");
         }
 
+    public void imprimirGrafo(){
+        System.out.printf("  %d" , 0);
+        for (int i = 1; i < flujoEmigrantes.length; i++) {
+            System.out.printf(" %d" , i);
+        }
+        System.out.println();
+        
+        for(int i = 0; i < flujoEmigrantes.length; i++){
+            System.out.printf("%d ",i);
+            for(int j = 0; j < flujoEmigrantes[i].length; j++){
+                System.out.printf("%d " , flujoEmigrantes[i][j]);
+            }
+            System.out.println();
+        }
+    }    
+
     public static void main(String args[]){
         Migracion migracion = new Migracion();
         Ciudad cochabamba = new Ciudad();
@@ -211,7 +227,9 @@ public class Migracion{
         
         
         }
-        
+
+        migracion.imprimirGrafo();    
+
     }
 
 }

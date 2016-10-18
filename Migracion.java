@@ -298,15 +298,31 @@ public class Migracion{
         oruro.registrarEmigrante(rodrigo_flores);
         pando.registrarEmigrante(saturnino);
 
+    }
 
+    public ArrayList<PersonaEmigrante> reportePorCiudad(String nombreCiudad){
+        ArrayList<PersonaEmigrante>emigrantesCiudad=new ArrayList<PersonaEmigrante>();
+        for (PersonaEmigrante emigrante:listaGeneral()) {
+            if (emigrante.getNacidoEn()==nombreCiudad) {
+                emigrantesCiudad.add(emigrante);
+            }
+        }
+        return emigrantesCiudad;
     }    
 
     public static void main(String args[]){
         Migracion migracion = new Migracion();
+
         migracion.datosIniciales(migracion);
-        for(PersonaEmigrante emigrante: migracion.listaGeneral()){
-            System.out.println(emigrante);
+        
+        // for(PersonaEmigrante emigrante: migracion.listaGeneral()){
+            
+        //     System.out.println(emigrante);
+        // }
+        for (PersonaEmigrante emigranteCiudad:migracion.reportePorCiudad("cochabamba")) {
+            System.out.println(emigranteCiudad);
         }
+
         String fecha = migracion.fechaMigracion("Jose Pedro","Dominguez Serrano");
         System.out.println(fecha);
         migracion.representacionMatrizDePesos(migracion.listaGeneral());
@@ -317,8 +333,7 @@ public class Migracion{
         for(Reporte reporte: reportes){
             System.out.println(reporte.getNombreCiudad());
             System.out.println(reporte.getFlujo());
-        
-        
+                
         }*/
 
         migracion.mostrarMatrizDePesos(); 

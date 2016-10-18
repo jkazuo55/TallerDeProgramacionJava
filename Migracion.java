@@ -1,3 +1,4 @@
+import java.util.Scanner;
 import java.util.Hashtable;
 import java.util.ArrayList;
 
@@ -74,10 +75,10 @@ public class Migracion{
         int indiceCiudad=tablaCiudadCodigo.get(nombreCiudad);
         if(estadoCiudad){
             int total=totalEmigrantesDeCiudad(nombreCiudad);
-            System.out.println("Total de emigrantes dela ciudad  = "  + total);            
+            System.out.println("      TOTAL EMIGRANTES DE LA CIUDAD DE  " +nombreCiudad+" "  + total);            
             for (int i=0;i<flujoEmigrantes.length ;i++ ) {
                 if (flujoEmigrantes[indiceCiudad][i]>0) {
-                    System.out.println(flujoEmigrantes[indiceCiudad][i] + " hacia " + tablaCodigoCiudad.get(i));
+                    System.out.println("      "+flujoEmigrantes[indiceCiudad][i] + " hacia " + tablaCodigoCiudad.get(i));
                 }
             }
         }
@@ -189,10 +190,6 @@ public class Migracion{
     
     }
 
-    public void menu(){
-    
-    
-    }
 
     public void init_tablaCiudadCodigo(){
         
@@ -310,6 +307,98 @@ public class Migracion{
         return emigrantesCiudad;
     }    
 
+    public void menu(){
+        System.out.println("#######  MENU REPORTES #######");
+        System.out.println("1. Generacion de matriz de pesos");
+        System.out.println("2. Menu Reporte por ciudades");
+        System.out.println("3. Salir");
+    }
+
+    public void menuReportePorCiudad(){
+        int numero;
+        do{
+            System.out.println("========= OPCIONES DE UNA CIUDAD =========");
+            System.out.println("    4 la paz");
+            System.out.println("    5 pando");
+            System.out.println("    6 beni");
+            System.out.println("    7 cochabamba");
+            System.out.println("    8 santa cruz");
+            System.out.println("    9 oruro");
+            System.out.println("    10 potosi");
+            System.out.println("    11 chuquisaca");
+            System.out.println("    12 tarija");
+
+            System.out.println("    13.Volver Atraz");
+            System.out.println("=> ingrese una opcion");
+
+            Scanner lector =new Scanner(System.in);
+            numero = lector.nextInt();
+
+            switch(numero){
+                case 4:
+                    for (PersonaEmigrante emigranteCiudad:reportePorCiudad("la paz")) {
+                        System.out.println("####################"+emigranteCiudad);
+                    }
+                    mostrarFlujoEmigrantesPorCiudad("la paz");
+                break;
+                case 5:
+                    for (PersonaEmigrante emigranteCiudad:reportePorCiudad("pando")) {
+                        System.out.println("####################"+emigranteCiudad);
+                    }
+                    mostrarFlujoEmigrantesPorCiudad("pando");
+                break;
+                case 6:
+                    for (PersonaEmigrante emigranteCiudad:reportePorCiudad("beni")) {
+                        System.out.println("####################"+emigranteCiudad);
+                    }
+                    mostrarFlujoEmigrantesPorCiudad("beni");
+                break;
+                case 7:
+                    for (PersonaEmigrante emigranteCiudad:reportePorCiudad("cochabamba")) {
+                        System.out.println("####################"+emigranteCiudad);
+                    }
+                    mostrarFlujoEmigrantesPorCiudad("cochabamba");
+                break;
+                case 8:
+                    for (PersonaEmigrante emigranteCiudad:reportePorCiudad("santa cruz")) {
+                        System.out.println("####################"+emigranteCiudad);
+                    }
+                    mostrarFlujoEmigrantesPorCiudad("santa cruz");
+                break;
+                case 9:
+                    for (PersonaEmigrante emigranteCiudad:reportePorCiudad("oruro")) {
+                        System.out.println("####################"+emigranteCiudad);
+                    }
+                    mostrarFlujoEmigrantesPorCiudad("oruro");
+                break;
+                case 10:
+                    for (PersonaEmigrante emigranteCiudad:reportePorCiudad("potosi")) {
+                        System.out.println("####################"+emigranteCiudad);
+                    }
+                    mostrarFlujoEmigrantesPorCiudad("potosi");
+                break;
+                case 11:
+                    for (PersonaEmigrante emigranteCiudad:reportePorCiudad("chuquisaca")) {
+                        System.out.println("####################"+emigranteCiudad);
+                    }
+                    mostrarFlujoEmigrantesPorCiudad("chuquisaca");
+                break;
+                case 12:
+                    for (PersonaEmigrante emigranteCiudad:reportePorCiudad("tarija")) {
+                        System.out.println("####################"+emigranteCiudad);
+                    }
+                    mostrarFlujoEmigrantesPorCiudad("tarija");
+                break;
+                
+                default: if (numero!=13) {
+                    System.out.println("OPCION INCORECTA");
+                };
+            }
+
+        }while(numero != 13);
+    }
+
+
     public static void main(String args[]){
         Migracion migracion = new Migracion();
 
@@ -319,12 +408,12 @@ public class Migracion{
             
         //     System.out.println(emigrante);
         // }
-        for (PersonaEmigrante emigranteCiudad:migracion.reportePorCiudad("cochabamba")) {
-            System.out.println(emigranteCiudad);
-        }
+        // for (PersonaEmigrante emigranteCiudad:migracion.reportePorCiudad("cochabamba")) {
+        //     System.out.println(emigranteCiudad);
+        // }
 
-        String fecha = migracion.fechaMigracion("Jose Pedro","Dominguez Serrano");
-        System.out.println(fecha);
+        // String fecha = migracion.fechaMigracion("Jose Pedro","Dominguez Serrano");
+        // System.out.println(fecha);
         migracion.representacionMatrizDePesos(migracion.listaGeneral());
 
         /*
@@ -336,8 +425,24 @@ public class Migracion{
                 
         }*/
 
-        migracion.mostrarMatrizDePesos(); 
-        migracion.mostrarFlujoEmigrantesPorCiudad("cochabamba");   
+        // migracion.mostrarMatrizDePesos(); 
+        // migracion.mostrarFlujoEmigrantesPorCiudad("cochabamba");
+
+        int opcion;
+        do{
+            migracion.menu();
+            System.out.println("=> Ingrese una opcion");
+            Scanner in = new Scanner(System.in);
+            opcion = in.nextInt();
+            
+            switch(opcion){
+            case 1: migracion.mostrarMatrizDePesos();break;
+            case 2: migracion.menuReportePorCiudad();break;
+            default: if (opcion!=3) {
+                    System.out.println("OPCION INCORECTA");
+                };
+            }
+        }while(opcion != 3);   
 
     }
 

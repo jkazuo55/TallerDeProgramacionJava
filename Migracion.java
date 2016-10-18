@@ -96,7 +96,7 @@ public class Migracion{
         String last_name;
         Boolean encontrado = false;
         int index = 0;
-        while(!encontrado && index <= listaGeneralEmigrantes.size()){
+        while(!encontrado && index < listaGeneralEmigrantes.size()){
             emigrante = listaGeneralEmigrantes.get(index);
             name = emigrante.getNombre();
             apellido = emigrante.getApellido();
@@ -282,7 +282,18 @@ public class Migracion{
         System.out.println("#######  MENU REPORTES #######");
         System.out.println("1. Generacion de matriz de pesos");
         System.out.println("2. Menu Reporte por ciudades");
-        System.out.println("3. Salir");
+        System.out.println("3. Fecha de Migracion");
+        System.out.println("4. Salir");
+    }
+
+    public void menuFechaMigracion(){
+        System.out.println("Ingrese nombre de ciudadano:");
+        Scanner inputC = new Scanner(System.in);
+        String nombre =  inputC.nextLine();
+        System.out.println("Ingrese apellido de ciudadano:");
+        String apellido = inputC.nextLine();
+        System.out.println("Fecha de migracion de " +nombre+" "+apellido+":");
+        System.out.println(fechaMigracion(nombre,apellido)); 
     }
     public void menuReportePorCiudad(){
         int numero;
@@ -381,10 +392,11 @@ public class Migracion{
             switch(opcion){
             case 1: migracion.mostrarMatrizDePesos();break;
             case 2: migracion.menuReportePorCiudad();break;
-            default: if (opcion!=3) {
+            case 3: migracion.menuFechaMigracion();break;
+            default: if (opcion!=4) {
                     System.out.println("OPCION INCORECTA");
                 };
             }
-        }while(opcion != 3);   
+        }while(opcion != 4);   
     }
 }

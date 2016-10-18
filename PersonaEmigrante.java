@@ -23,4 +23,14 @@ public class PersonaEmigrante extends Persona{
 	public String getFecha(){
 		return this.fecha;
 	}
+
+	public String toString() {
+		String atributosPadre=super.toString();
+        StringBuilder sb = new StringBuilder(atributosPadre);
+        sb.append("\nDestino: ");
+        sb.append(destino);
+        sb.append("\nFecha: ");
+        sb.append(fecha);    
+        return sb.toString();
+    }
 }

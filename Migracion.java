@@ -305,7 +305,7 @@ public class Migracion{
         Migracion migracion = new Migracion();
         migracion.datosIniciales(migracion);
         for(PersonaEmigrante emigrante: migracion.listaGeneral()){
-            System.out.println(emigrante.getNombre());
+            System.out.println(emigrante);
         }
         String fecha = migracion.fechaMigracion("Jose Pedro","Dominguez Serrano");
         System.out.println(fecha);

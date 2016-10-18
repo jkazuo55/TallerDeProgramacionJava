@@ -1,15 +1,19 @@
+
+/**
+*@autor 
+*
+*/
 import java.util.Scanner;
 import java.util.Hashtable;
 import java.util.ArrayList;
 
 public class Migracion{
-
     private ArrayList<Ciudad>listaCiudades;
-
     private Grafo grafoEmigrantes;
     private Grafo grafoMapa;
-    int flujoEmigrantes[][];
-
+    private int flujoEmigrantes[][];
+    private Hashtable<String,Integer> tablaCiudadCodigo; 
+    private Hashtable<Integer,String> tablaCodigoCiudad;
     private int[][]matrizMapa =  { {0,1,0,1,0,1,0,0,0},
                                    {1,0,1,0,0,0,0,0,0},
                                    {0,1,0,0,1,0,0,0,0},
@@ -18,12 +22,8 @@ public class Migracion{
                                    {1,0,0,1,0,0,1,0,0},
                                    {0,0,0,0,0,1,0,0,1},
                                    {0,0,0,1,1,0,0,0,1},
-                                   {0,0,0,0,0,0,1,1,0}};
-
-    private Hashtable<String,Integer> tablaCiudadCodigo; 
-    private Hashtable<Integer,String> tablaCodigoCiudad;
-
-
+                                   {0,0,0,0,0,0,1,1,0}
+                                };
     public Migracion(){
         listaCiudades = new ArrayList<Ciudad>();
         tablaCiudadCodigo = new Hashtable<String,Integer>();
@@ -34,15 +34,12 @@ public class Migracion{
         init_tablaCodigoCiudad();
         flujoEmigrantes = grafoEmigrantes.getMatriz();
     }
-
     public ArrayList<Reporte> flujoEmigrantes(String nombreCiudad){
-
         ArrayList<Reporte> listaReporte =new ArrayList<Reporte>();
         boolean estadoCiudad = buscarCiudad(nombreCiudad);
         int indiceCiudadInicio= tablaCiudadCodigo.get(nombreCiudad);
         String indiceCiudadDestino;
         int flujoEmigrantes[][] = grafoEmigrantes.getMatriz();
-        // Reporte reporte=new Reporte();
         if (estadoCiudad) {
             for (int i=0;i<8;i++ ) {
                 if (flujoEmigrantes[indiceCiudadInicio][i]>0){
@@ -52,8 +49,7 @@ public class Migracion{
         }
         return listaReporte;       
     }
-
-    private boolean buscarCiudad(String nombreCiudad){
+    public boolean buscarCiudad(String nombreCiudad){
         boolean encontrado =false;
         int i=0;
         while(encontrado == false && i<listaCiudades.size()){
@@ -63,11 +59,7 @@ public class Migracion{
                 i++;
             }
         }
-        if (encontrado) {
-            return true;
-        }else{
-            return false;
-        }
+        return encontrado;
     }
 
     public void mostrarFlujoEmigrantesPorCiudad(String nombreCiudad){
@@ -82,10 +74,8 @@ public class Migracion{
                 }
             }
         }
-    
     }
-
-    private int totalEmigrantesDeCiudad(String nombreCiudad){
+    public int totalEmigrantesDeCiudad(String nombreCiudad){
         boolean estadoCiudad=buscarCiudad(nombreCiudad);
         int total=0;
         int indiceCiudad;
@@ -97,8 +87,6 @@ public class Migracion{
         }
         return total;
     }
-
-
     public String fechaMigracion(String nombre, String apellido){
         String res = "";
         ArrayList<PersonaEmigrante> listaGeneralEmigrantes = listaGeneral();
@@ -125,11 +113,9 @@ public class Migracion{
         }
         return res;
     }
-
     public void registrarCiudad(Ciudad ciudad){
         this.listaCiudades.add(ciudad);
     }
-
     public ArrayList<PersonaEmigrante> listaGeneral(){
         ArrayList<PersonaEmigrante> listaEmigrantesGeneral = new ArrayList<PersonaEmigrante>();
         ArrayList<PersonaEmigrante> listaEmigrantesParticular;
@@ -146,7 +132,6 @@ public class Migracion{
         }
         return listaEmigrantesGeneral; 
     }
-
     public void representacionMatrizDePesos(ArrayList<PersonaEmigrante> listaEmigrantes){
         String origen;
         String destino;
@@ -171,7 +156,6 @@ public class Migracion{
             }
         }
     }
-
     public void mostrarMatrizDePesos(){
         // int flujoEmigrantes[][] = grafoEmigrantes.getMatriz();
         System.out.printf("  %d" , 0);
@@ -186,13 +170,9 @@ public class Migracion{
                 System.out.printf("%d " , flujoEmigrantes[i][j]);
             }
             System.out.println();
-        }
-    
+        }  
     }
-
-
-    public void init_tablaCiudadCodigo(){
-        
+    public void init_tablaCiudadCodigo(){     
         tablaCiudadCodigo.put("la paz",0);
         tablaCiudadCodigo.put("pando",1);
         tablaCiudadCodigo.put("beni",2);
@@ -202,10 +182,8 @@ public class Migracion{
         tablaCiudadCodigo.put("potosi",6);
         tablaCiudadCodigo.put("chuquisaca",7);
         tablaCiudadCodigo.put("tarija",8);
-
     }
     public void init_tablaCodigoCiudad(){
-        
         tablaCodigoCiudad.put(0,"la paz");
         tablaCodigoCiudad.put(1,"pando");
         tablaCodigoCiudad.put(2,"beni");
@@ -216,7 +194,6 @@ public class Migracion{
         tablaCodigoCiudad.put(7,"chuquisaca");
         tablaCodigoCiudad.put(8,"tarija");
     }    
-
     public void datosIniciales(Migracion migracion){
         Ciudad cochabamba = new Ciudad();
         cochabamba.setNombre("cochabamba");
@@ -237,7 +214,6 @@ public class Migracion{
         Ciudad tarija = new Ciudad();
         tarija.setNombre("tarija");
 
-
         migracion.registrarCiudad(cochabamba);
         migracion.registrarCiudad(lapaz);
         migracion.registrarCiudad(oruro);
@@ -248,11 +224,9 @@ public class Migracion{
         migracion.registrarCiudad(potosi);
         migracion.registrarCiudad(tarija);
 
-
-        
-        PersonaEmigrante pedro2 = new PersonaEmigrante("Jose Pedro","Dominguez Serrano","masculino","9350610CB","cochabamba",35,"la paz","01/01/1993"); 
-        PersonaEmigrante pedro1 = new PersonaEmigrante("Jose Pedro","Dominguez Serrano","masculino","9350610CB","cochabamba",35,"la paz","01/01/1993"); 
-        PersonaEmigrante pedro = new PersonaEmigrante("Jose Pedro","Dominguez Serrano","masculino","9350610CB","cochabamba",35,"la paz","01/01/1993"); 
+        PersonaEmigrante jose = new PersonaEmigrante("Jose","Dominguez Serrano","masculino","9350610CB","cochabamba",35,"la paz","01/01/1993"); 
+        PersonaEmigrante pedro = new PersonaEmigrante("Pedro","Dominguez Serrano","masculino","9350610CB","cochabamba",35,"la paz","01/01/1993"); 
+        PersonaEmigrante carlos = new PersonaEmigrante("Carlos","Dominguez Serrano","masculino","9350610CB","cochabamba",35,"la paz","01/01/1993"); 
         PersonaEmigrante juan = new PersonaEmigrante("Juan","Serrano","masculino","5678543LP","la paz",45,"cochabamba","25/06/1985"); 
         PersonaEmigrante gabriel = new PersonaEmigrante("Gabriel","Cardona","masculino","3452647O","oruro",23,"cochabamba","23/05/1989");
         PersonaEmigrante guilder = new PersonaEmigrante("GUILDER","VILLARROEL CONDORI","masculino","782345CH","chuquisaca",40,"tarija","04/10/2016");
@@ -262,9 +236,9 @@ public class Migracion{
         PersonaEmigrante hilbert = new PersonaEmigrante("HILBERT","FLORES RIOJA","masculino","4534306PO","potosi",35,"cochabamba","12/07/2012");
         PersonaEmigrante demetrio = new PersonaEmigrante("DEMETRIO SATURNINO","QUISBERT CHOQUE","masculino","2616320T","tarija",34,"potosi","24/08/2010");
 
+        lapaz.registrarEmigrante(jose);
         lapaz.registrarEmigrante(pedro);
-        lapaz.registrarEmigrante(pedro1);
-        lapaz.registrarEmigrante(pedro2);
+        lapaz.registrarEmigrante(carlos);
         cochabamba.registrarEmigrante(juan);
         cochabamba.registrarEmigrante(gabriel);
         tarija.registrarEmigrante(guilder);
@@ -275,7 +249,7 @@ public class Migracion{
         potosi.registrarEmigrante(demetrio);
 
 
-        PersonaEmigrante jose = new PersonaEmigrante("Pedro","Serrano Jimenez","masculino","315010CB","cochabamba",35,"santa cruz","01/01/1993"); 
+        PersonaEmigrante marcos = new PersonaEmigrante("marcos","Serrano Jimenez","masculino","315010CB","cochabamba",35,"santa cruz","01/01/1993"); 
         PersonaEmigrante quinteros = new PersonaEmigrante("Juan","Quinteros Serrano","masculino","897854LP","la paz",45,"pando","25/06/1985"); 
         PersonaEmigrante jose_gabriel = new PersonaEmigrante("Jose Gabriel","Cardona Gutierrez","masculino","6542647O","oruro",23,"potosi","23/05/1989");
         PersonaEmigrante julio_guilder = new PersonaEmigrante("JULIO GUILDER","VILLARROEL CONDORI","masculino","876345CH","chuquisaca",40,"santa cruz","04/10/2016");
@@ -285,7 +259,7 @@ public class Migracion{
         PersonaEmigrante rodrigo_flores = new PersonaEmigrante("RODRIGO","FLORES RIOJA","masculino","3544306PO","potosi",35,"oruro","12/07/2012");
         PersonaEmigrante saturnino = new PersonaEmigrante("SATURNINO","QUISBERT CHOQUE","masculino","2716320T","tarija",34,"pando","24/08/2010");
 
-        santacruz.registrarEmigrante(jose);
+        santacruz.registrarEmigrante(marcos);
         pando.registrarEmigrante(quinteros);
         potosi.registrarEmigrante(jose_gabriel);
         santacruz.registrarEmigrante(julio_guilder);
@@ -294,9 +268,7 @@ public class Migracion{
         santacruz.registrarEmigrante(alberto);
         oruro.registrarEmigrante(rodrigo_flores);
         pando.registrarEmigrante(saturnino);
-
     }
-
     public ArrayList<PersonaEmigrante> reportePorCiudad(String nombreCiudad){
         ArrayList<PersonaEmigrante>emigrantesCiudad=new ArrayList<PersonaEmigrante>();
         for (PersonaEmigrante emigrante:listaGeneral()) {
@@ -306,14 +278,12 @@ public class Migracion{
         }
         return emigrantesCiudad;
     }    
-
     public void menu(){
         System.out.println("#######  MENU REPORTES #######");
         System.out.println("1. Generacion de matriz de pesos");
         System.out.println("2. Menu Reporte por ciudades");
         System.out.println("3. Salir");
     }
-
     public void menuReportePorCiudad(){
         int numero;
         do{
@@ -397,37 +367,10 @@ public class Migracion{
 
         }while(numero != 13);
     }
-
-
     public static void main(String args[]){
         Migracion migracion = new Migracion();
-
         migracion.datosIniciales(migracion);
-        
-        // for(PersonaEmigrante emigrante: migracion.listaGeneral()){
-            
-        //     System.out.println(emigrante);
-        // }
-        // for (PersonaEmigrante emigranteCiudad:migracion.reportePorCiudad("cochabamba")) {
-        //     System.out.println(emigranteCiudad);
-        // }
-
-        // String fecha = migracion.fechaMigracion("Jose Pedro","Dominguez Serrano");
-        // System.out.println(fecha);
         migracion.representacionMatrizDePesos(migracion.listaGeneral());
-
-        /*
-
-        ArrayList<Reporte> reportes =  migracion.flujoEmigrantes("la paz");
-        for(Reporte reporte: reportes){
-            System.out.println(reporte.getNombreCiudad());
-            System.out.println(reporte.getFlujo());
-                
-        }*/
-
-        // migracion.mostrarMatrizDePesos(); 
-        // migracion.mostrarFlujoEmigrantesPorCiudad("cochabamba");
-
         int opcion;
         do{
             migracion.menu();
@@ -443,7 +386,5 @@ public class Migracion{
                 };
             }
         }while(opcion != 3);   
-
     }
-
 }

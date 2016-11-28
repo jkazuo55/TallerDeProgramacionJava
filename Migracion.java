@@ -1,14 +1,8 @@
-
-/**
-*@autor 
-*
-*/
 import java.util.Scanner;
 import java.util.Hashtable;
-import java.util.ArrayList;
 
 public class Migracion{
-    private ArrayList<Ciudad>listaCiudades;
+    private Lista<Ciudad>listaCiudades;
     private Grafo grafoEmigrantes;
     private Grafo grafoMapa;
     private int flujoEmigrantes[][];
@@ -25,7 +19,7 @@ public class Migracion{
                                    {0,0,0,0,0,0,1,1,0}
                                 };
     public Migracion(){
-        listaCiudades = new ArrayList<Ciudad>();
+        listaCiudades = new Lista<Ciudad>();
         tablaCiudadCodigo = new Hashtable<String,Integer>();
         tablaCodigoCiudad = new Hashtable<Integer,String>();
         grafoEmigrantes = new Grafo(9);
@@ -34,8 +28,9 @@ public class Migracion{
         init_tablaCodigoCiudad();
         flujoEmigrantes = grafoEmigrantes.getMatriz();
     }
-    public ArrayList<Reporte> flujoEmigrantes(String nombreCiudad){
-        ArrayList<Reporte> listaReporte =new ArrayList<Reporte>();
+    
+    public Lista<Reporte> flujoEmigrantes(String nombreCiudad){
+        Lista<Reporte> listaReporte =new Lista<Reporte>();
         boolean estadoCiudad = buscarCiudad(nombreCiudad);
         int indiceCiudadInicio= tablaCiudadCodigo.get(nombreCiudad);
         String indiceCiudadDestino;
@@ -43,16 +38,17 @@ public class Migracion{
         if (estadoCiudad) {
             for (int i=0;i<8;i++ ) {
                 if (flujoEmigrantes[indiceCiudadInicio][i]>0){
-                    listaReporte.add(new Reporte(tablaCodigoCiudad.get(i),flujoEmigrantes[indiceCiudadInicio][i]));
+                    listaReporte.insertarAlFinal(new Reporte(tablaCodigoCiudad.get(i),flujoEmigrantes[indiceCiudadInicio][i]));
                 }
             }
         }
         return listaReporte;       
     }
+    
     public boolean buscarCiudad(String nombreCiudad){
         boolean encontrado =false;
         int i=0;
-        while(encontrado == false && i<listaCiudades.size()){
+        while(encontrado == false && i<listaCiudades.getTamanio()){
             if (listaCiudades.get(i).getNombre().compareToIgnoreCase(nombreCiudad)==0) {
                 encontrado=true;
             }else{
@@ -89,14 +85,14 @@ public class Migracion{
     }
     public String fechaMigracion(String nombre, String apellido){
         String res = "";
-        ArrayList<PersonaEmigrante> listaGeneralEmigrantes = listaGeneral();
+        Lista<PersonaEmigrante> listaGeneralEmigrantes = listaGeneral();
         PersonaEmigrante emigrante_encontrado = null;
         PersonaEmigrante emigrante;
         String name;
         String last_name;
         Boolean encontrado = false;
         int index = 0;
-        while(!encontrado && index < listaGeneralEmigrantes.size()){
+        while(!encontrado && index < listaGeneralEmigrantes.getTamanio()){
             emigrante = listaGeneralEmigrantes.get(index);
             name = emigrante.getNombre();
             apellido = emigrante.getApellido();
@@ -114,25 +110,25 @@ public class Migracion{
         return res;
     }
     public void registrarCiudad(Ciudad ciudad){
-        this.listaCiudades.add(ciudad);
+        this.listaCiudades.insertarAlFinal(ciudad);
     }
-    public ArrayList<PersonaEmigrante> listaGeneral(){
-        ArrayList<PersonaEmigrante> listaEmigrantesGeneral = new ArrayList<PersonaEmigrante>();
-        ArrayList<PersonaEmigrante> listaEmigrantesParticular;
-        ArrayList<Ciudad> list = this.listaCiudades;
-        if(!list.isEmpty()){
+    public Lista<PersonaEmigrante> listaGeneral(){
+        Lista<PersonaEmigrante> listaEmigrantesGeneral = new Lista<PersonaEmigrante>();
+        Lista<PersonaEmigrante> listaEmigrantesParticular;
+        Lista<Ciudad> list = this.listaCiudades;
+        if(!list.esVacia()){
             for(Ciudad ciudad: list){
                 listaEmigrantesParticular = ciudad.getListaEmigrantes();
-                if(!listaEmigrantesParticular.isEmpty()){
+                if(!listaEmigrantesParticular.esVacia()){
                     for(PersonaEmigrante emigrante: listaEmigrantesParticular){
-                        listaEmigrantesGeneral.add(emigrante);
+                        listaEmigrantesGeneral.insertarAlFinal(emigrante);
                     }
                 }
             } 
         }
         return listaEmigrantesGeneral; 
     }
-    public void representacionMatrizDePesos(ArrayList<PersonaEmigrante> listaEmigrantes){
+    public void representacionMatrizDePesos(Lista<PersonaEmigrante> listaEmigrantes){
         String origen;
         String destino;
         int indice_origen;
@@ -141,7 +137,7 @@ public class Migracion{
         int valor_mapa;
         //int flujoEmigrantes[][] = grafoEmigrantes.getMatriz();
         //int matrizMapa[][] = grafoMapa.getMatriz();
-        if(!listaEmigrantes.isEmpty()){
+        if(!listaEmigrantes.esVacia()){
             for(PersonaEmigrante emigrante: listaEmigrantes){
                 origen = emigrante.getNacidoEn();
                 destino = emigrante.getDestino();
@@ -269,11 +265,11 @@ public class Migracion{
         oruro.registrarEmigrante(rodrigo_flores);
         pando.registrarEmigrante(saturnino);
     }
-    public ArrayList<PersonaEmigrante> reportePorCiudad(String nombreCiudad){
-        ArrayList<PersonaEmigrante>emigrantesCiudad=new ArrayList<PersonaEmigrante>();
+    public Lista<PersonaEmigrante> reportePorCiudad(String nombreCiudad){
+        Lista<PersonaEmigrante>emigrantesCiudad=new Lista<PersonaEmigrante>();
         for (PersonaEmigrante emigrante:listaGeneral()) {
             if (emigrante.getNacidoEn()==nombreCiudad) {
-                emigrantesCiudad.add(emigrante);
+                emigrantesCiudad.insertarAlFinal(emigrante);
             }
         }
         return emigrantesCiudad;
@@ -380,6 +376,12 @@ public class Migracion{
     }
     public static void main(String args[]){
         Migracion migracion = new Migracion();
+        GrafoND<Integer> grafoND = new GrafoND<Integer>();
+        System.out.println("comenz");
+        grafoND.insertarVertice(50);
+        grafoND.insertarVertice(100);
+        boolean hola = grafoND.insertarAristaP(50,100,343);
+        System.out.println(grafoND.longRutaMinimaDijkstra(50,100));
         migracion.datosIniciales(migracion);
         migracion.representacionMatrizDePesos(migracion.listaGeneral());
         int opcion;

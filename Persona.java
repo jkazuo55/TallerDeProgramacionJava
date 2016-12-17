@@ -1,19 +1,24 @@
 public class Persona{
 
 	private String nombre;
-	private String apellido;
-	private String sexo;
-	private String cedula;
+	private String apellidos;
+	private int cedula;
 	private String nacidoEn;
-	private int edad;
+	private String direccion;
+	private String telefono;
+	private String sexo;
 
-	public Persona(String nombre,String apellido, String sexo , String cedula,String nacidoEn, int edad){
+	public Persona(String nombre,String apellidos,int cedula ,String nacidoEn, String direccion,String telefono, String sexo){
 		this.nombre=nombre;
-		this.apellido=apellido;
-		this.sexo=sexo;
+		this.apellidos=apellidos;
 		this.cedula=cedula;
 		this.nacidoEn=nacidoEn;
-		this.edad=edad;
+		this.direccion=direccion;
+		this.telefono=telefono;
+		this.sexo=sexo;
+	}
+	public Persona(){
+
 	}
 
 	//======Metodos Setters======
@@ -21,21 +26,25 @@ public class Persona{
 	public void setNonbre(String nombre){
 		this.nombre=nombre;
 	}
-	public void setApellido(String apellido){
-		this.apellido=apellido;
+	public void setApellido(String apellidos){
+		this.apellidos=apellidos;
 	}
-	public void setSexo(String sexo){
-		this.sexo=sexo;
-	}
-	public void setCedula(String cedula){
+	public void setCedula(int cedula){
 		this.cedula=cedula;
 	}
 	public void setNacidoEn(String ciudad){
 		this.nacidoEn=nacidoEn;
 	}
-	public void setEdad(int edad){
-		this.edad=edad;
+	public void setDireccion(String direccion){
+		this.direccion=direccion;
 	}
+	public void setTelefono(String telefono){
+		this.telefono=telefono;
+	}
+	public void setSexo(String sexo){
+		this.sexo=sexo;
+	}
+	
 
 	//======Metodos Getters ======
 	
@@ -43,19 +52,22 @@ public class Persona{
 		return this.nombre;
 	}
 	public String getApellido(){
-		return this.apellido;
+		return this.apellidos;
 	}
-	public String getSexo(){
-		return this.sexo;
-	}
-	public String getCedula(){
+	public int getCedula(){
 		return this.cedula;
+	}
+	public String getDireccion(){
+		return this.direccion;
 	}
 	public String getNacidoEn(){
 		return this.nacidoEn;
 	}
-	public int getEdad(){
-		return this.edad;
+	public String getTelefono(){
+		return this.telefono;
+	}
+	public String getSexo(){
+		return this.sexo;
 	}
 
 	//=====Funciones Operacionales
@@ -65,15 +77,18 @@ public class Persona{
         sb.append("\nNombre: ");
         sb.append(nombre);
         sb.append("\nApellido: ");
-        sb.append(apellido);
-        sb.append("\nSexo: ");
-        sb.append(sexo);
+        sb.append(apellidos);
         sb.append("\ncedula: ");
         sb.append(cedula);
         sb.append("\nNacidoEn: ");
-        sb.append(nacidoEn);    
-        sb.append("\nEdad: ");
-        sb.append(edad);    
+        sb.append(direccion);    
+        sb.append("\nDireccion: ");
+        sb.append(telefono);    
+        sb.append("\ntelefono: ");
+        sb.append(sexo);
+        sb.append("\nSexo: ");
+        sb.append(sexo);
+    
         return sb.toString();
     }
 }

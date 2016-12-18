@@ -21,7 +21,7 @@ public class BtnsModificarEmigrar extends javax.swing.JPanel {
 
         jButton1.setText("Modificar");
 
-        jButton2.setText("Emigrar");
+        jButton2.setText("Emigrar/Registrar");
 
         jButton3.setText("Limpiar");
 
@@ -31,5 +31,7 @@ public class BtnsModificarEmigrar extends javax.swing.JPanel {
         this.add(jButton3);
 
         this.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-    }                        
+    }
+
+                           
 }

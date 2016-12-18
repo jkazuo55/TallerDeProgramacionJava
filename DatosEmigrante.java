@@ -113,4 +113,6 @@ public class DatosEmigrante extends JPanel {
         this.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
     }
+
+    
 }

@@ -10,17 +10,16 @@ import java.awt.Color;
 import javax.swing.JTabbedPane;
 import java.awt.BorderLayout;
 
-public class Main extends JFrame {
+public class VentanaPrincipal extends JFrame {
     
     private JLabel labelTitulo;
     private JPanel panelcabecera;
     private JPanel panelPestanias;
     private JTabbedPane pestanias;
     
-    public Main() {
+    public VentanaPrincipal() {
         initComponents();
     }
-
     private void initComponents() {
 
         panelcabecera = new JPanel();
@@ -59,13 +58,16 @@ public class Main extends JFrame {
         this.setLayout(new BoxLayout(this.getContentPane(),BoxLayout.Y_AXIS));
         this.add(panelcabecera);
         this.add(panelPestanias);
+    }
 
+    // Métodos de la VentanaPrincipal:
 
-        this.setSize(1500, 900);
-        setLocationRelativeTo(null);
-    }                       
-
-    public static void main(String args[]) {
+    public void setControlador(ControlPrincipal c) {
+        //addActionListener(c);
+        //addActionListener(c);
+    }
+    public void arranca() {
+        // visualiza la ventana
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -74,20 +76,22 @@ public class Main extends JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                VentanaPrincipal ventana = new VentanaPrincipal();
+                ventana.setVisible(true); //visualiza la ventana
+                ventana.setSize(1500, 900); //tamanio de la ventana
+                ventana.setLocationRelativeTo(null);// centra la ventana en la pantalla
             }
-        });
+        });    
     }
-
 }

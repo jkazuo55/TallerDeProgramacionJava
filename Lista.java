@@ -1,5 +1,6 @@
 import java.util.Iterator;
 import java.util.List;
+import java.io.Serializable;
 
  /**
  * @brief Clase Lista generica para el manejo de una "Lista Circular Doblemente Enlazada"<T>.
@@ -9,7 +10,7 @@ import java.util.List;
  * @since  1.0
  * @see https://github.com/jkazuo55/TallerDeProgramacionJava 
  */
-public class Lista <T> implements Iterable<T>{
+public class Lista <T> implements Iterable<T>,Serializable{
 
     private Nodo<T> cabecera; //!< Representa el Nodo cabecera de la Lista, no posee informacion 
     private int tamanio=0;//!<Representa el tamaño de la Lista    

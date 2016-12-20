@@ -1,4 +1,6 @@
-public class Persona{
+import java.io.Serializable;
+
+public class Persona implements Serializable{
 
 	private String nombre;
 	private String apellidos;
@@ -28,7 +30,7 @@ public class Persona{
 	public void setNonbre(String nombre){
 		this.nombre=nombre;
 	}
-	public void setApellido(String apellidos){
+	public void setApellidos(String apellidos){
 		this.apellidos=apellidos;
 	}
 	public void setCedula(long cedula){
@@ -56,7 +58,7 @@ public class Persona{
 	public String getNombre(){
 		return this.nombre;
 	}
-	public String getApellido(){
+	public String getApellidos(){
 		return this.apellidos;
 	}
 	public long getCedula(){

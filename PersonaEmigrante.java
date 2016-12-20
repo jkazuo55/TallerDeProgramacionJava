@@ -1,5 +1,6 @@
-public class PersonaEmigrante extends Persona{
-	private boolean emigranteSiNo;
+import java.io.Serializable;
+public class PersonaEmigrante extends Persona implements Serializable{
+	private String emigranteSiNo;
 	private String fecha;
 	private String origen;
 	private String destino;
@@ -7,7 +8,11 @@ public class PersonaEmigrante extends Persona{
 
 	//====== constructor ==========
 
-	public PersonaEmigrante(String nombre,String apellidos,long cedula, String sexo , String nacidoEn,String direccion, String telefono,String correo, boolean emigranteSiNo,String fecha, String origen,String destino, String motivoDeMigracion){
+	public PersonaEmigrante(){
+
+	}
+
+	public PersonaEmigrante(String nombre,String apellidos,long cedula, String sexo , String nacidoEn,String direccion, String telefono,String correo, String emigranteSiNo,String fecha, String origen,String destino, String motivoDeMigracion){
 		super(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo);
 		this.emigranteSiNo=emigranteSiNo;
 		this.fecha=fecha;
@@ -18,7 +23,7 @@ public class PersonaEmigrante extends Persona{
 
 	//========Metodos Setters========
 
-	public void setEmigranteSiNo( boolean emigranteSiNo){
+	public void setEmigranteSiNo( String emigranteSiNo){
 		this.emigranteSiNo=emigranteSiNo;
 	}	
 	public void setFecha(String fecha){
@@ -36,7 +41,7 @@ public class PersonaEmigrante extends Persona{
 
 	//=========Metosos Getters==========
 	
-	public boolean getEmigranteSiNo(){
+	public String getEmigranteSiNo(){
 		return this.emigranteSiNo;
 	}
 	public String getFecha(){

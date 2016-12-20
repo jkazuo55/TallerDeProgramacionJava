@@ -25,14 +25,17 @@ public class PestaniaEmigrantes extends JPanel{
     
     GridBagLayout layout = new GridBagLayout(); 
     
-    BusquedaEmigrante panelBusquedaEmigrante;
     RegistroEmigrante panelRegistroEmigrante;
+    BusquedaEmigrante panelBusquedaEmigrante;
     
+    RegistroEmigrante hola;
+
     public PestaniaEmigrantes() {
         initComponents();
 
         panelBusquedaEmigrante = new BusquedaEmigrante();
         panelRegistroEmigrante = new RegistroEmigrante();
+        hola = new RegistroEmigrante();
         
         panelDerecha.setLayout(layout);
         
@@ -42,10 +45,11 @@ public class PestaniaEmigrantes extends JPanel{
         panelDerecha.add(panelBusquedaEmigrante,c);
         c.gridx = 0;
         c.gridy = 0;
-        panelDerecha.add(panelRegistroEmigrante,c);
+        panelDerecha.add(hola.panelTodo,c);
         
         panelBusquedaEmigrante.setVisible(true);
-        panelRegistroEmigrante.setVisible(false);
+        // panelRegistroEmigrante.setVisible(false);
+        hola.panelTodo.setVisible(false);
     }      
     private void initComponents() {
 
@@ -107,12 +111,15 @@ public class PestaniaEmigrantes extends JPanel{
 
     private void btnPanel1ActionPerformed(ActionEvent evt) {                                          
         panelBusquedaEmigrante.setVisible(true);
-        panelRegistroEmigrante.setVisible(false);
+        // panelRegistroEmigrante.setVisible(false);
+        hola.panelTodo.setVisible(false);
     }                                         
 
     private void btnPanel2ActionPerformed(ActionEvent evt) {                                          
         panelBusquedaEmigrante.setVisible(false);
-        panelRegistroEmigrante.setVisible(true);
+        // panelRegistroEmigrante.setVisible(true);        
+        hola.panelTodo.setVisible(true);
+        
     }                                         
 
 }

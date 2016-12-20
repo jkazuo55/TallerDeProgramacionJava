@@ -32,48 +32,12 @@ public class DatosPersonales extends JPanel {
     private JTextField textTelefono;
     private JTextField textCorreo;
 
-    Lista<Persona> listaPersona;
+    Lista<PersonaEmigrante> listaPersonaEmigrante;
     
     public DatosPersonales() {
         initComponents();
     }
-        // public void registrar(){
-
-        //     Persona person = new Persona();
-            
-        //     String nombre     = textNombre.getText();
-        //     String apellidos  = textApellidos..getText();
-        //     int    cedula     = Integer.parseInt(textCedula.getText());
-        //     String sexo       = comboBoxSexo.getSelectedItem().toString();
-        //     String nacidoEn   = textNacidoEn.getText();
-        //     String direccion  = textDireccion.getText();
-        //     String telefono   = textTelefono.getText();
-        //     String correo     = textCorreo.getText();
-
-        //     open = new Persona(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo);
-        //     //condicion del arreglo buscar el objeto con el codiog que se acaba de colocar
-        //     if(this.buscar(open.getCedula()) != -1){
-        //         escribir("El codigo del empleado ya existe");
-        //     }else{
-        //         listaPersona.insertarAlFinal(open);
-        //         insertar(co,nomb,ht,pa,ph,pu,mo,pla,bo,des,monto);
-        //         obj.grabar();
-        //         actualizar();
-        //         limpiar();
-        //     }
-        // }
-        // public int buscar(String codigo){
-        //     int n = listaPersona.getTamanio();
-        //     for(int p=0; p<n; p++)
-        //     {
-        //         if(codigo.equalsIgnoreCase(listaPersona.get(p).getCedula()))
-        //         {
-        //             return p;
-        //         }
-        //     }
-        //     return -1;
-        // }
-
+    
     private void initComponents() {
 
         jpanelSuperior = new JPanel();

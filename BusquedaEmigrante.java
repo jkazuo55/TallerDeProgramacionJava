@@ -16,11 +16,12 @@ import java.awt.Dimension;
 
 public class BusquedaEmigrante extends JPanel{
 
-    //spanelOpsBusqueda = new OpsBusqueda();
-
     private JPanel panelCabecera;
     private JPanel panelCuerpo;
     private JPanel panelPie;
+
+    private JPanel panelCabeceraTitulo;
+    private JPanel panelCabeceraCuerpo;
 
     private JPanel panelCuerpoDatosPersonales;
     private JPanel panelCuerpoDatosEmigrante;
@@ -83,35 +84,35 @@ public class BusquedaEmigrante extends JPanel{
     //datosPersonales  
 
     RegistroEmigrante listaRegistroPersonaEmigrante;  
-    Lista<PersonaEmigrante> otraLista;
+    // Lista<PersonaEmigrante> otraLista;
     
     // Borrame listaRegistroPersonaEmigrante;  
-    RegistroEmigrante lis;  
+    // RegistroEmigrante lis;  
 
-    String fileName = "serial.txt";
+    // String fileName = "serial.txt";
 
-    DeserializableGenerico<Lista> deser_gen; 
+    // DeserializableGenerico<Lista> deser_gen; 
 
     public BusquedaEmigrante(){
         inicializarBusquedaEmigrante();
 
         listaRegistroPersonaEmigrante = new RegistroEmigrante();
-        System.out.println("esto busco :"+listaRegistroPersonaEmigrante.listaPersonaEmigrante.getTamanio());
+        // System.out.println("esto busco :"+listaRegistroPersonaEmigrante.listaPersonaEmigrante.getTamanio());
 
-        otraLista = listaRegistroPersonaEmigrante.listaPersonaEmigrante;
-        System.out.println("tmanio de la listaaaaaaa" + otraLista.getTamanio());
-        // listaRegistroPersonaEmigrante = new Borrame();
-        lis = new RegistroEmigrante();
+        // otraLista = listaRegistroPersonaEmigrante.listaPersonaEmigrante;
+        // System.out.println("tmanio de la listaaaaaaa" + otraLista.getTamanio());
+        // // listaRegistroPersonaEmigrante = new Borrame();
+        // lis = new RegistroEmigrante();
 
-        System.out.println("esto es de borrame $$$$$$"+lis.prueba.getTamanio());
+        // System.out.println("esto es de borrame $$$$$$"+lis.prueba.getTamanio());
         
-        deser_gen = new DeserializableGenerico<Lista>(fileName);
+        // deser_gen = new DeserializableGenerico<Lista>(fileName);
 
-        Lista<PersonaEmigrante> new_data = deser_gen.deserialize();
-        System.out.println("entrando al for de deserializacion");
-        for (PersonaEmigrante person: new_data) {
-            System.out.println(person.toString());
-        }
+        // Lista<PersonaEmigrante> new_data = deser_gen.deserialize();
+        // System.out.println("entrando al for de deserializacion");
+        // for (PersonaEmigrante person: new_data) {
+        //     System.out.println(person.toString());
+        // }
     
     }
 
@@ -397,7 +398,7 @@ public class BusquedaEmigrante extends JPanel{
     }
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {
-        System.out.println("tmanio de la listaa #### : " + listaRegistroPersonaEmigrante.tamanioLista());
+        // System.out.println("tmanio de la listaa #### : " + listaRegistroPersonaEmigrante.tamanioLista());
         this.m_consultar();
     }
 
@@ -412,9 +413,9 @@ public class BusquedaEmigrante extends JPanel{
         
         int i=0;
 
-        listaRegistroPersonaEmigrante.holamundo();
+        // listaRegistroPersonaEmigrante.holamundo();
     
-        System.out.println("tmanio de la lista : " + listaRegistroPersonaEmigrante.tamanioLista());
+        // System.out.println("tmanio de la lista : " + listaRegistroPersonaEmigrante.tamanioLista());
 
         while(i<=listaRegistroPersonaEmigrante.listaPersonaEmigrante.getTamanio()){
         // for(PersonaEmigrante emigrante:listaRegistroPersonaEmigrante.lista){

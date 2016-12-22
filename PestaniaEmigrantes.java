@@ -45,11 +45,11 @@ public class PestaniaEmigrantes extends JPanel{
         panelDerecha.add(panelBusquedaEmigrante,c);
         c.gridx = 0;
         c.gridy = 0;
-        panelDerecha.add(hola.panelTodo,c);
+        panelDerecha.add(hola.panelGeneral,c);
         
         panelBusquedaEmigrante.setVisible(true);
         // panelRegistroEmigrante.setVisible(false);
-        hola.panelTodo.setVisible(false);
+        hola.panelGeneral.setVisible(false);
     }      
     private void initComponents() {
 
@@ -112,13 +112,13 @@ public class PestaniaEmigrantes extends JPanel{
     private void btnPanel1ActionPerformed(ActionEvent evt) {                                          
         panelBusquedaEmigrante.setVisible(true);
         // panelRegistroEmigrante.setVisible(false);
-        hola.panelTodo.setVisible(false);
+        hola.panelGeneral.setVisible(false);
     }                                         
 
     private void btnPanel2ActionPerformed(ActionEvent evt) {                                          
         panelBusquedaEmigrante.setVisible(false);
         // panelRegistroEmigrante.setVisible(true);        
-        hola.panelTodo.setVisible(true);
+        hola.panelGeneral.setVisible(true);
         
     }                                         
 

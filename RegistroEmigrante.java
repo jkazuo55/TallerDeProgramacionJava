@@ -16,9 +16,15 @@ import java.awt.Dimension;
 
 public class RegistroEmigrante{
 
+    //paneles de RegistroEmigrante 
+    public JPanel panelGeneral;
+
     private JPanel panelCabecera;
     private JPanel panelCuerpo;
     private JPanel panelPie;
+
+    private JPanel panelCabeceraTitulo;
+    private JPanel panelCabeceraCuerpo;
 
     private JPanel panelCuerpoDatosPersonales;
     private JPanel panelCuerpoDatosEmigrante;
@@ -31,8 +37,6 @@ public class RegistroEmigrante{
 
     private JPanel panelCentro;
     
-    public JPanel panelTodo;
-
     //datos personales
     private JLabel tituloPrincipal;
     private JLabel tituloDatosPersonales;
@@ -57,7 +61,6 @@ public class RegistroEmigrante{
     private JTextField textCorreo;
     
     //Datos Emigrante
-
     private JLabel labelEmigranteSiNo;
     private JLabel labelFecha;
     private JLabel labelOrigen;
@@ -69,9 +72,16 @@ public class RegistroEmigrante{
     private JComboBox comboBoxOrigen;
     private JComboBox comboBoxDestino;
     private JComboBox comboBoxMotivoDeMigracion;
-    //BtnsModificarEmigrar
+    //Cabecera
+    private JLabel labelTituloCabecera;
+    private JLabel labelIngreseCi;
+    private JTextField textFildCi;
+    private JButton btnBuscar;
+
+    //Pie
     private JButton btnRegistrar;
-    private JButton btnLimpiar;
+    private JButton btnModificar;
+    private JButton btnBorrar;
 
     //datosPersonales
 
@@ -80,44 +90,57 @@ public class RegistroEmigrante{
     Lista<PersonaEmigrante> listaPersonaEmigrante;   //lista    
     // Serializable obj;     
 
-    String fileName = "serial.txt"; 
+    String fileName = "serializaciones.ser"; 
 
-    SerializableGenerico<Lista<PersonaEmigrante>> ser_gen; 
-    DeserializableGenerico<Lista<PersonaEmigrante>> deser_gen;  
+    SerializableGenerico<Lista> ser_gen; 
+    DeserializableGenerico<Lista> deser_gen;  
 
-    Lista<PersonaEmigrante> prueba;
+    // Lista<PersonaEmigrante> prueba;
 
-    public RegistroEmigrante(){   
-        inicializarRegistroEmigrante();
+    public RegistroEmigrante(){ 
+
+        System.out.println("Inicializa el programa");    
         
-        // aki();
-
-        // ser_gen = new SerializableGenerico<Lista<PersonaEmigrante>>(fileName,listaPersonaEmigrante);
-        // ser_gen.serialize();
-
-        // deser_gen = new DeserializableGenerico<Lista<PersonaEmigrante>>(fileName);
+        // deser_gen = new DeserializableGenerico<Lista>(fileName);
 
         // Lista<PersonaEmigrante> new_data = deser_gen.deserialize();
 
+        // listaPersonaEmigrante = new_data;
+        
         // for (PersonaEmigrante person: new_data) {
         //     System.out.println("entro al for de desserializacion");
         //     System.out.println(person.toString());
         // }
 
+        inicializarRegistroEmigrante();
         // obj = new Serializable();
         // obj.cargaDatos();
     }   
 
         
     private void inicializarRegistroEmigrante(){
+
         listaPersonaEmigrante = new Lista<PersonaEmigrante>(); 
-        prueba =  new Lista<PersonaEmigrante>(); 
 
+        deser_gen = new DeserializableGenerico<Lista>(fileName);
+        listaPersonaEmigrante = deser_gen.deserialize();
+
+
+        ser_gen = new SerializableGenerico<Lista>(fileName,listaPersonaEmigrante);
+    
+        
+
+        // prueba =  new Lista<PersonaEmigrante>(); 
+
+        //DatosPersonales
+        panelGeneral = new JPanel();
+        
         panelCabecera = new JPanel();
-        panelCuerpo = new JPanel();
-        panelPie = new JPanel();
+        panelCuerpo =   new JPanel();
+        panelPie =      new JPanel();
 
-        panelTodo = new JPanel();
+        panelCabeceraTitulo = new JPanel();
+        panelCabeceraCuerpo = new JPanel();
 
         panelCuerpoDatosPersonales = new JPanel();
         panelCuerpoDatosEmigrante = new JPanel();
@@ -130,13 +153,8 @@ public class RegistroEmigrante{
 
         panelCentro = new JPanel();
 
-        tituloPrincipal = new JLabel();
         tituloDatosPersonales = new JLabel();
         tituloDatosEmigrante = new JLabel();
-
-        btnRegistrar = new JButton();
-        btnLimpiar = new JButton();
-
 
         labelNombre = new JLabel();
         labelApellidos = new JLabel();
@@ -177,7 +195,6 @@ public class RegistroEmigrante{
         textTelefono.setText("");
         textCorreo.setText("");
 
-
         panelCuerpoDatosPersonalesCabecera.setLayout(new FlowLayout());
         panelCuerpoDatosPersonalesCabecera.add(tituloDatosPersonales);    
 
@@ -190,7 +207,7 @@ public class RegistroEmigrante{
         panelCuerpoDatosPersonalesContenido.add(textCedula);
         panelCuerpoDatosPersonalesContenido.add(labelSexo);
         panelCuerpoDatosPersonalesContenido.add(comboBoxSexo);
-        panelCuerpoDatosPersonalesContenido.add(labelNacidoEn);
+        panelCuerpoDatosPersonalesContenido.add(labelNacidoEn);        
         panelCuerpoDatosPersonalesContenido.add(textNacidoEn);
         panelCuerpoDatosPersonalesContenido.add(labelDireccion);
         panelCuerpoDatosPersonalesContenido.add(textDireccion);
@@ -207,11 +224,7 @@ public class RegistroEmigrante{
         panelCuerpoDatosPersonalesContenido.setMaximumSize(new java.awt.Dimension(500, 350));
         panelCuerpoDatosPersonalesContenido.setMinimumSize(new java.awt.Dimension(500, 350));
         panelCuerpoDatosPersonalesContenido.setPreferredSize(new java.awt.Dimension(500, 350));
-
         panelCuerpoDatosPersonales.setMaximumSize(new java.awt.Dimension(500, 100));
-        panelCuerpoDatosPersonales.setMinimumSize(new java.awt.Dimension(500, 100));
-        panelCuerpoDatosPersonales.setPreferredSize(new java.awt.Dimension(500, 100));
-        panelCuerpoDatosPersonales.setLayout(new BoxLayout(panelCuerpoDatosPersonales,BoxLayout.Y_AXIS));
         panelCuerpoDatosPersonales.add(panelCuerpoDatosPersonalesCabecera);
         panelCuerpoDatosPersonales.add(panelCuerpoDatosPersonalesContenido);         
 
@@ -298,12 +311,16 @@ public class RegistroEmigrante{
         panelCuerpoDatosEmigrante.setSize(1000,300);
         panelCuerpoDatosEmigrante.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        //Botones
+        //panelPie
 
         btnRegistrar = new JButton();
-        btnLimpiar = new JButton();
+        btnModificar = new JButton();
+        btnBorrar    = new JButton();
 
-        btnRegistrar.setText("Emigrar/Registrar");
+        btnRegistrar.setText("REGISTRAR");
+        btnModificar.setText("MODIFICAR");
+        btnBorrar.setText("BORRAR");
+
 
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -311,11 +328,24 @@ public class RegistroEmigrante{
             }
         });
 
-        btnLimpiar.setText("Limpiar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
+
+        //btnLimpiar.setText("Limpiar");
 
         panelPie.setLayout(new FlowLayout());
         panelPie.add(btnRegistrar);
-        panelPie.add(btnLimpiar);
+        panelPie.add(btnModificar);
+        panelPie.add(btnBorrar);
 
         panelPie.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
 
@@ -341,66 +371,100 @@ public class RegistroEmigrante{
 
         panelCuerpo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 255)));
         
+        //PanelCabecera
+
+        labelTituloCabecera = new JLabel();
+        labelIngreseCi = new JLabel();
+        textFildCi = new JTextField();
+        btnBuscar = new JButton();
+
+        labelTituloCabecera.setText("Busqueda de Ciudadano ");
+
+        labelIngreseCi.setText("Ingrese su Cedula de Identidad  ");
+        textFildCi.setText("      ");
+        btnBuscar.setText("BUSCAR");
+
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        panelCabeceraTitulo.setLayout(new FlowLayout());
+        panelCabeceraTitulo.add(labelTituloCabecera);
+
+        panelCabeceraCuerpo.setLayout(new FlowLayout());
+        panelCabeceraCuerpo.add(labelIngreseCi);
+        panelCabeceraCuerpo.add(textFildCi);
+        panelCabeceraCuerpo.add(btnBuscar);
+
+        panelCabecera.setLayout(new BoxLayout(panelCabecera,BoxLayout.Y_AXIS));
+        panelCabecera.add(panelCabeceraTitulo);
+        panelCabecera.add(panelCabeceraCuerpo);
+
+        panelCabecera.setMaximumSize(new java.awt.Dimension(700, 80));
+        panelCabecera.setMinimumSize(new java.awt.Dimension(700, 80));
+        panelCabecera.setPreferredSize(new java.awt.Dimension(700, 80));
+
+        // panelCabecera.setSize(1000,100);
+        panelCabecera.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         //General
-
-        tituloPrincipal =  new JLabel("REGISTRO DE EMIGRANTES");
-
-        panelCabecera.setLayout(new FlowLayout());
-        panelCabecera.add(tituloPrincipal);
 
         panelPie.setMaximumSize(new java.awt.Dimension(500, 100));
         panelPie.setMinimumSize(new java.awt.Dimension(500, 100));
         panelPie.setPreferredSize(new java.awt.Dimension(500, 100));
 
-        panelTodo.setLayout(new BoxLayout(panelTodo,BoxLayout.Y_AXIS));
-        panelTodo.add(panelCabecera);
-        panelTodo.add(panelCuerpo);
-        panelTodo.add(panelPie);
+        panelGeneral.setLayout(new BoxLayout(panelGeneral,BoxLayout.Y_AXIS));
+        panelGeneral.add(panelCabecera);
+        panelGeneral.add(panelCuerpo);
+        panelGeneral.add(panelPie);
 
-        panelTodo.setBorder(BorderFactory.createLineBorder(new Color(10, 100, 0)));
-        panelTodo.setMaximumSize(new Dimension(1100, 600));
-        panelTodo.setMinimumSize(new Dimension(1100, 600));
-        panelTodo.setPreferredSize(new Dimension(1100, 600));
+        panelGeneral.setBorder(BorderFactory.createLineBorder(new Color(10, 100, 0)));
+        panelGeneral.setMaximumSize(new Dimension(1100, 600));
+        panelGeneral.setMinimumSize(new Dimension(1100, 600));
+        panelGeneral.setPreferredSize(new Dimension(1100, 600));
 
     }
 
-    // public void aki (){
-
-    //     persona1 = new PersonaEmigrante("nombre","apellidos",12321,"sexo","nacidoEn","direccion","telefono","correo","emigrante","fecha","origen","destino","motivo");
-    //     persona2 = new PersonaEmigrante("nombre","apellidos",12321,"sexo","nacidoEn","direccion","telefono","correo","emigrante","fecha","origen","destino","motivo");
-    //     persona3 = new PersonaEmigrante("nombre","apellidos",123,"sexo","nacidoEn","direccion","telefono","correo","emigrante","fecha","origen","destino","motivo");
-    //     persona4 = new PersonaEmigrante("nombre","apellidos",12321,"sexo","nacidoEn","direccion","telefono","correo","emigrante","fecha","origen","destino","motivo");
-    //     persona5 = new PersonaEmigrante("nombre","apellidos",12321,"sexo","nacidoEn","direccion","telefono","correo","emigrante","fecha","origen","destino","motivo");
-
-    //     prueba.insertarAlFinal(persona1);
-    //     prueba.insertarAlFinal(persona2);
-    //     prueba.insertarAlFinal(persona3);
-    //     prueba.insertarAlFinal(persona4);
-    //     prueba.insertarAlFinal(persona5);
-
-    // }
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {
         guardar();
+        ser_gen.serialize();
         System.out.println("RegistroExitoso");
     }
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {
+        // System.out.println("tmanio de la listaa #### : " + listaRegistroPersonaEmigrante.tamanioLista());
+        for(PersonaEmigrante objEmigrante:listaPersonaEmigrante){
+            System.out.println(objEmigrante.toString());
+        }
+        consultar();
+    }
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {
+        borrar();
+        ser_gen.serialize();
+    }
 
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {
+        modificar();
+        ser_gen.serialize();
+    }
 
     public void escribir(String texto){
-        JOptionPane.showMessageDialog(panelTodo, texto);
+        JOptionPane.showMessageDialog(panelGeneral, texto);
     }
 
 
-    public void setControlador(ControlPrincipal c) {
-        btnRegistrar.addActionListener(c);
-        btnLimpiar.addActionListener(c);
-    }
+    // public void setControlador(ControlPrincipal c) {
+    //     btnRegistrar.addActionListener(c);
+    //     btnLimpiar.addActionListener(c);
+    // }
 
     public void guardar(){
 
         String nombre   = textNombre.getText();
         String apellidos= textApellidos.getText();
-        long   cedula   = Integer.parseInt(textCedula.getText());
+        long   cedula   = Long.parseLong(textCedula.getText());
         String sexo     = comboBoxSexo.getSelectedItem().toString();
         String nacidoEn = textNacidoEn.getText();
         String direccion= textDireccion.getText();
@@ -417,7 +481,7 @@ public class RegistroEmigrante{
         //condicion del arreglo buscar el objeto con el codiog que se acaba de colocar
 
         if(buscarPersonaEmigrante(cedula)){
-            escribir("El codigo del empleado ya existe");
+            escribir("Hay otra persona registrada con el numero de cedula Cambie la Cedula de Identidad");
         }else{
             System.out.println("LA PERSONA A REGISTRARSE ES: ");
 
@@ -430,10 +494,142 @@ public class RegistroEmigrante{
 
             // System.out.println("grabado en el archivo  binario");
             // actualizar();
-           // limpiar();
+           limpiar();
         }
-        System.out.println("tmanio de la lista de registro: " + listaPersonaEmigrante.getTamanio());
-        System.out.println("llamando al tamanioLista : "+tamanioLista());
+        System.out.println("llamando al tamanioLista : "+listaPersonaEmigrante.getTamanio());
+    }
+
+    public void consultar(){
+       
+        long obtenidoCedula;
+        long cedula = Long.parseLong(textFildCi.getText());
+
+        System.out.println("########## El numero a buscar  : "+cedula);
+        
+        int i=0;
+
+        System.out.println("tmanio de la lista : " + listaPersonaEmigrante.getTamanio());
+
+        // while(i<=listaPersonaEmigrante.getTamanio()){
+        if (buscarPersonaEmigrante(cedula)) {
+
+            for(PersonaEmigrante objEmigrante:listaPersonaEmigrante){
+                    // System.out.println(i);
+                    // PersonaEmigrante objEmigrante = listaPersonaEmigrante.get(i);
+
+                    System.out.println("entroo al for De busqueda");
+             
+                    // obtenidoCedula = objEmigrante.getCedula();
+                    obtenidoCedula = objEmigrante.getCedula();
+
+                    if (obtenidoCedula == cedula) {
+
+                        System.out.println("persona encontrada"+objEmigrante.toString());
+
+                        String nombre   = objEmigrante.getNombre();
+                        String apellidos= objEmigrante.getApellidos();
+                        String carnet   = String.valueOf(objEmigrante.getCedula());
+                        String sexo     = objEmigrante.getSexo();
+                        String nacidoEn = objEmigrante.getNacidoEn();
+                        String direccion= objEmigrante.getDireccion();
+                        String telefono = objEmigrante.getTelefono();
+                        String correo   = objEmigrante.getCorreo();
+
+                        String esEmigrante= objEmigrante.getEmigranteSiNo();
+                        String fecha    = objEmigrante.getFecha();
+                        String origen   = objEmigrante.getOrigen();
+                        String destino  = objEmigrante.getDestino();
+                        String motivo   = objEmigrante.getMotivoDeMigracion();
+
+                        textNombre.setText(nombre);
+                        textApellidos.setText(apellidos);
+                        textCedula.setText(carnet);
+                        textNacidoEn.setText(nacidoEn);
+                        textDireccion.setText(direccion);
+                        textTelefono.setText(telefono);
+                        textCorreo.setText(correo);
+                        
+                        textEmigranteSiNo.setText(esEmigrante);        
+                        textFecha.setText(fecha);        
+
+                        if(sexo.equalsIgnoreCase("masculino")){
+                            comboBoxSexo.setSelectedIndex(1);
+                        }else if(sexo.equalsIgnoreCase("femenino")){
+                            comboBoxSexo.setSelectedIndex(2);
+                        }                    
+                        if(origen.equalsIgnoreCase("cochabamba")){
+                            comboBoxOrigen.setSelectedIndex(1);
+                        }else if(origen.equalsIgnoreCase("tarija")){
+                            comboBoxOrigen.setSelectedIndex(2);
+                        }
+                        if(destino.equalsIgnoreCase("cochabamba")){
+                            comboBoxDestino.setSelectedIndex(1);
+                        }else if(destino.equalsIgnoreCase("tarija")){
+                            comboBoxDestino.setSelectedIndex(2);
+                        }else if(destino.equalsIgnoreCase("pando")){
+                            comboBoxDestino.setSelectedIndex(3);
+                        }
+                        if(motivo.equalsIgnoreCase("Economico")){
+                            comboBoxMotivoDeMigracion.setSelectedIndex(1);
+                        }else if(motivo.equalsIgnoreCase("Trabajo")){
+                            comboBoxMotivoDeMigracion.setSelectedIndex(2);
+                        }else if(motivo.equalsIgnoreCase("Estudios")){
+                            comboBoxMotivoDeMigracion.setSelectedIndex(3);
+                        }else{
+                             System.out.println("se mostro");
+                        }
+                    } 
+                    // else{
+                    //     escribir("cedula no encontrada");
+                    // }
+            }
+            
+        }else{
+            escribir("cedula no encontrada");
+        }
+    }
+
+    public  void modificar(){
+        int op = JOptionPane.showConfirmDialog(null,"Deves consultar primero \nDeseas consultar ahora presiona <Si>\nSi ya consultastes presionsa <No>");//confirmacion
+        if(op==0){
+            consultar();
+        }else if(op==1){ //si a puesto opcion no modificar el objeto en el cual nosotros ayamos modificado
+            int n = listaPersonaEmigrante.getTamanio();
+            System.out.println("tamanio de la lista es :" +n);
+
+                String nombre   = textNombre.getText();
+                String apellidos= textApellidos.getText();
+                String convirtiendo = textCedula.getText();
+                long   cedula   = Long.parseLong(convirtiendo);
+                String sexo     = comboBoxSexo.getSelectedItem().toString();
+                String nacidoEn = textNacidoEn.getText();
+                String direccion= textDireccion.getText();
+                String telefono = textTelefono.getText();
+                String correo   = textCorreo.getText();
+
+                String emigrante= textEmigranteSiNo.getText();
+                String fecha    = textFecha.getText();
+                String origen   = comboBoxOrigen.getSelectedItem().toString();
+                String destino  = comboBoxDestino.getSelectedItem().toString();
+                String motivo   = comboBoxMotivoDeMigracion.getSelectedItem().toString();
+
+                perEmigrante = new PersonaEmigrante(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,emigrante,fecha,origen,destino,motivo);
+                
+                if(!buscarPersonaEmigrante(cedula)){
+                    listaPersonaEmigrante.insertarAlFinal(perEmigrante);
+                }else{
+                    for(PersonaEmigrante objEmigrante:listaPersonaEmigrante){
+                        long ci = objEmigrante.getCedula();
+                        if (ci==cedula) {
+                            int indice = listaPersonaEmigrante.getIndice(objEmigrante);
+                            System.out.println("el indice antes de modificar"+indice);
+                            listaPersonaEmigrante.set(indice,perEmigrante);                    
+                        }
+                    }    
+                    limpiar();
+                }
+            
+        }
     }
 
     public void limpiar(){
@@ -454,6 +650,7 @@ public class RegistroEmigrante{
     }
 
     public boolean buscarPersonaEmigrante(long cedula){
+
         boolean encontrado =false;
         int i=0;
         while(encontrado == false && i<listaPersonaEmigrante.getTamanio()){
@@ -463,17 +660,34 @@ public class RegistroEmigrante{
                 i++;
             }
         }
-        return encontrado;
+        return encontrado;    
     }
 
-    public int tamanioLista(){
-        System.out.println("antes del return en tamanioLista :"+listaPersonaEmigrante.getTamanio());
-        return listaPersonaEmigrante.getTamanio();
+    public void borrar(){
+        long op = Long.parseLong(JOptionPane.showInputDialog("Codigo a borrar : "));
+
+        if(!buscarPersonaEmigrante(op)){
+            escribir("Codigo no existe");
+        }else{
+            for(PersonaEmigrante objEmigrante:listaPersonaEmigrante){
+                    System.out.println("entroo al for De busqueda");
+             
+                    if (objEmigrante.getCedula() == op) {
+                        System.out.println("##### persona A ELIMINAR ES #####:"+objEmigrante.toString());
+
+                        int i = JOptionPane.showConfirmDialog(null,"Estas seguro de borrar...");
+                        if(i==0){           
+                            listaPersonaEmigrante.eliminar(listaPersonaEmigrante.getIndice(objEmigrante));
+                        }else if(i==1){
+                            escribir("Vuela a intentarlo");
+                        }
+                    }    
+
+            } 
+
+        }
     }
 
-    public void holamundo(){
-        System.out.println("holamundo");
-    }
 
 
 
@@ -503,11 +717,7 @@ public class RegistroEmigrante{
     //                 return;
     //             }
     //         }
-
     //         private void txtNombreKeyTyped(java.awt.event.KeyEvent event){
-                
-    //             if (textNombre.getText().length()>=12) {
-    //                 event.consume();
     //             }
 
     //             char tipoDeLetra = event.getKeyChar();

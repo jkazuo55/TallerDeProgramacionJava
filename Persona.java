@@ -93,12 +93,12 @@ public class Persona implements Serializable{
         sb.append("\nsexo: ");
         sb.append(sexo);
         sb.append("\nNacidoEn: ");
-        sb.append(direccion);    
+        sb.append(nacidoEn);
         sb.append("\nDireccion: ");
+        sb.append(direccion);    
+        sb.append("\nTelefono: ");
         sb.append(telefono);    
-        sb.append("\ntelefono: ");
-        sb.append(sexo);
-        sb.append("\ncorreo: ");
+        sb.append("\nCorreo: ");
         sb.append(correo);
     
         return sb.toString();

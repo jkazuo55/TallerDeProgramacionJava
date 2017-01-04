@@ -1,3 +1,6 @@
+//package modelo.grafoND;
+
+//import modelo.listaCDE.Lista;
 
 /**
  * @class Nodo.java 

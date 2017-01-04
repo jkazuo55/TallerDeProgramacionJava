@@ -1,3 +1,5 @@
+//package modelo.listaCDE;
+
 import java.util.Iterator;
 import java.util.List;
 import java.io.Serializable;
@@ -21,7 +23,7 @@ public class Lista <T> implements Iterable<T>,Serializable{
     * un nodo que sirve como cabezaecera de la Lista<T>. <br>
     * <b>post: </b> Se construyo una lista circular doble vacia.
     */
-    public Lista() {
+    public Lista(){
         this.cabecera=new Nodo<T>(null,null,null);
         this.cabecera.setSig(cabecera);
         this.cabecera.setAnt(cabecera);        

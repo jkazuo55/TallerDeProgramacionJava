@@ -1,3 +1,12 @@
+//package vista;
+
+//import modelo.Emigrante;
+//import modelo.listaCDE.Lista;
+//import controlador.ControlPrincipal;
+//import modelo.serializacion.SerializableGenerico;
+//import modelo.serializacion.DeserializableGenerico;
+
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -12,11 +21,14 @@ import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import java.awt.Color;
 import java.awt.Dimension;
+import javax.swing.JTable; 
+import javax.swing.table.*;
+import javax.swing.JScrollPane;
 
 
-public class RegistroEmigrante{
+public class PanelRegistroEmigrante{
 
-    //paneles de RegistroEmigrante 
+    //paneles de PanelRegistroEmigrante 
     public JPanel panelGeneral;
 
     private JPanel panelCabecera;
@@ -32,8 +44,11 @@ public class RegistroEmigrante{
     private JPanel panelCuerpoDatosPersonalesContenido;
     private JPanel panelCuerpoDatosPersonalesCabecera;
 
-    private JPanel panelCuerpoDatosEmigranteContenido;
     private JPanel panelCuerpoDatosEmigranteCabecera;
+    private JPanel panelCuerpoDatosEmigranteContenido;
+    private JPanel panelCuerpoDatosEmigranteHistorial;
+    private JPanel panelCuerpoDatosEmigranteHistorialTitulo;
+    private JPanel panelCuerpoDatosEmigranteHistorialCuerpo;
 
     private JPanel panelCentro;
     
@@ -72,6 +87,14 @@ public class RegistroEmigrante{
     private JComboBox comboBoxOrigen;
     private JComboBox comboBoxDestino;
     private JComboBox comboBoxMotivoDeMigracion;
+    private JLabel labelTituloHistorial;
+
+    private JTable   tablaEmigrante;
+    private DefaultTableModel model;
+    private JScrollPane scrollpane;
+    private String[] cabecera={"NUMERO","FECHA","RUTA"};
+    private String[][] data={};
+
     //Cabecera
     private JLabel labelTituloCabecera;
     private JLabel labelIngreseCi;
@@ -82,32 +105,39 @@ public class RegistroEmigrante{
     private JButton btnRegistrar;
     private JButton btnModificar;
     private JButton btnBorrar;
+    // static public JButton btnPrueba;
 
     //datosPersonales
 
-    PersonaEmigrante perEmigrante;
+
+    Emigrante perEmigrante;
+    // Emigrante perGeneralEmigrantes;
     
-    Lista<PersonaEmigrante> listaPersonaEmigrante;   //lista    
+    Lista<Emigrante> listaPersonaEmigrante;   //lista    
+    Lista<Emigrante> listaGeneralPersonaEmigrantes;   //lista    
     // Serializable obj;     
 
-    String fileName = "serializaciones.ser"; 
+    String fileName = "/home/xenial/proyectos/java/TallerDeProgramacionJava/serializaciones.ser"; 
+    String generalPersonas = "/home/xenial/proyectos/java/TallerDeProgramacionJava/generalPersonas.ser"; 
 
     SerializableGenerico<Lista> ser_gen; 
+    SerializableGenerico<Lista> ser_general; 
     DeserializableGenerico<Lista> deser_gen;  
+    DeserializableGenerico<Lista> deser_general;  
 
-    // Lista<PersonaEmigrante> prueba;
+    // Lista<Emigrante> prueba;
 
-    public RegistroEmigrante(){ 
+    public PanelRegistroEmigrante(){ 
 
         System.out.println("Inicializa el programa");    
         
         // deser_gen = new DeserializableGenerico<Lista>(fileName);
 
-        // Lista<PersonaEmigrante> new_data = deser_gen.deserialize();
+        // Lista<Emigrante> new_data = deser_gen.deserialize();
 
         // listaPersonaEmigrante = new_data;
         
-        // for (PersonaEmigrante person: new_data) {
+        // for (Emigrante person: new_data) {
         //     System.out.println("entro al for de desserializacion");
         //     System.out.println(person.toString());
         // }
@@ -116,21 +146,24 @@ public class RegistroEmigrante{
         // obj = new Serializable();
         // obj.cargaDatos();
     }   
-
         
     private void inicializarRegistroEmigrante(){
 
-        listaPersonaEmigrante = new Lista<PersonaEmigrante>(); 
-
-        deser_gen = new DeserializableGenerico<Lista>(fileName);
-        listaPersonaEmigrante = deser_gen.deserialize();
-
+        listaPersonaEmigrante = new Lista<Emigrante>(); 
+        listaGeneralPersonaEmigrantes = new Lista<Emigrante>();
 
         ser_gen = new SerializableGenerico<Lista>(fileName,listaPersonaEmigrante);
-    
-        
+        ser_general = new SerializableGenerico<Lista>(generalPersonas,listaGeneralPersonaEmigrantes);
 
-        // prueba =  new Lista<PersonaEmigrante>(); 
+        deser_gen = new DeserializableGenerico<Lista>(fileName);
+        deser_general = new DeserializableGenerico<Lista>(generalPersonas);
+        
+        System.out.println("llegoHasta aki 1");
+        // listaPersonaEmigrante = deser_gen.deserialize();
+        // listaGeneralPersonaEmigrantes = deser_general.deserialize();
+        System.out.println("llegoHasta aki 2");
+        
+        // prueba =  new Lista<Emigrante>(); 
 
         //DatosPersonales
         panelGeneral = new JPanel();
@@ -148,8 +181,11 @@ public class RegistroEmigrante{
         panelCuerpoDatosPersonalesContenido = new JPanel();
         panelCuerpoDatosPersonalesCabecera = new JPanel();
 
-        panelCuerpoDatosEmigranteContenido = new JPanel();
         panelCuerpoDatosEmigranteCabecera = new JPanel();
+        panelCuerpoDatosEmigranteContenido = new JPanel();
+        panelCuerpoDatosEmigranteHistorial = new JPanel();
+        panelCuerpoDatosEmigranteHistorialTitulo = new JPanel();
+        panelCuerpoDatosEmigranteHistorialCuerpo = new JPanel();
 
         panelCentro = new JPanel();
 
@@ -216,7 +252,6 @@ public class RegistroEmigrante{
         panelCuerpoDatosPersonalesContenido.add(labelCorreo);
         panelCuerpoDatosPersonalesContenido.add(textCorreo);
 
-
         panelCuerpoDatosPersonalesCabecera.setMaximumSize(new java.awt.Dimension(500, 30));
         panelCuerpoDatosPersonalesCabecera.setMinimumSize(new java.awt.Dimension(500, 30));
         panelCuerpoDatosPersonalesCabecera.setPreferredSize(new java.awt.Dimension(500, 30));
@@ -245,6 +280,13 @@ public class RegistroEmigrante{
         comboBoxOrigen = new JComboBox();
         comboBoxDestino = new JComboBox();
         comboBoxMotivoDeMigracion = new JComboBox();
+        labelTituloHistorial = new JLabel();
+
+        tablaEmigrante = new JTable();
+        model = new DefaultTableModel();
+        scrollpane = new JScrollPane();
+        model= new DefaultTableModel(data,cabecera);
+        tablaEmigrante.setModel(model);
 
         tituloDatosEmigrante.setText(" DATOS DE MIGRACION ");
 
@@ -266,6 +308,7 @@ public class RegistroEmigrante{
         comboBoxOrigen.addItem("santa cruz");
         comboBoxOrigen.addItem("pando");
         comboBoxOrigen.addItem("potosi");
+
         comboBoxDestino.addItem("cochabamba");
         comboBoxDestino.addItem("la paz");
         comboBoxDestino.addItem("tarija");
@@ -284,6 +327,10 @@ public class RegistroEmigrante{
         panelCuerpoDatosEmigranteCabecera .setLayout(new FlowLayout());
         panelCuerpoDatosEmigranteCabecera .add(tituloDatosEmigrante);
 
+        panelCuerpoDatosEmigranteCabecera.setMaximumSize(new java.awt.Dimension(500, 30));
+        panelCuerpoDatosEmigranteCabecera.setMinimumSize(new java.awt.Dimension(500, 30));
+        panelCuerpoDatosEmigranteCabecera.setPreferredSize(new java.awt.Dimension(500, 30));
+
         panelCuerpoDatosEmigranteContenido.setLayout(new GridLayout(5,2));
         panelCuerpoDatosEmigranteContenido.add(labelEmigranteSiNo);
         panelCuerpoDatosEmigranteContenido.add(textEmigranteSiNo);
@@ -296,17 +343,37 @@ public class RegistroEmigrante{
         panelCuerpoDatosEmigranteContenido.add(labelMotivoDeMigracion);
         panelCuerpoDatosEmigranteContenido.add(comboBoxMotivoDeMigracion);
 
-        panelCuerpoDatosEmigranteCabecera.setMaximumSize(new java.awt.Dimension(500, 30));
-        panelCuerpoDatosEmigranteCabecera.setMinimumSize(new java.awt.Dimension(500, 30));
-        panelCuerpoDatosEmigranteCabecera.setPreferredSize(new java.awt.Dimension(500, 30));
+        // panelCuerpoDatosEmigranteContenido.setMaximumSize(new java.awt.Dimension(500, 350));
+        // panelCuerpoDatosEmigranteContenido.setMinimumSize(new java.awt.Dimension(500, 350));
+        // panelCuerpoDatosEmigranteContenido.setPreferredSize(new java.awt.Dimension(500, 350));
 
-        panelCuerpoDatosEmigranteContenido.setMaximumSize(new java.awt.Dimension(500, 350));
-        panelCuerpoDatosEmigranteContenido.setMinimumSize(new java.awt.Dimension(500, 350));
-        panelCuerpoDatosEmigranteContenido.setPreferredSize(new java.awt.Dimension(500, 350));
+        panelCuerpoDatosEmigranteContenido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        labelTituloHistorial.setText("Historial De Migraciones");
+        panelCuerpoDatosEmigranteHistorialTitulo.setLayout(new FlowLayout());
+        panelCuerpoDatosEmigranteHistorialTitulo.add(labelTituloHistorial);
+        panelCuerpoDatosEmigranteHistorialTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        // tablaEmigrante.setModel(model);
+        // model.addColumn("Numero");
+        // model.addColumn("Fecha");
+        // model.addColumn("Ruta");
+        tablaEmigrante.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tablaEmigrante.getTableHeader().setReorderingAllowed(false);
+        scrollpane.setViewportView(tablaEmigrante);
+        panelCuerpoDatosEmigranteHistorialCuerpo.setLayout(new FlowLayout());
+        panelCuerpoDatosEmigranteHistorialCuerpo.add(scrollpane);
+        panelCuerpoDatosEmigranteHistorialCuerpo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 255)));
+
+        panelCuerpoDatosEmigranteHistorial.setLayout(new BoxLayout(panelCuerpoDatosEmigranteHistorial,BoxLayout.Y_AXIS));
+        panelCuerpoDatosEmigranteHistorial.add(panelCuerpoDatosEmigranteHistorialTitulo);
+        panelCuerpoDatosEmigranteHistorial.add(panelCuerpoDatosEmigranteHistorialCuerpo);
+        panelCuerpoDatosEmigranteHistorial.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 250, 0)));
 
         panelCuerpoDatosEmigrante.setLayout(new BoxLayout(panelCuerpoDatosEmigrante,BoxLayout.Y_AXIS));
         panelCuerpoDatosEmigrante.add(panelCuerpoDatosEmigranteCabecera);
         panelCuerpoDatosEmigrante.add(panelCuerpoDatosEmigranteContenido);
+        panelCuerpoDatosEmigrante.add(panelCuerpoDatosEmigranteHistorial);
 
         panelCuerpoDatosEmigrante.setSize(1000,300);
         panelCuerpoDatosEmigrante.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -316,11 +383,12 @@ public class RegistroEmigrante{
         btnRegistrar = new JButton();
         btnModificar = new JButton();
         btnBorrar    = new JButton();
+        // btnPrueba    = new JButton();
 
         btnRegistrar.setText("REGISTRAR");
         btnModificar.setText("MODIFICAR");
         btnBorrar.setText("BORRAR");
-
+        // btnPrueba.setText("prueba");
 
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -346,6 +414,7 @@ public class RegistroEmigrante{
         panelPie.add(btnRegistrar);
         panelPie.add(btnModificar);
         panelPie.add(btnBorrar);
+        // panelPie.add(btnPrueba);
 
         panelPie.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
 
@@ -358,11 +427,9 @@ public class RegistroEmigrante{
         panelCuerpoDatosEmigrante.setMinimumSize(new java.awt.Dimension(500, 0));
         panelCuerpoDatosEmigrante.setPreferredSize(new java.awt.Dimension(500, 0));
 
-
         panelCentro.setMaximumSize(new java.awt.Dimension(20, 0));
         panelCentro.setMinimumSize(new java.awt.Dimension(20, 0));
         panelCentro.setPreferredSize(new java.awt.Dimension(20, 0));
-
 
         panelCuerpo.setLayout(new BorderLayout());
         panelCuerpo.add(panelCuerpoDatosPersonales,BorderLayout.WEST);
@@ -379,9 +446,8 @@ public class RegistroEmigrante{
         btnBuscar = new JButton();
 
         labelTituloCabecera.setText("Busqueda de Ciudadano ");
-
         labelIngreseCi.setText("Ingrese su Cedula de Identidad  ");
-        textFildCi.setText("      ");
+        textFildCi.setPreferredSize( new Dimension( 200, 24 ) );
         btnBuscar.setText("BUSCAR");
 
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -424,21 +490,21 @@ public class RegistroEmigrante{
         panelGeneral.setMaximumSize(new Dimension(1100, 600));
         panelGeneral.setMinimumSize(new Dimension(1100, 600));
         panelGeneral.setPreferredSize(new Dimension(1100, 600));
-
     }
-
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {
         guardar();
         ser_gen.serialize();
+        ser_general.serialize();
         System.out.println("RegistroExitoso");
     }
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {
         // System.out.println("tmanio de la listaa #### : " + listaRegistroPersonaEmigrante.tamanioLista());
-        for(PersonaEmigrante objEmigrante:listaPersonaEmigrante){
+        for(Emigrante objEmigrante:listaPersonaEmigrante){
             System.out.println(objEmigrante.toString());
         }
         consultar();
+        historial();
     }
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {
         borrar();
@@ -449,6 +515,9 @@ public class RegistroEmigrante{
         modificar();
         ser_gen.serialize();
     }
+    private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {
+        historial();
+    }
 
     public void escribir(String texto){
         JOptionPane.showMessageDialog(panelGeneral, texto);
@@ -456,8 +525,7 @@ public class RegistroEmigrante{
 
 
     // public void setControlador(ControlPrincipal c) {
-    //     btnRegistrar.addActionListener(c);
-    //     btnLimpiar.addActionListener(c);
+    //     btnPrueba.addActionListener(c);
     // }
 
     public void guardar(){
@@ -477,8 +545,9 @@ public class RegistroEmigrante{
         String destino  = comboBoxDestino.getSelectedItem().toString();
         String motivo   = comboBoxMotivoDeMigracion.getSelectedItem().toString();
 
-        perEmigrante = new PersonaEmigrante(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,emigrante,fecha,origen,destino,motivo);
+        perEmigrante = new Emigrante(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,emigrante,fecha,origen,destino,motivo);
         //condicion del arreglo buscar el objeto con el codiog que se acaba de colocar
+        emigrar(perEmigrante);
 
         if(buscarPersonaEmigrante(cedula)){
             escribir("Hay otra persona registrada con el numero de cedula Cambie la Cedula de Identidad");
@@ -487,16 +556,16 @@ public class RegistroEmigrante{
 
             listaPersonaEmigrante.insertarAlFinal(perEmigrante);
             System.out.println(perEmigrante.toString());
-            
-            System.out.println("EMIGRANTE AGREGADO ALA LISTA");
-            // obj.grabar();
-            
-
-            // System.out.println("grabado en el archivo  binario");
-            // actualizar();
            limpiar();
         }
         System.out.println("llamando al tamanioLista : "+listaPersonaEmigrante.getTamanio());
+    }
+
+    public void emigrar(Emigrante personaEmigrante){
+
+        listaGeneralPersonaEmigrantes.insertarAlFinal(personaEmigrante);
+        System.out.println(personaEmigrante.toString());
+            
     }
 
     public void consultar(){
@@ -504,18 +573,16 @@ public class RegistroEmigrante{
         long obtenidoCedula;
         long cedula = Long.parseLong(textFildCi.getText());
 
-        System.out.println("########## El numero a buscar  : "+cedula);
-        
+        System.out.println("########## El numero a buscar  : "+cedula);        
         int i=0;
-
         System.out.println("tmanio de la lista : " + listaPersonaEmigrante.getTamanio());
 
         // while(i<=listaPersonaEmigrante.getTamanio()){
         if (buscarPersonaEmigrante(cedula)) {
 
-            for(PersonaEmigrante objEmigrante:listaPersonaEmigrante){
+            for(Emigrante objEmigrante:listaPersonaEmigrante){
                     // System.out.println(i);
-                    // PersonaEmigrante objEmigrante = listaPersonaEmigrante.get(i);
+                    // Emigrante objEmigrante = listaPersonaEmigrante.get(i);
 
                     System.out.println("entroo al for De busqueda");
              
@@ -588,6 +655,56 @@ public class RegistroEmigrante{
             escribir("cedula no encontrada");
         }
     }
+    public void historial(){
+       
+        long obtenidoCedula;
+        long cedula = Long.parseLong(textFildCi.getText());
+
+        System.out.println("tmanio de la lista : " + listaGeneralPersonaEmigrantes.getTamanio());
+
+        // while(i<=listaPersonaEmigrante.getTamanio()){
+        if (buscarPersonaEmigrante(cedula)) {
+
+            for(Emigrante objEmigrante:listaGeneralPersonaEmigrantes){
+                    // System.out.println(i);
+                    // Emigrante objEmigrante = listaPersonaEmigrante.get(i);
+
+                    System.out.println("entroo al for De busqueda");
+             
+                    // obtenidoCedula = objEmigrante.getCedula();
+                    obtenidoCedula = objEmigrante.getCedula();
+
+                    if (obtenidoCedula == cedula) {
+
+                        System.out.println("persona encontrada"+objEmigrante.toString());
+
+                        String carnet   = String.valueOf(objEmigrante.getCedula());
+                        String fecha    = objEmigrante.getFecha();
+                        String origen   = objEmigrante.getOrigen();
+                        String destino  = objEmigrante.getDestino();
+       
+                    
+                        if(origen.equalsIgnoreCase("cochabamba")){
+                            comboBoxOrigen.setSelectedIndex(1);
+                        }else if(origen.equalsIgnoreCase("tarija")){
+                            comboBoxOrigen.setSelectedIndex(2);
+                        }
+                        if(destino.equalsIgnoreCase("cochabamba")){
+                            comboBoxDestino.setSelectedIndex(1);
+                        }else if(destino.equalsIgnoreCase("tarija")){
+                            comboBoxDestino.setSelectedIndex(2);
+                        }else if(destino.equalsIgnoreCase("pando")){
+                            comboBoxDestino.setSelectedIndex(3);
+                        }
+                        Object[] fila={"1",fecha,destino};
+                        model.addRow(fila);
+                    } 
+            }
+            
+        }else{
+            escribir("cedula no encontrada");
+        }
+    }
 
     public  void modificar(){
         int op = JOptionPane.showConfirmDialog(null,"Deves consultar primero \nDeseas consultar ahora presiona <Si>\nSi ya consultastes presionsa <No>");//confirmacion
@@ -613,12 +730,12 @@ public class RegistroEmigrante{
                 String destino  = comboBoxDestino.getSelectedItem().toString();
                 String motivo   = comboBoxMotivoDeMigracion.getSelectedItem().toString();
 
-                perEmigrante = new PersonaEmigrante(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,emigrante,fecha,origen,destino,motivo);
+                perEmigrante = new Emigrante(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,emigrante,fecha,origen,destino,motivo);
                 
                 if(!buscarPersonaEmigrante(cedula)){
                     listaPersonaEmigrante.insertarAlFinal(perEmigrante);
                 }else{
-                    for(PersonaEmigrante objEmigrante:listaPersonaEmigrante){
+                    for(Emigrante objEmigrante:listaPersonaEmigrante){
                         long ci = objEmigrante.getCedula();
                         if (ci==cedula) {
                             int indice = listaPersonaEmigrante.getIndice(objEmigrante);
@@ -669,7 +786,7 @@ public class RegistroEmigrante{
         if(!buscarPersonaEmigrante(op)){
             escribir("Codigo no existe");
         }else{
-            for(PersonaEmigrante objEmigrante:listaPersonaEmigrante){
+            for(Emigrante objEmigrante:listaPersonaEmigrante){
                     System.out.println("entroo al for De busqueda");
              
                     if (objEmigrante.getCedula() == op) {

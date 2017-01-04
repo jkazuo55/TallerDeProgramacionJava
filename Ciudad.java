@@ -1,3 +1,4 @@
+//package modelo;
 /**
 * <h2>SISTEMA GESTION DE EMIGRANTES </h2>
 * @class Ciudad.java

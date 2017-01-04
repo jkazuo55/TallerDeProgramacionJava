@@ -27,17 +27,17 @@ public class PestaniaEmigrantes extends JPanel{
     
     GridBagLayout layout = new GridBagLayout(); 
     
-    // PanelRegistroEmigrante panelRegistroEmigrante;
-    JPanel panelBusquedaEmigrante;
+    // RegistroEmigrante panelRegistroEmigrante;
+    BusquedaEmigrante panelBusquedaEmigrante;
     
-    PanelRegistroEmigrante hola;
+    RegistroEmigrante hola;
 
     public PestaniaEmigrantes() {
         initComponents();
 
-        panelBusquedaEmigrante = new JPanel();
-        // panelRegistroEmigrante = new PanelRegistroEmigrante();
-        hola = new PanelRegistroEmigrante();
+        panelBusquedaEmigrante = new BusquedaEmigrante();
+        // panelRegistroEmigrante = new RegistroEmigrante();
+        hola = new RegistroEmigrante();
         
         panelDerecha.setLayout(layout);
         

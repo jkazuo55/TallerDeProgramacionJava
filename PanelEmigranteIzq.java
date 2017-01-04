@@ -1,3 +1,5 @@
+//package vista;
+
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.GroupLayout;
@@ -28,10 +30,10 @@ public class PanelEmigranteIzq extends JPanel{
             public void actionPerformed(ActionEvent e){
                 System.out.println("boton Presionado");
 
-                AccionRegistroEmigrante hola = new AccionRegistroEmigrante();
+                // AccionRegistroEmigrante hola = new AccionRegistroEmigrante();
 
                 PestaniaEmigrantes obj = new PestaniaEmigrantes();
-                hola.setVisible(true);         
+                //hola.setVisible(true);         
                                
             }
         });

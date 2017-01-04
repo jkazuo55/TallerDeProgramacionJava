@@ -1,3 +1,4 @@
+//package modelo.listaCDE;
 /**
 * @class Excepciones.java 
 * @brief Implementacion de clase para manejo de las excepciones generadas en algunas Estructuras de Datos

@@ -1,3 +1,5 @@
+//package modelo;
+
 public class Reporte {
     private String nombreCiudad;
     private int flujo;

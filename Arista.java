@@ -1,3 +1,4 @@
+package modelo.grafoND;
 /**
 * @class Arista.java 
 * @brief Implementacion de la Clase para el manejo de las Aristas/Arcos del Grafo</br>

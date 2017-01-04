@@ -1,4 +1,4 @@
-
+//package modelo.listaCDE;
 /**
  * @class Nodo.java 
  * @brief Nodo contiene la informacion de los nodos de una lista Doblemente enlazada

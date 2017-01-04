@@ -1,5 +1,7 @@
+//package modelo;
+
 import java.io.Serializable;
-public class PersonaEmigrante extends Persona implements Serializable{
+public class Emigrante extends Persona implements Serializable{
 	private String emigranteSiNo;
 	private String fecha;
 	private String origen;
@@ -8,11 +10,11 @@ public class PersonaEmigrante extends Persona implements Serializable{
 
 	//====== constructor ==========
 
-	public PersonaEmigrante(){
+	public Emigrante(){
 
 	}
 
-	public PersonaEmigrante(String nombre,String apellidos,long cedula, String sexo , String nacidoEn,String direccion, String telefono,String correo, String emigranteSiNo,String fecha, String origen,String destino, String motivoDeMigracion){
+	public Emigrante(String nombre,String apellidos,long cedula, String sexo , String nacidoEn,String direccion, String telefono,String correo, String emigranteSiNo,String fecha, String origen,String destino, String motivoDeMigracion){
 		super(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo);
 		this.emigranteSiNo=emigranteSiNo;
 		this.fecha=fecha;

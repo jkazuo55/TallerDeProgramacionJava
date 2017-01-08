@@ -1,7 +1,3 @@
-//package vista;
-
-//import controlador.Controlador;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -32,10 +28,12 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
     private JMenu menu;
     private JMenuItem itemOpciones;
 
-    private Controlador control;
+    public PanelRegistroEmigrante vistaRegistroEmigrante;
+    public PestaniaCiudad pestaniaCiudad;
+    public PestaniaMapa pestaniaMapa;
+    public PestaniaFuncionarios pestaniaFuncionarios;
 
-    // public VentanaLogin login;
-    // public VentanaPrincipal ventana;
+    private Controlador control;
     
     public VentanaPrincipal() {
         // ventana = new VentanaPrincipal();
@@ -58,7 +56,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
         initComponents();
     }
     private void initComponents() {
+        
+        vistaRegistroEmigrante= new PanelRegistroEmigrante();
+        pestaniaCiudad = new PestaniaCiudad();
+        pestaniaMapa = new PestaniaMapa();
+        pestaniaFuncionarios = new PestaniaFuncionarios();
         // login = new VentanaLogin(ventana,true);
+
         panelcabecera = new JPanel();
         panelPestanias = new JPanel();
         labelTitulo = new JLabel();
@@ -89,12 +93,12 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
         panelPestanias.setMinimumSize(new Dimension(1500, 720));
         panelPestanias.setPreferredSize(new Dimension(1500, 720));
 
-        pestanias.addTab("pestaniaUno", new JLabel("Agregar aki lo de la pestania MAPA"));
-        // pestanias.addTab("PestaniaDos", new JLabel("Agregar tambien aki todo lo de la pestania CIUDAD"));
-        pestanias.addTab("PestaniaDos", new PestaniaCiudad().panelGeneral);
-        pestanias.addTab("EMIGRANTES", new PestaniaEmigrantes());
-        pestanias.addTab("PestaniaCuatro", new PestaniaFuncionarios().panelGeneral);
-        pestanias.addTab("PestaniaCinco", new JLabel("Agregar aki todo LO DE registrar SECRETARIAS"));
+        pestanias.addTab("REPRESENTACION GRAFICA", pestaniaMapa.panelGeneral);
+        pestanias.addTab("REPORTE POR CIUDAD", pestaniaCiudad.panelGeneral);
+        // pestanias.addTab("PestaniaDos", new VistaGrafo().panelGeneral);
+        pestanias.addTab("ADMINISTRACION DE EMIGRANTES", vistaRegistroEmigrante.panelGeneral);
+        pestanias.addTab("ANALISIS ESTADISTICO", new JLabel("Agregar aki todo LO DE Analiis estadistico"));
+        pestanias.addTab("ADMINISTRACION DE EMPLEADOS", pestaniaFuncionarios.panelGeneral);
         pestanias.addTab("PestaniaSeis", new JButton("SALIR"));
 
         panelcabecera.setLayout(new FlowLayout());
@@ -123,6 +127,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
     //         ventana.pestanias.setEnabledAt(pestanias.getTabCount()-2, false);
     //     }
     // }
+
     public void asignarPrivilegios(String usuario){
         labelTitulo.setText("Bienbenido: " + usuario);
         System.out.println("estamos en la vista labeltitulo"+usuario);

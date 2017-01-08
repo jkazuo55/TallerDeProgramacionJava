@@ -6,6 +6,7 @@ public class Emigrante extends Persona implements Serializable{
 	private String fecha;
 	private String origen;
 	private String destino;
+	private String ruta;
 	private String motivoDeMigracion;
 
 	//====== constructor ==========
@@ -14,12 +15,13 @@ public class Emigrante extends Persona implements Serializable{
 
 	}
 
-	public Emigrante(String nombre,String apellidos,long cedula, String sexo , String nacidoEn,String direccion, String telefono,String correo, String emigranteSiNo,String fecha, String origen,String destino, String motivoDeMigracion){
+	public Emigrante(String nombre,String apellidos,long cedula, String sexo , String nacidoEn,String direccion, String telefono,String correo, String emigranteSiNo,String fecha, String origen,String destino, String ruta, String motivoDeMigracion){
 		super(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo);
 		this.emigranteSiNo=emigranteSiNo;
 		this.fecha=fecha;
 		this.origen=origen;
 		this.destino=destino;
+		this.ruta=ruta;
 		this.motivoDeMigracion=motivoDeMigracion;
 	}
 
@@ -36,6 +38,9 @@ public class Emigrante extends Persona implements Serializable{
 	}	
 	public void setDestino( String destino){
 		this.destino=destino;
+	}
+	public void setRuta( String ruta){
+		this.ruta=ruta;
 	}
 	public void setMotivoDeMigracion( String motivoDeMigracion){
 		this.motivoDeMigracion=motivoDeMigracion;
@@ -55,6 +60,9 @@ public class Emigrante extends Persona implements Serializable{
 	public String getDestino(){
 		return this.destino;
 	}
+	public String getRuta(){
+		return this.ruta;
+	}
 	public String getMotivoDeMigracion(){
 		return this.motivoDeMigracion;
 	}
@@ -71,6 +79,8 @@ public class Emigrante extends Persona implements Serializable{
         sb.append(origen);
         sb.append("\nDestino: ");
         sb.append(destino);
+        sb.append("\nRuta: ");
+        sb.append(ruta);
         sb.append("\nMotivoDeMigracion: ");
         sb.append(motivoDeMigracion);
         return sb.toString();

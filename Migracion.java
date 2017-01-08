@@ -283,7 +283,6 @@ public class Migracion{
         System.out.println("3. Fecha de Migracion");
         System.out.println("4. Salir");
     }
-
     public void menuFechaMigracion(){
         System.out.println("Ingrese nombre de ciudadano:");
         Scanner inputC = new Scanner(System.in);

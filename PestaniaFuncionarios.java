@@ -97,7 +97,7 @@ public class PestaniaFuncionarios{
     Lista<Funcionario> listaFuncionario;   //lista    
     // Serializable obj;     
 
-    String fileName = "/home/xenial/proyectos/java/TallerDeProgramacionJava/funcionarios.ser"; 
+    String fileName = "/home/xenial/proyectos/java/TallerDeProgramacionJava/listaFuncionarios.ser"; 
 
     SerializableGenerico<Lista> ser_gen; 
     DeserializableGenerico<Lista> deser_gen;  

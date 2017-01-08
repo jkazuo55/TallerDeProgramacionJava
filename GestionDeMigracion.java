@@ -1,9 +1,3 @@
-//package controlador;
-
-//import modelo.Modelo;
-//import modelo.listaCDE.Lista;
-//import vista.VentanaPrincipal;
-
 public class GestionDeMigracion {
 	public void iniciarSistema() {
 		// el modelo:
@@ -14,18 +8,24 @@ public class GestionDeMigracion {
 		// y el control:
 		Controlador control = new Controlador ();
 
+		GrafoND grafo = new GrafoND();
+
 		//Relacionamos las clases con el control
 		vista.setControlador(control);
 		login.setControlador(control);
 		modelo.setControlador(control);
+		vista.vistaRegistroEmigrante.setControlador(control);
+		vista.pestaniaCiudad.setControlador(control);
+		vista.pestaniaMapa.setControlador(control);
 		//Relacionamos el control con las clases
 		control.setModeloPrincipal(modelo);
 		control.setVentanaPrincipal(vista);
 		control.setVentanaPrincipal(login);
-		// configura la vista
-		// vista.setControlador(control);
-		// y arranca la interfaz (vista):
-
+		control.setPanelRegistroEmigrante(vista.vistaRegistroEmigrante);
+		control.setPestaniaCiudad(vista.pestaniaCiudad);
+		control.setPestaniaMapa(vista.pestaniaMapa);
+		control.setGrafo(grafo);
+		
 		// vista.arranca();
 		control.arranca();
 	}

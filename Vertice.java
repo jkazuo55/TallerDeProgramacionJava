@@ -1,7 +1,3 @@
-package modelo.grafoND;
-
-import modelo.listaCDE.Lista;
-
 /**
  * @class Vertice.java 
  * @brief Implementacion de Clase para el manejo de los Vertices o Nodos de un Grafo; <br>

@@ -1,7 +1,3 @@
-//package modelo.serializacion;
-
-// import modelo.listaCDE.Lista;
-// import modelo.PersonaEmigrante;
 import java.io.*;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;

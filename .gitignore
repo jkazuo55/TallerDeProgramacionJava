@@ -1,0 +1,7 @@
+# dotfiles
+.*
+!.gitignore
+# emacs backup files
+*~
+#java compiled files
+*.class

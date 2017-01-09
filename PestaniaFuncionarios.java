@@ -1,12 +1,3 @@
-//package vista;
-
-//import modelo.Funcionario;
-//import modelo.listaCDE.Lista;
-//import controlador.ControlPrincipal;
-//import modelo.serializacion.SerializableGenerico;
-//import modelo.serializacion.DeserializableGenerico;
-
-
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -95,35 +86,13 @@ public class PestaniaFuncionarios{
     Funcionario perFuncionario;
     
     Lista<Funcionario> listaFuncionario;   //lista    
-    // Serializable obj;     
-
-    String fileName = "/home/xenial/proyectos/java/TallerDeProgramacionJava/listaFuncionarios.ser"; 
+    String fileName = "/home/xenial/proyectos/java/TallerDeProgramacionJava/dataFuncionarios.ser"; 
 
     SerializableGenerico<Lista> ser_gen; 
     DeserializableGenerico<Lista> deser_gen;  
-
-    // Lista<Funcionario> prueba;
-
     public PestaniaFuncionarios(){ 
-
-        System.out.println("Inicializa el programa");    
-        
-        // deser_gen = new DeserializableGenerico<Lista>(fileName);
-
-        // Lista<Funcionario> new_data = deser_gen.deserialize();
-
-        // listaFuncionario = new_data;
-        
-        // for (Funcionario person: new_data) {
-        //     System.out.println("entro al for de desserializacion");
-        //     System.out.println(person.toString());
-        // }
-
         inicializarRegistroFuncionario();
-        // obj = new Serializable();
-        // obj.cargaDatos();    
     }   
-
         
     private void inicializarRegistroFuncionario(){
 
@@ -132,14 +101,12 @@ public class PestaniaFuncionarios{
         ser_gen = new SerializableGenerico<Lista>(fileName,listaFuncionario);
 
         deser_gen = new DeserializableGenerico<Lista>(fileName);
-
-
         
 
         System.out.println("llegoHasta aki 1 PestaniaFuncionarios");
-        // if (deser_gen.deserialize()!=null) {
-        //     listaFuncionario = deser_gen.deserialize();
-        // }
+        if (deser_gen.deserialize()!=null) {
+            listaFuncionario = deser_gen.deserialize();
+        }
         System.out.println("llegoHasta aki 2 PestaniaFuncionarios");
 
     
@@ -439,10 +406,6 @@ public class PestaniaFuncionarios{
         JOptionPane.showMessageDialog(panelGeneral, texto);
     }
 
-
-    // public void setControlador(ControlPrincipal c) {
-    //     btnPrueba.addActionListener(c);
-    // }
 
     public void guardar(){
 

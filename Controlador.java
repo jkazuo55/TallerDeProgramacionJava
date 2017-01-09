@@ -14,7 +14,15 @@ public class Controlador{
 	private Hashtable<String,Integer> tablaCiudadCodigo;
 	private Hashtable<Integer,String> tablaCodigoCiudad;
 
+    Lista<Emigrante> listaPersonaEmigrante;
+    String fileName = "/home/xenial/proyectos/java/TallerDeProgramacionJava/dataHistorialEmigrantes.ser"; 
+    DeserializableGenerico<Lista> deser_gen;  
+
 	public Controlador(){
+        listaPersonaEmigrante = new Lista<Emigrante>(); 
+        deser_gen = new DeserializableGenerico<Lista>(fileName);        
+        listaPersonaEmigrante = deser_gen.deserialize();
+
 		tablaCiudadCodigo = new Hashtable<String,Integer>();
 		tablaCodigoCiudad = new Hashtable<Integer,String>();
 		grafo = new GrafoND<Integer>();
@@ -23,7 +31,6 @@ public class Controlador{
 		this.vista = vista;
 		this.modelo = modelo;
 	}
-	
 	public void setVentanaPrincipal(VentanaPrincipal vista){
 		this.vista=vista;
 	}
@@ -45,8 +52,8 @@ public class Controlador{
 	public void setGrafo(GrafoND grafo){
 		this.grafo=grafo;
 	}
-	public String validarIngreso(int index,String pass){
-		return modelo.validarIngreso(index,pass);
+	public String validarIngreso(int index,String user, String pass){
+		return modelo.validarIngreso(index,user,pass);
 	}
 	public void cerrarVentanaLogin(){
 		login.dispose();
@@ -55,6 +62,7 @@ public class Controlador{
 		vista.asignarPrivilegios(usuario);
 	}
 	public void mostrarLogin(){
+        login.limpiar();
 		login.setVisible(true);
 	}
 	public void arranca() {
@@ -72,7 +80,9 @@ public class Controlador{
 	    convertirCodigoCiudad();
 	    insertarVertice();
 	    insertarAristas();  
-        matrizAdyacencia();  
+        // matrizAdyacencia();  
+        // pesoDistancias();
+        // System.out.println(flujoEmigrantes("cochabamba","santa cruz"));
 	}    
     public void convertirCiudadCodigo(){
     		tablaCiudadCodigo.put("la paz",0);
@@ -146,27 +156,45 @@ public class Controlador{
     	}
     	return cadena;
     }
-
-    public void matrizAdyacencia(){
+    public Object[][] matrizAdyacencia(){
         Object[][]aux = grafo.getMatrizAdyacencia();
         Integer a;
         for (int i=0;i<aux.length;i++) {
             for (int j=0;j<aux[i].length;j++) {
+                // System.out.print(aux.[i][j]);
                 if (i!=0&&j!=0) {
-                    if ((Integer)(aux[i][j])==2) {                        
-                       System.out.print((Integer)(aux[i][j])-1);
+                    if ((Integer)(aux[i][j])==2) {                         
+                       aux[i][j]=(Integer)(aux[i][j])-1;
                     }else{
-
-                       System.out.print(aux[i][j]);
+                       aux[i][j]=aux[i][j];
                     }
                     
                 }
             }
         }
+        return aux;
+    }  
+    public Lista<Arista> pesoDistancias(){
+        Lista<Arista>aux=grafo.getAristas();
+        // for (Arista obj:aux) {
+        //     System.out.println("peso "+obj.getPeso());
+        // }
+        return aux;
     }
-    
-    // public String pesoDistancias(String origen,String destino){
-    //     Lista<Vertice>aux=grafo.getVertices();
-    // }
+
+    public int flujoEmigrantes(String origen,String destino){
+        int cont=0;
+        String aux1;        
+        String aux2;        
+        for (Emigrante obj:listaPersonaEmigrante) {
+            // System.out.println(obj.toString());
+            aux1=obj.getOrigen();
+            aux2=obj.getDestino();
+            if (aux1.equalsIgnoreCase(origen)&&aux2.equalsIgnoreCase(destino)) {
+                cont=cont+1;
+            }
+        }
+        return cont;
+    }
 
 }

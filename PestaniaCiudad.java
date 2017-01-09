@@ -66,12 +66,12 @@ public class PestaniaCiudad{
     DeserializableGenerico<Lista> deser_gen;  
 
 
-    public PestaniaCiudad(){ 
+    public PestaniaCiudad(){
         inicializarRegistroEmigrante();
-        System.out.println("Inicializa el programa");    
         model= new DefaultTableModel(data,cabecera);
         tablaEmigrante.setModel(model);
-    }        
+    }
+
     private void inicializarRegistroEmigrante(){
 
         listaPersonaEmigrante = new Lista<Emigrante>(); 

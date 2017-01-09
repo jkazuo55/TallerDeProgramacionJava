@@ -15,7 +15,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import javax.swing.ImageIcon;
+import java.awt.Image;
 
 public class VentanaPrincipal extends JFrame implements ActionListener{
     
@@ -28,15 +29,14 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
     private JMenu menu;
     private JMenuItem itemOpciones;
 
+    public PestaniaMapa pestaniaMapa;
     public PanelRegistroEmigrante vistaRegistroEmigrante;
     public PestaniaCiudad pestaniaCiudad;
-    public PestaniaMapa pestaniaMapa;
     public PestaniaFuncionarios pestaniaFuncionarios;
 
     private Controlador control;
     
     public VentanaPrincipal() {
-        // ventana = new VentanaPrincipal();
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -58,10 +58,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
     private void initComponents() {
         
         vistaRegistroEmigrante= new PanelRegistroEmigrante();
-        pestaniaCiudad = new PestaniaCiudad();
         pestaniaMapa = new PestaniaMapa();
+        pestaniaCiudad = new PestaniaCiudad();        
         pestaniaFuncionarios = new PestaniaFuncionarios();
-        // login = new VentanaLogin(ventana,true);
 
         panelcabecera = new JPanel();
         panelPestanias = new JPanel();
@@ -81,7 +80,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
         barraMenu.add(menu);
         setJMenuBar(barraMenu);
         
-        labelTitulo.setText("SISTEMA GESTION DE EMIGRANTES");
+        Image imagen= new ImageIcon("/home/xenial/proyectos/java/TallerDeProgramacionJava/imagenes/banner_opt.png").getImage().getScaledInstance(1400,180,Image.SCALE_DEFAULT);
+
+        labelTitulo.setIcon(new ImageIcon(imagen));
+
+        // labelTitulo.setText("SISTEMA GESTION DE EMIGRANTES");
         panelcabecera.setBorder(BorderFactory.createLineBorder(new Color(100, 0, 0)));
         panelcabecera.setMaximumSize(new Dimension(1500, 180));
         panelcabecera.setMinimumSize(new Dimension(1500, 180));
@@ -95,11 +98,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 
         pestanias.addTab("REPRESENTACION GRAFICA", pestaniaMapa.panelGeneral);
         pestanias.addTab("REPORTE POR CIUDAD", pestaniaCiudad.panelGeneral);
-        // pestanias.addTab("PestaniaDos", new VistaGrafo().panelGeneral);
         pestanias.addTab("ADMINISTRACION DE EMIGRANTES", vistaRegistroEmigrante.panelGeneral);
         pestanias.addTab("ANALISIS ESTADISTICO", new JLabel("Agregar aki todo LO DE Analiis estadistico"));
         pestanias.addTab("ADMINISTRACION DE EMPLEADOS", pestaniaFuncionarios.panelGeneral);
-        pestanias.addTab("PestaniaSeis", new JButton("SALIR"));
 
         panelcabecera.setLayout(new FlowLayout());
         panelcabecera.add(labelTitulo);
@@ -113,68 +114,26 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
     }
 
     // Métodos de la VentanaPrincipal:
-
     public void setControlador(Controlador control) {
         this.control=control;
     }
-    // public void asignarPrivilegios(String usuario){
-    //     ventana.labelTitulo.setText("Bienbenido: " + usuario);
-    //     System.out.println("estamos en la vista labeltitulo"+usuario);
-    //     if (usuario.equals("Usuario")) {
-    //         System.out.println("numro pestanias: "+ pestanias.getTabCount());
-    //         ventana.pestanias.setEnabledAt(pestanias.getTabCount()-6, false);
-    //         ventana.pestanias.setEnabledAt(pestanias.getTabCount()-3, false);
-    //         ventana.pestanias.setEnabledAt(pestanias.getTabCount()-2, false);
-    //     }
-    // }
 
     public void asignarPrivilegios(String usuario){
         labelTitulo.setText("Bienbenido: " + usuario);
-        System.out.println("estamos en la vista labeltitulo"+usuario);
         if (usuario.equals("Usuario")) {
-            System.out.println("numro pestanias: "+ pestanias.getTabCount());
             pestanias.setEnabledAt(pestanias.getTabCount()-6, false);
             pestanias.setEnabledAt(pestanias.getTabCount()-3, false);
             pestanias.setEnabledAt(pestanias.getTabCount()-2, false);
-        }
+        }//else if (usuario.equals("Administrador")) {
+        //     pestanias.setEnabledAt(pestanias.getTabCount()-6, true);
+        //     pestanias.setEnabledAt(pestanias.getTabCount()-3, true);
+        //     pestanias.setEnabledAt(pestanias.getTabCount()-2, true);
+        // }
     }
-
-    // public void arranca() {
-    //     // visualiza la ventana
-    //     try {
-    //         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-    //             if ("Nimbus".equals(info.getName())) {
-    //                 javax.swing.UIManager.setLookAndFeel(info.getClassName());
-    //                 break;
-    //             }
-    //         }
-    //     } catch (ClassNotFoundException ex) {
-    //         java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    //     } catch (InstantiationException ex) {
-    //         java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    //     } catch (IllegalAccessException ex) {
-    //         java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    //     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-    //         java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    //     }
-
-    //     java.awt.EventQueue.invokeLater(new Runnable() {
-    //         public void run() {
-    //             ventana = new VentanaPrincipal();
-    //             // login = new VentanaLogin(ventana,true);
-    //             ventana.setVisible(true); //visualiza la ventana
-    //             ventana.setSize(1500, 900); //tamanio de la ventana
-    //             ventana.setLocationRelativeTo(null);// centra la ventana en la pantalla
-    //             login.setVisible(true);
-    //         }
-    //     });    
-    // }
 
     @Override
     public void actionPerformed(ActionEvent e){
         if (e.getSource()==itemOpciones) {
-            System.out.println("actionPerformed de ........................menu");
-            // control= new Controlador();
             control.mostrarLogin();       
         }
     }

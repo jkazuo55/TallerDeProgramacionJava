@@ -125,8 +125,7 @@ public class PanelRegistroEmigrante{
         inicializarRegistroEmigrante();
         model= new DefaultTableModel(data,cabecera);
         tablaEmigrante.setModel(model);
-    }   
-        
+    }           
     private void inicializarRegistroEmigrante(){
 
         listaEmigrante = new Lista<Emigrante>(); 
@@ -139,8 +138,8 @@ public class PanelRegistroEmigrante{
         deserListGnrlEmigrante = new DeserializableGenerico<Lista>(fileGnrlEmigrantes);
         
         System.out.println("cargar la lista de del archivo serializado");
-        listaEmigrante = deserListEmigrante.deserialize();
-        listaGeneralEmigrantes = deserListGnrlEmigrante.deserialize();
+        // listaEmigrante = deserListEmigrante.deserialize();
+        // listaGeneralEmigrantes = deserListGnrlEmigrante.deserialize();
         System.out.println("tam listaEmigrante/"+listaEmigrante.getTamanio());
         
 
@@ -489,12 +488,6 @@ public class PanelRegistroEmigrante{
         panelGeneral.setMinimumSize(new Dimension(1100, 600));
         panelGeneral.setPreferredSize(new Dimension(1100, 600));
     }
-
-
-
-
-
-
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {
         guardar();
         serListEmigrante.serialize();
@@ -510,9 +503,8 @@ public class PanelRegistroEmigrante{
             System.out.println(objEmigrante.toString());
         }
         consultar();
-        // historial();
-        vaciar_tabla();
-        filtrar();
+        // vaciar_tabla();
+        // filtrar();
     }
     private void btnEmigrarActionPerformed(java.awt.event.ActionEvent evt) {
         emigrar();

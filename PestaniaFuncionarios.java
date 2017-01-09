@@ -104,9 +104,9 @@ public class PestaniaFuncionarios{
         
 
         System.out.println("llegoHasta aki 1 PestaniaFuncionarios");
-        if (deser_gen.deserialize()!=null) {
-            listaFuncionario = deser_gen.deserialize();
-        }
+        // if (deser_gen.deserialize()!=null) {
+        //     listaFuncionario = deser_gen.deserialize();
+        // }
         System.out.println("llegoHasta aki 2 PestaniaFuncionarios");
 
     

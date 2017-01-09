@@ -1,5 +1,3 @@
-//package modelo;
-
 import java.io.Serializable;
 public class Emigrante extends Persona implements Serializable{
 	private String emigranteSiNo;

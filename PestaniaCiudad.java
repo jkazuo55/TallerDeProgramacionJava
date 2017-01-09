@@ -76,7 +76,7 @@ public class PestaniaCiudad{
 
         listaPersonaEmigrante = new Lista<Emigrante>(); 
         deser_gen = new DeserializableGenerico<Lista>(fileName);        
-        listaPersonaEmigrante = deser_gen.deserialize();
+        // listaPersonaEmigrante = deser_gen.deserialize();
         System.out.println("tam listaPersonaEmigrante dl arch listaEmigrantes.ser en PestaniaCiudad/// "+listaPersonaEmigrante.getTamanio());
 
         panelGeneral = new JPanel();
@@ -249,8 +249,8 @@ public class PestaniaCiudad{
     }
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {
         System.out.println("botonAceptar");
-        vaciar_tabla();
-        tipoDeReporte();
+        // vaciar_tabla();
+        // tipoDeReporte();
     }
     public void setControlador(Controlador control) {
         this.control=control;

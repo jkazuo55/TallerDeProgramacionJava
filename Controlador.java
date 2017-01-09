@@ -20,8 +20,8 @@ public class Controlador{
 
 	public Controlador(){
         listaPersonaEmigrante = new Lista<Emigrante>(); 
-        deser_gen = new DeserializableGenerico<Lista>(fileName);        
-        listaPersonaEmigrante = deser_gen.deserialize();
+        // deser_gen = new DeserializableGenerico<Lista>(fileName);        
+        // listaPersonaEmigrante = deser_gen.deserialize();
 
 		tablaCiudadCodigo = new Hashtable<String,Integer>();
 		tablaCodigoCiudad = new Hashtable<Integer,String>();

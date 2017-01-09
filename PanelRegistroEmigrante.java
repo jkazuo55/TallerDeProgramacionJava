@@ -490,12 +490,7 @@ public class PanelRegistroEmigrante{
     }
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {
         guardar();
-        serListEmigrante.serialize();
-        // System.out.println("______LEER desde el archivo serializado la persona serializada es:");
-        // for (Emigrante obj:listaEmigrante) {
-        //    System.out.println(obj.toString());  
-        //  } 
-        // serListGnrlEmigrante.serialize();
+        serListEmigrante.serialize();        
         System.out.println("RegistroExitoso");
     }
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {

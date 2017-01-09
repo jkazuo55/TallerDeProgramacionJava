@@ -1,5 +1,3 @@
-//package vista;
-
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JButton;

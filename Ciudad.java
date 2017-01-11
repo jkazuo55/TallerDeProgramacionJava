@@ -13,14 +13,14 @@ public class Ciudad{
   
 	private String nombre; //!< Representa el nombre de la Ciudad
 	private int codigo;    //!< Representa el codido asignado ala Ciudad
-	private Lista<PersonaEmigrante>listaEmigrantes;//!<Representa una Lista de tipo PersonaEmigrange
+	private Lista<Emigrante>listaEmigrantes;//!<Representa una Lista de tipo PersonaEmigrange
 
 	/**
      * @brief Metodo constructor de Ciudad que inicializa una listaEmigrantes de Tipo PersonaEmigrante.</br>
      * <b> post: </b> Se creo un nueva Ciudad sin Emigrantes.
      */
 	public Ciudad(){
-		listaEmigrantes= new Lista<PersonaEmigrante>();//!<Inicializar una listaEmigrantes vacia
+		listaEmigrantes= new Lista<Emigrante>();//!<Inicializar una listaEmigrantes vacia
 	}
 
 	//===========Metodos setters ==============
@@ -62,7 +62,7 @@ public class Ciudad{
 	* @brief Solicita la lista de PersonasEmigrante de la Ciudad 
 	* @return Devuelve el una lista de Emigrantes
 	*/
-    public Lista<PersonaEmigrante> getListaEmigrantes(){
+    public Lista<Emigrante> getListaEmigrantes(){
         return this.listaEmigrantes;
     }
 
@@ -72,7 +72,7 @@ public class Ciudad{
 	* @brief Agrega personas emigrantes en la listaEmigrantes 
 	* @param emigrante es una nueva PersonaEmigrante
 	*/
-	public void registrarEmigrante(PersonaEmigrante emigrante){
+	public void registrarEmigrante(Emigrante emigrante){
 		listaEmigrantes.insertarAlFinal(emigrante);
 	}
 

@@ -33,6 +33,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
     public PanelRegistroEmigrante vistaRegistroEmigrante;
     public PestaniaCiudad pestaniaCiudad;
     public PestaniaFuncionarios pestaniaFuncionarios;
+    public PanelEstadisticoView panelEstadistico;
 
     private Controlador control;
     
@@ -61,6 +62,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
         pestaniaMapa = new PestaniaMapa();
         pestaniaCiudad = new PestaniaCiudad();        
         pestaniaFuncionarios = new PestaniaFuncionarios();
+        panelEstadistico = new PanelEstadisticoView();
 
         panelcabecera = new JPanel();
         panelPestanias = new JPanel();
@@ -99,7 +101,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
         pestanias.addTab("REPRESENTACION GRAFICA", pestaniaMapa.panelGeneral);
         pestanias.addTab("REPORTE POR CIUDAD", pestaniaCiudad.panelGeneral);
         pestanias.addTab("ADMINISTRACION DE EMIGRANTES", vistaRegistroEmigrante.panelGeneral);
-        pestanias.addTab("ANALISIS ESTADISTICO", new JLabel("Agregar aki todo LO DE Analiis estadistico"));
+        pestanias.addTab("ANALISIS ESTADISTICO", panelEstadistico);
         pestanias.addTab("ADMINISTRACION DE EMPLEADOS", pestaniaFuncionarios.panelGeneral);
 
         panelcabecera.setLayout(new FlowLayout());

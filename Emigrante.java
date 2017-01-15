@@ -1,6 +1,5 @@
 import java.io.Serializable;
 public class Emigrante extends Persona implements Serializable{
-	private String emigranteSiNo;
 	private String fecha;
 	private String origen;
 	private String destino;
@@ -13,9 +12,8 @@ public class Emigrante extends Persona implements Serializable{
 
 	}
 
-	public Emigrante(String nombre,String apellidos,long cedula, String sexo , String nacidoEn,String direccion, String telefono,String correo, String emigranteSiNo,String fecha, String origen,String destino, String ruta, String motivoDeMigracion){
+	public Emigrante(String nombre,String apellidos,long cedula, String sexo , String nacidoEn,String direccion,long telefono,String correo,String fecha, String origen,String destino, String ruta, String motivoDeMigracion){
 		super(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo);
-		this.emigranteSiNo=emigranteSiNo;
 		this.fecha=fecha;
 		this.origen=origen;
 		this.destino=destino;
@@ -25,9 +23,6 @@ public class Emigrante extends Persona implements Serializable{
 
 	//========Metodos Setters========
 
-	public void setEmigranteSiNo( String emigranteSiNo){
-		this.emigranteSiNo=emigranteSiNo;
-	}	
 	public void setFecha(String fecha){
 		this.fecha=fecha;
 	}
@@ -46,9 +41,7 @@ public class Emigrante extends Persona implements Serializable{
 
 	//=========Metosos Getters==========
 	
-	public String getEmigranteSiNo(){
-		return this.emigranteSiNo;
-	}
+	
 	public String getFecha(){
 		return this.fecha;
 	}
@@ -69,8 +62,6 @@ public class Emigrante extends Persona implements Serializable{
 	public String toString() {
 		String atributosPadre=super.toString();
         StringBuilder sb = new StringBuilder(atributosPadre);
-        sb.append("\nEmigranteSiNo: ");
-        sb.append(emigranteSiNo);
         sb.append("\nFecha: ");
         sb.append(fecha);    
         sb.append("\nOrigen: ");

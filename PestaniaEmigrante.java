@@ -15,11 +15,15 @@ import java.awt.Dimension;
 import javax.swing.JTable; 
 import javax.swing.table.*;
 import javax.swing.JScrollPane;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
+// import org.junit.Assert;
+// import org.junit.BeforeClass;
 
 
-public class PanelRegistroEmigrante{
+public class PestaniaEmigrante{
 
-    //paneles de PanelRegistroEmigrante 
+    //paneles de PestaniaEmigrante 
     public JPanel panelGeneral;
 
     private JPanel panelCabecera;
@@ -67,13 +71,11 @@ public class PanelRegistroEmigrante{
     private JTextField textCorreo;
     
     //Datos Emigrante
-    private JLabel labelEmigranteSiNo;
     private JLabel labelFecha;
     private JLabel labelOrigen;
     private JLabel labelDestino;
     private JLabel labelMotivoDeMigracion;
 
-    private JTextField textEmigranteSiNo;
     private JTextField textFecha;
     private JComboBox comboBoxOrigen;
     private JComboBox comboBoxDestino;
@@ -83,7 +85,7 @@ public class PanelRegistroEmigrante{
     private JTable   tablaEmigrante;
     private DefaultTableModel model;
     private JScrollPane scrollpane;
-    private String[] cabecera={"NUMERO","FECHA","RUTA                    "};
+    private String[] cabecera={"NUMERO","FECHA","RUTA"};
     private String[][] data={};
 
     //Cabecera
@@ -100,6 +102,8 @@ public class PanelRegistroEmigrante{
     private JButton btnBorrar;
     // static public JButton btnPrueba;
 
+    ReglasFormulario validarDatos;
+
     private Controlador control;
     //datosPersonales
 
@@ -111,7 +115,7 @@ public class PanelRegistroEmigrante{
     Lista<Emigrante> listaGeneralEmigrantes;   //lista    
     // Serializable obj;     
 
-    String fileEmigrantes        = "/home/xenial/proyectos/java/TallerDeProgramacionJava/dataEmigrantes.ser"; 
+    String fileEmigrantes     = "/home/xenial/proyectos/java/TallerDeProgramacionJava/dataEmigrantes.ser"; 
     String fileGnrlEmigrantes = "/home/xenial/proyectos/java/TallerDeProgramacionJava/dataHistorialEmigrantes.ser"; 
 
     SerializableGenerico<Lista> serListEmigrante; 
@@ -121,13 +125,14 @@ public class PanelRegistroEmigrante{
 
     // Lista<Emigrante> prueba;
 
-    public PanelRegistroEmigrante(){ 
+    public PestaniaEmigrante(){ 
         inicializarRegistroEmigrante();
         model= new DefaultTableModel(data,cabecera);
         tablaEmigrante.setModel(model);
     }           
     private void inicializarRegistroEmigrante(){
 
+        validarDatos = new ReglasFormulario(); 
         listaEmigrante = new Lista<Emigrante>(); 
         listaGeneralEmigrantes = new Lista<Emigrante>();
 
@@ -209,6 +214,27 @@ public class PanelRegistroEmigrante{
         textTelefono.setText("");
         textCorreo.setText("");
 
+        textNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cadenaKeyTyped(evt);
+            }
+        });
+        textApellidos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cadenaKeyTyped(evt);
+            }
+        });
+        textCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                numeroKeyTyped(evt);
+            }
+        });
+        textTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                numeroKeyTyped(evt);
+            }
+        });
+
         panelCuerpoDatosPersonalesCabecera.setLayout(new FlowLayout());
         panelCuerpoDatosPersonalesCabecera.add(tituloDatosPersonales);    
 
@@ -247,13 +273,11 @@ public class PanelRegistroEmigrante{
 
         tituloDatosEmigrante = new JLabel();
 
-        labelEmigranteSiNo = new JLabel();
         labelFecha = new JLabel();
         labelOrigen = new JLabel();
         labelDestino = new JLabel();
         labelMotivoDeMigracion = new JLabel();
 
-        textEmigranteSiNo = new JTextField();
         textFecha = new JTextField();
         comboBoxOrigen = new JComboBox();
         comboBoxDestino = new JComboBox();
@@ -267,13 +291,11 @@ public class PanelRegistroEmigrante{
 
         tituloDatosEmigrante.setText(" DATOS DE MIGRACION ");
 
-        labelEmigranteSiNo.setText("Emigrante si/no");
         labelFecha.setText("Ultima Fecha Migracion");
         labelOrigen.setText("Origen");
         labelDestino.setText("Destino");
         labelMotivoDeMigracion.setText("Motivo de Migracion");
 
-        textEmigranteSiNo.setText("");
         textFecha.setText("");
         comboBoxOrigen.addItem("la paz");
         comboBoxOrigen.addItem("pando");
@@ -308,8 +330,6 @@ public class PanelRegistroEmigrante{
         panelCuerpoDatosEmigranteCabecera.setPreferredSize(new java.awt.Dimension(500, 30));
 
         panelCuerpoDatosEmigranteContenido.setLayout(new GridLayout(5,2));
-        panelCuerpoDatosEmigranteContenido.add(labelEmigranteSiNo);
-        panelCuerpoDatosEmigranteContenido.add(textEmigranteSiNo);
         panelCuerpoDatosEmigranteContenido.add(labelFecha);
         panelCuerpoDatosEmigranteContenido.add(textFecha);
         panelCuerpoDatosEmigranteContenido.add(labelOrigen);
@@ -318,10 +338,6 @@ public class PanelRegistroEmigrante{
         panelCuerpoDatosEmigranteContenido.add(comboBoxDestino);
         panelCuerpoDatosEmigranteContenido.add(labelMotivoDeMigracion);
         panelCuerpoDatosEmigranteContenido.add(comboBoxMotivoDeMigracion);
-
-        // panelCuerpoDatosEmigranteContenido.setMaximumSize(new java.awt.Dimension(500, 350));
-        // panelCuerpoDatosEmigranteContenido.setMinimumSize(new java.awt.Dimension(500, 350));
-        // panelCuerpoDatosEmigranteContenido.setPreferredSize(new java.awt.Dimension(500, 350));
 
         panelCuerpoDatosEmigranteContenido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -445,6 +461,13 @@ public class PanelRegistroEmigrante{
         labelTituloCabecera.setText("Busqueda de Ciudadano ");
         labelIngreseCi.setText("Ingrese su Cedula de Identidad  ");
         textFildCi.setPreferredSize( new Dimension( 200, 24 ) );
+
+        textFildCi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                numeroKeyTyped(evt);
+            }
+        });
+
         btnBuscar.setText("BUSCAR");
 
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -488,19 +511,45 @@ public class PanelRegistroEmigrante{
         panelGeneral.setMinimumSize(new Dimension(1100, 600));
         panelGeneral.setPreferredSize(new Dimension(1100, 600));
     }
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {
-        guardar();
-        serListEmigrante.serialize();        
-        System.out.println("RegistroExitoso");
-    }
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {
-        for(Emigrante objEmigrante:listaEmigrante){
-            System.out.println(objEmigrante.toString());
+
+    private void numeroKeyTyped(java.awt.event.KeyEvent evt) {                                     
+        char c;
+        c = evt.getKeyChar();
+        if(c<'0'||c>'9'){
+            evt.consume();
         }
-        consultar();
+    }
+
+    private void cadenaKeyTyped(java.awt.event.KeyEvent evt) {                                     
+        char c;
+        c = evt.getKeyChar();
+        // if((c<'a'||c>'z')&&(c<'A')|c>'Z'){
+        if ( (c<'a'||c>'z')&&(c<'A'||c>'Z')&& c!=evt.VK_SPACE){
+            evt.consume();
+        }
+    }
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {
+
+        if(validarFormulario()){
+            guardar();
+        }
+
+        //serListEmigrante.serialize();        
+    }
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {
+        if (validarDatos.validarTamanioBusquedaDocumento(textFildCi.getText())) {
+            consultar();
+                    
+        }else{
+            escribir("cedula demasiada grande");
+        }
+
         // vaciar_tabla();
         // filtrar();
     }
+
     private void btnEmigrarActionPerformed(java.awt.event.ActionEvent evt) {
         emigrar();
         serListGnrlEmigrante.serialize();
@@ -516,9 +565,12 @@ public class PanelRegistroEmigrante{
         serListEmigrante.serialize();
     }
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
+        System.out.println("se ejecuto el validator");
         limpiar();
     }
     public void guardar(){
+        
+        if (validarDatos.validarTamanioBusquedaDocumento(textCedula.getText())) {
 
         String nombre   = textNombre.getText();
         String apellidos= textApellidos.getText();
@@ -526,26 +578,33 @@ public class PanelRegistroEmigrante{
         String sexo     = comboBoxSexo.getSelectedItem().toString();
         String nacidoEn = textNacidoEn.getText();
         String direccion= textDireccion.getText();
-        String telefono = textTelefono.getText();
+        long telefono =   Long.parseLong(textTelefono.getText());
         String correo   = textCorreo.getText();
 
-        String emigrante= textEmigranteSiNo.getText();
         String fecha    = textFecha.getText();
         String origen   = comboBoxOrigen.getSelectedItem().toString();
         String destino  = comboBoxDestino.getSelectedItem().toString();
         String motivo   = comboBoxMotivoDeMigracion.getSelectedItem().toString();
         String ruta     = "";
 
-        perEmigrante = new Emigrante(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,emigrante,fecha,origen,destino,ruta,motivo);
-
-        if(buscarPersonaEmigrante(cedula)){
-            escribir("Hay otra persona registrada con el numero de cedula Cambie la Cedula de Identidad");
+            if (validarDatos.validateEmail(correo)) {
+                perEmigrante = new Emigrante(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,fecha,origen,destino,ruta,motivo);
+                if(buscarPersonaEmigrante(cedula)){
+                    escribir("Hay otra persona registrada con el numero de cedula Cambie la Cedula de Identidad");
+                }else{
+                    System.out.println("LA PERSONA A REGISTRARSE ES: ");
+                    listaEmigrante.insertarAlFinal(perEmigrante);
+                    System.out.println(perEmigrante.toString());
+                    limpiar();
+                }
+            }else{
+                escribir("correo invalido ");                
+            }
+            
         }else{
-            System.out.println("LA PERSONA A REGISTRARSE ES: ");
-            listaEmigrante.insertarAlFinal(perEmigrante);
-            System.out.println(perEmigrante.toString());
-           limpiar();
+            escribir("la cedula de identidad exede los 7 digitos");
         }
+
     }
     public void emigrar(){
 
@@ -555,17 +614,16 @@ public class PanelRegistroEmigrante{
         String sexo     = comboBoxSexo.getSelectedItem().toString();
         String nacidoEn = textNacidoEn.getText();
         String direccion= textDireccion.getText();
-        String telefono = textTelefono.getText();
+        long telefono =   Long.parseLong(textTelefono.getText());
         String correo   = textCorreo.getText();
 
-        String emigrante= textEmigranteSiNo.getText();
         String fecha    = textFecha.getText();
         String origen   = comboBoxOrigen.getSelectedItem().toString();
         String destino  = comboBoxDestino.getSelectedItem().toString();
         String motivo   = comboBoxMotivoDeMigracion.getSelectedItem().toString();
         String ruta     = control.ruta(origen,destino);
 
-        perEmigrante = new Emigrante(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,emigrante,fecha,origen,destino,ruta,motivo);
+        perEmigrante = new Emigrante(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,fecha,origen,destino,ruta,motivo);
         
         listaGeneralEmigrantes.insertarAlFinal(perEmigrante);
         // System.out.println(perEmigrante.toString());
@@ -584,8 +642,8 @@ public class PanelRegistroEmigrante{
     }
 
     public void consultar(){
-       
-        long obtenidoCedula;
+        // keyTyped(textFildCi.getText());
+        long obtenidoCedula;        
         long cedula = Long.parseLong(textFildCi.getText());
 
         System.out.println("########## CI BUSQUEDA:::__"+cedula);        
@@ -608,10 +666,9 @@ public class PanelRegistroEmigrante{
                         String sexo     = objEmigrante.getSexo();
                         String nacidoEn = objEmigrante.getNacidoEn();
                         String direccion= objEmigrante.getDireccion();
-                        String telefono = objEmigrante.getTelefono();
+                        String telefono   = String.valueOf(objEmigrante.getTelefono());
                         String correo   = objEmigrante.getCorreo();
 
-                        String esEmigrante= objEmigrante.getEmigranteSiNo();
                         String fecha    = objEmigrante.getFecha();
                         String origen   = objEmigrante.getOrigen();
                         String destino  = objEmigrante.getDestino();
@@ -625,7 +682,6 @@ public class PanelRegistroEmigrante{
                         textTelefono.setText(telefono);
                         textCorreo.setText(correo);
                         
-                        textEmigranteSiNo.setText(esEmigrante);        
                         textFecha.setText(fecha);        
 
                         if(sexo.equalsIgnoreCase("masculino")){
@@ -733,17 +789,17 @@ public class PanelRegistroEmigrante{
                 String sexo     = comboBoxSexo.getSelectedItem().toString();
                 String nacidoEn = textNacidoEn.getText();
                 String direccion= textDireccion.getText();
-                String telefono = textTelefono.getText();
+                String convirtiendo2 = textTelefono.getText();
+                long telefono =   Long.parseLong(convirtiendo2);
                 String correo   = textCorreo.getText();
 
-                String emigrante= textEmigranteSiNo.getText();
                 String fecha    = textFecha.getText();
                 String origen   = comboBoxOrigen.getSelectedItem().toString();
                 String destino  = comboBoxDestino.getSelectedItem().toString();
                 String motivo   = comboBoxMotivoDeMigracion.getSelectedItem().toString();
                 String ruta     = "";
 
-                perEmigrante = new Emigrante(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,emigrante,fecha,origen,destino,ruta,motivo);
+                perEmigrante = new Emigrante(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,fecha,origen,destino,ruta,motivo);
                 
                 if(!buscarPersonaEmigrante(cedula)){
                     listaEmigrante.insertarAlFinal(perEmigrante);
@@ -797,7 +853,6 @@ public class PanelRegistroEmigrante{
         textTelefono.setText("");
         textCorreo.setText("");
         
-        textEmigranteSiNo.setText("");        
         textFecha.setText("");        
         comboBoxOrigen.setSelectedIndex(0);        
         comboBoxDestino.setSelectedIndex(0);        
@@ -818,10 +873,38 @@ public class PanelRegistroEmigrante{
         return encontrado;    
     }
 
+    //validaciones
+    public void keyTyped(KeyEvent ke) {
+        char c=ke.getKeyChar();             
+        if(Character.isLetter(c)) { 
+            ke.consume();       
+            escribir("Ingrese solo numeros");
+        }            
+    }
+
+    public boolean validarFormulario(){
+
+        String nombre   = textNombre.getText();
+        String apellidos= textApellidos.getText();
+        long   cedula   = Long.parseLong(textCedula.getText());
+        String sexo     = comboBoxSexo.getSelectedItem().toString();
+        String nacidoEn = textNacidoEn.getText();
+        String direccion= textDireccion.getText();
+        long telefono =   Long.parseLong(textTelefono.getText());
+        String correo   = textCorreo.getText();
+
+        String fecha    = textFecha.getText();
+        String origen   = comboBoxOrigen.getSelectedItem().toString();
+        String destino  = comboBoxDestino.getSelectedItem().toString();
+        String motivo   = comboBoxMotivoDeMigracion.getSelectedItem().toString();
+
+        return validarDatos.validaDatos(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,fecha,origen,destino,motivo);
+    } 
+
     public void escribir(String texto){
         JOptionPane.showMessageDialog(panelGeneral, texto);
     }
     public void setControlador(Controlador control) {
         this.control=control;
-    }
+    } 
 }

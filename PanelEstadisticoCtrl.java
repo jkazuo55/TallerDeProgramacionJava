@@ -1,6 +1,6 @@
 //package org.softtux.controller;
 
-//import org.softtux.views.PanelEstadisticoView;
+//import org.softtux.views.PestaniaEstadistico;
 //import org.softtux.model.*;
 import java.awt.event.*;
 import javax.swing.JRadioButton;
@@ -18,7 +18,7 @@ import java.util.HashMap;
 public class PanelEstadisticoCtrl implements ActionListener {
 
     private PanelEstadisticoModel model;
-    private PanelEstadisticoView view;
+    private PestaniaEstadistico view;
     private PanelEstadisticoCtrl self;
     private JRadioButton radioGeneral;
     private JRadioButton radioCiudad;
@@ -27,7 +27,7 @@ public class PanelEstadisticoCtrl implements ActionListener {
     private JComboBox<String> comboYear;
     private HashMap<String,String[]> filterData;
 
-    public PanelEstadisticoCtrl(PanelEstadisticoView panelView) {
+    public PanelEstadisticoCtrl(PestaniaEstadistico panelView) {
         self = this;
         this.view = panelView;
         this.model = new PanelEstadisticoModel();

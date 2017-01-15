@@ -8,10 +8,10 @@ public class Persona implements Serializable{
 	private String sexo;
 	private String nacidoEn;
 	private String direccion;
-	private String telefono;
+	private long telefono;
 	private String correo;
 
-	public Persona(String nombre,String apellidos,long cedula ,String sexo, String nacidoEn, String direccion,String telefono, String correo){
+	public Persona(String nombre,String apellidos,long cedula ,String sexo, String nacidoEn, String direccion,long telefono, String correo){
 		this.nombre=nombre;
 		this.apellidos=apellidos;
 		this.cedula=cedula;
@@ -45,7 +45,7 @@ public class Persona implements Serializable{
 	public void setDireccion(String direccion){
 		this.direccion=direccion;
 	}
-	public void setTelefono(String telefono){
+	public void setTelefono(long telefono){
 		this.telefono=telefono;
 	}
 	public void setCorreo(String correo){
@@ -73,7 +73,7 @@ public class Persona implements Serializable{
 	public String getDireccion(){
 		return this.direccion;
 	}
-	public String getTelefono(){
+	public long getTelefono(){
 		return this.telefono;
 	}
 	public String getCorreo(){

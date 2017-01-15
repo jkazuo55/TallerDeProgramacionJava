@@ -13,7 +13,7 @@ public class Funcionario extends Persona implements Serializable{
 
 	}
 
-	public Funcionario(String nombre,String apellidos,long cedula, String sexo , String nacidoEn,String direccion, String telefono,String correo, String nombreUsuario,String contrasenia, String rol){
+	public Funcionario(String nombre,String apellidos,long cedula, String sexo , String nacidoEn,String direccion, long telefono,String correo, String nombreUsuario,String contrasenia, String rol){
 		super(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo);
 		this.nombreUsuario=nombreUsuario;
 		this.contrasenia=contrasenia;

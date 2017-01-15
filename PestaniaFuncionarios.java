@@ -332,8 +332,9 @@ public class PestaniaFuncionarios{
 
         labelTituloCabecera.setText("Busqueda de Ciudadano ");
 
+        labelTituloCabecera.setText("Busqueda de Ciudadano ");
         labelIngreseCi.setText("Ingrese su Cedula de Identidad  ");
-        textFildCi.setText("      ");
+        textFildCi.setPreferredSize( new Dimension( 200, 24 ) );
         btnBuscar.setText("BUSCAR");
 
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -415,7 +416,7 @@ public class PestaniaFuncionarios{
         String sexo     = comboBoxSexo.getSelectedItem().toString();
         String nacidoEn = textNacidoEn.getText();
         String direccion= textDireccion.getText();
-        String telefono = textTelefono.getText();
+        long telefono =   Long.parseLong(textTelefono.getText());
         String correo   = textCorreo.getText();
 
         String funcionario = textNombreUsuario.getText();
@@ -477,7 +478,7 @@ public class PestaniaFuncionarios{
                         String sexo     = objEmigrante.getSexo();
                         String nacidoEn = objEmigrante.getNacidoEn();
                         String direccion= objEmigrante.getDireccion();
-                        String telefono = objEmigrante.getTelefono();
+                        String telefono = String.valueOf(objEmigrante.getTelefono());
                         String correo   = objEmigrante.getCorreo();
 
                         String usuario  = objEmigrante.getNombreUsuario();
@@ -528,7 +529,8 @@ public class PestaniaFuncionarios{
                 String sexo     = comboBoxSexo.getSelectedItem().toString();
                 String nacidoEn = textNacidoEn.getText();
                 String direccion= textDireccion.getText();
-                String telefono = textTelefono.getText();
+                String convirtiendo2=textTelefono.getText();
+                long telefono =   Long.parseLong(convirtiendo2);
                 String correo   = textCorreo.getText();
 
                 String funcionario = textNombreUsuario.getText();

@@ -29,11 +29,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
     private JMenu menu;
     private JMenuItem itemOpciones;
 
-    public PestaniaMapa pestaniaMapa;
-    public PanelRegistroEmigrante vistaRegistroEmigrante;
+    public PestaniaEmigrante pestaniaEmigrante;
     public PestaniaCiudad pestaniaCiudad;
     public PestaniaFuncionarios pestaniaFuncionarios;
-    public PanelEstadisticoView panelEstadistico;
+    public PestaniaMapa pestaniaMapa;
+    public PestaniaEstadistico pestaniaEstadistico;
 
     private Controlador control;
     
@@ -56,13 +56,14 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
         }
         initComponents();
     }
+
     private void initComponents() {
         
-        vistaRegistroEmigrante= new PanelRegistroEmigrante();
-        pestaniaMapa = new PestaniaMapa();
+        pestaniaEmigrante= new PestaniaEmigrante();
         pestaniaCiudad = new PestaniaCiudad();        
+        pestaniaEstadistico = new PestaniaEstadistico();
+        pestaniaMapa = new PestaniaMapa();
         pestaniaFuncionarios = new PestaniaFuncionarios();
-        panelEstadistico = new PanelEstadisticoView();
 
         panelcabecera = new JPanel();
         panelPestanias = new JPanel();
@@ -86,7 +87,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 
         labelTitulo.setIcon(new ImageIcon(imagen));
 
-        // labelTitulo.setText("SISTEMA GESTION DE EMIGRANTES");
         panelcabecera.setBorder(BorderFactory.createLineBorder(new Color(100, 0, 0)));
         panelcabecera.setMaximumSize(new Dimension(1500, 180));
         panelcabecera.setMinimumSize(new Dimension(1500, 180));
@@ -98,10 +98,10 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
         panelPestanias.setMinimumSize(new Dimension(1500, 720));
         panelPestanias.setPreferredSize(new Dimension(1500, 720));
 
-        pestanias.addTab("REPRESENTACION GRAFICA", pestaniaMapa.panelGeneral);
+        pestanias.addTab("ADMINISTRACION DE EMIGRANTES", pestaniaEmigrante.panelGeneral);
         pestanias.addTab("REPORTE POR CIUDAD", pestaniaCiudad.panelGeneral);
-        pestanias.addTab("ADMINISTRACION DE EMIGRANTES", vistaRegistroEmigrante.panelGeneral);
-        pestanias.addTab("ANALISIS ESTADISTICO", panelEstadistico);
+        pestanias.addTab("REPRESENTACION GRAFICA ", pestaniaMapa.panelGeneral);
+        pestanias.addTab("ANALISIS ESTADISTICO", pestaniaEstadistico);
         pestanias.addTab("ADMINISTRACION DE EMPLEADOS", pestaniaFuncionarios.panelGeneral);
 
         panelcabecera.setLayout(new FlowLayout());
@@ -126,11 +126,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
             pestanias.setEnabledAt(pestanias.getTabCount()-6, false);
             pestanias.setEnabledAt(pestanias.getTabCount()-3, false);
             pestanias.setEnabledAt(pestanias.getTabCount()-2, false);
-        }//else if (usuario.equals("Administrador")) {
-        //     pestanias.setEnabledAt(pestanias.getTabCount()-6, true);
-        //     pestanias.setEnabledAt(pestanias.getTabCount()-3, true);
-        //     pestanias.setEnabledAt(pestanias.getTabCount()-2, true);
-        // }
+        }
     }
 
     @Override

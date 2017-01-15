@@ -7,7 +7,7 @@ public class Controlador{
 	private VentanaPrincipal vista;
 	private Modelo modelo;
 	private VentanaLogin login;
-	private PanelRegistroEmigrante vistaRegistroEmigrante;
+	private PestaniaEmigrante pestaniaEmigrante;
     private PestaniaCiudad pestaniaCiudad;
 	private PestaniaMapa pestaniaMapa;
 	private GrafoND grafo;
@@ -40,8 +40,8 @@ public class Controlador{
 	public void setModeloPrincipal(Modelo modelo){
 		this.modelo=modelo;
 	}
-	public void setPanelRegistroEmigrante(PanelRegistroEmigrante vistaRegistroEmigrante){	
-		this.vistaRegistroEmigrante = vistaRegistroEmigrante ; 
+	public void setPanelRegistroEmigrante(PestaniaEmigrante pestaniaEmigrante){	
+		this.pestaniaEmigrante = pestaniaEmigrante ; 
 	}
 	public void setPestaniaCiudad(PestaniaCiudad pestaniaCiudad){  
         this.pestaniaCiudad = pestaniaCiudad ; 

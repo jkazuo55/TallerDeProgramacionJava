@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import net.miginfocom.swing.MigLayout;
 
-public class PanelEstadisticoView extends JPanel{
+public class PestaniaEstadistico extends JPanel{
     private JLabel label,label2,label3;
     private JPanel menuPanel;
     public JComboBox<String> comboMotivo,comboCiudad,comboYear;
@@ -14,13 +14,11 @@ public class PanelEstadisticoView extends JPanel{
     private JButton boton;
     private PanelEstadisticoCtrl controller;
 
-    public PanelEstadisticoView(){
-        super();
+    public PestaniaEstadistico(){
         setUi();
     }
 
     public void setUi(){
-        this.setName("Analisis Estadistico");
         boton = new JButton("Generar");
         boton.setActionCommand("graphicButton");
         boton.addActionListener(new PanelEstadisticoCtrl(this));

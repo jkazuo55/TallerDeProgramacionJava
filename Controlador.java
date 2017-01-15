@@ -197,4 +197,8 @@ public class Controlador{
         return cont;
     }
 
+    public String fechaSistema(){
+        return modelo.getFechaAcualDelSistema();
+    }
+
 }

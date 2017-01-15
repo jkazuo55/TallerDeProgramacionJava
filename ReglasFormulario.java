@@ -1,27 +1,14 @@
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 public class ReglasFormulario{
 
-	public boolean validaDatos(String nombre,String apellidos,long cedula, String sexo , String nacidoEn,String direccion, long telefono,String correo,String fecha, String origen,String destino, String motivoDeMigracion){
+	public boolean validaDatos(String nombre,String apellidos,String cedula, String sexo , String nacidoEn,String direccion, String telefono,String correo,String fecha, String origen,String destino, String motivoDeMigracion){
 		boolean res=false;
-
-		// System.out.println("asd "+nombre.equals(""));
-		// System.out.println(apellidos.equals(""));
-		// System.out.println(cedula==0);
-		// System.out.println(sexo.equals(""));
-		// System.out.println(nacidoEn.equals(""));
-		// System.out.println(direccion.equals(""));
-		// System.out.println(telefono.equals(""));
-		// System.out.println(correo.equals(""));
-		// System.out.println(emigranteSiNo.equals(""));
-		// System.out.println(fecha.equals(""));
-		// System.out.println(origen.equals(""));
-		// System.out.println(destino.equals(""));
-		// // System.out.println("-"+ruta.equals(""));
 		System.out.println(motivoDeMigracion.equals(""));
 
-		if (nombre.equals("")||apellidos.equals("")||cedula==0||sexo.equals("")||nacidoEn.equals("")||direccion.equals("")||telefono==0||correo.equals("")||fecha.equals("")||origen.equals("")||destino.equals("")||motivoDeMigracion.equals("")) {
+		if (nombre.equals("")||apellidos.equals("")||cedula.equals("")||sexo.equals("Seleccionar")||nacidoEn.equals("")||direccion.equals("")||telefono.equals("")||correo.equals("")||fecha.equals("")||origen.equals("Seleccionar")||destino.equals("Seleccionar")||motivoDeMigracion.equals("")) {
 			res= false;
 			escribir("no puede dejar espacios en blanco");		
 		}else{
@@ -32,6 +19,16 @@ public class ReglasFormulario{
 	}
 	public void escribir(String texto){
         JOptionPane.showMessageDialog(null, texto);
+    }
+
+    public boolean validarCampoBusqueda(String cedulaBusqueda){
+    	boolean res=false;
+    	System.out.println("al momento de validar campos :"+cedulaBusqueda);
+    	System.out.println("resultado : "+cedulaBusqueda.equals(""));
+    	if (cedulaBusqueda.equals("")) {
+    		res=true;
+    	}
+    	return res;
     }
 
     // public boolean validarTamanioDocumento(long cedula){
@@ -45,7 +42,7 @@ public class ReglasFormulario{
     // 	}
     // 	return res;
     // }
-    
+
     // public boolean validarTamanioDocumento(String cedula){
     // 	boolean res=false;
     // 	if (cedula.length()<=7) {

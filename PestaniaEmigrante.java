@@ -24,7 +24,7 @@ import java.awt.event.KeyAdapter;
 public class PestaniaEmigrante{
 
     //paneles de PestaniaEmigrante 
-    public JPanel panelGeneral;
+    public JPanel  panelGeneral;
 
     private JPanel panelCabecera;
     private JPanel panelCuerpo;
@@ -71,12 +71,12 @@ public class PestaniaEmigrante{
     private JTextField textCorreo;
     
     //Datos Emigrante
-    private JLabel labelFecha;
+    // private JLabel labelFecha;
     private JLabel labelOrigen;
     private JLabel labelDestino;
     private JLabel labelMotivoDeMigracion;
 
-    private JTextField textFecha;
+    // private JTextField textFecha;
     private JComboBox comboBoxOrigen;
     private JComboBox comboBoxDestino;
     private JComboBox comboBoxMotivoDeMigracion;
@@ -193,7 +193,7 @@ public class PestaniaEmigrante{
         textTelefono = new JTextField();
         textCorreo = new JTextField();
 
-        tituloDatosPersonales.setText("  DATOS PERSONALES ");
+        tituloDatosPersonales.setText("DATOS PERSONALES ");
 
         labelNombre.setText("Nombre");
         labelApellidos.setText("Apellidos");
@@ -207,6 +207,7 @@ public class PestaniaEmigrante{
         textNombre.setText("");
         textApellidos.setText("");
         textCedula.setText("");
+        comboBoxSexo.addItem("Seleccionar");
         comboBoxSexo.addItem("Masculino");
         comboBoxSexo.addItem("Femenino");
         textNacidoEn.setText("");
@@ -273,12 +274,12 @@ public class PestaniaEmigrante{
 
         tituloDatosEmigrante = new JLabel();
 
-        labelFecha = new JLabel();
+        // labelFecha = new JLabel();
         labelOrigen = new JLabel();
         labelDestino = new JLabel();
         labelMotivoDeMigracion = new JLabel();
 
-        textFecha = new JTextField();
+        // textFecha = new JTextField();
         comboBoxOrigen = new JComboBox();
         comboBoxDestino = new JComboBox();
         comboBoxMotivoDeMigracion = new JComboBox();
@@ -291,12 +292,13 @@ public class PestaniaEmigrante{
 
         tituloDatosEmigrante.setText(" DATOS DE MIGRACION ");
 
-        labelFecha.setText("Ultima Fecha Migracion");
+        // labelFecha.setText("Ultima Fecha Migracion");
         labelOrigen.setText("Origen");
         labelDestino.setText("Destino");
         labelMotivoDeMigracion.setText("Motivo de Migracion");
 
-        textFecha.setText("");
+        // textFecha.setText("");
+        comboBoxOrigen.addItem("Seleccionar");
         comboBoxOrigen.addItem("la paz");
         comboBoxOrigen.addItem("pando");
         comboBoxOrigen.addItem("beni");
@@ -307,6 +309,7 @@ public class PestaniaEmigrante{
         comboBoxOrigen.addItem("chuquisaca");
         comboBoxOrigen.addItem("tarija");
 
+        comboBoxDestino.addItem("Seleccionar");
         comboBoxDestino.addItem("la paz");
         comboBoxDestino.addItem("pando");
         comboBoxDestino.addItem("beni");
@@ -317,6 +320,7 @@ public class PestaniaEmigrante{
         comboBoxDestino.addItem("chuquisaca");
         comboBoxDestino.addItem("tarija");
 
+        comboBoxMotivoDeMigracion.addItem("Seleccionar");
         comboBoxMotivoDeMigracion.addItem("Economico");
         comboBoxMotivoDeMigracion.addItem("Trabajo");
         comboBoxMotivoDeMigracion.addItem("Estudios");
@@ -330,8 +334,8 @@ public class PestaniaEmigrante{
         panelCuerpoDatosEmigranteCabecera.setPreferredSize(new java.awt.Dimension(500, 30));
 
         panelCuerpoDatosEmigranteContenido.setLayout(new GridLayout(5,2));
-        panelCuerpoDatosEmigranteContenido.add(labelFecha);
-        panelCuerpoDatosEmigranteContenido.add(textFecha);
+        // panelCuerpoDatosEmigranteContenido.add(labelFecha);
+        // panelCuerpoDatosEmigranteContenido.add(textFecha);
         panelCuerpoDatosEmigranteContenido.add(labelOrigen);
         panelCuerpoDatosEmigranteContenido.add(comboBoxOrigen);
         panelCuerpoDatosEmigranteContenido.add(labelDestino);
@@ -539,19 +543,26 @@ public class PestaniaEmigrante{
     }
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {
-        if (validarDatos.validarTamanioBusquedaDocumento(textFildCi.getText())) {
-            consultar();
-                    
-        }else{
-            escribir("cedula demasiada grande");
-        }
+        if (!validarBusqueda()) {
+            // System.out.println("entro a valdiar busqueda");
+            if (validarDatos.validarTamanioBusquedaDocumento(textFildCi.getText())) {
+                consultar();
+                        
+            }else{
+                escribir("cedula demasiada grande");
+            }
 
-        // vaciar_tabla();
-        // filtrar();
+            // vaciar_tabla();
+            // filtrar();
+        }else{
+            escribir("Debe ingresar una Cedula ");
+        }
     }
 
     private void btnEmigrarActionPerformed(java.awt.event.ActionEvent evt) {
-        emigrar();
+        if (validarFormulario()) {
+            emigrar();
+        }
         serListGnrlEmigrante.serialize();
         System.out.println("EmigracionExitosa");
     }
@@ -561,7 +572,9 @@ public class PestaniaEmigrante{
         serListEmigrante.serialize();
     }
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {
-        modificar();
+        if (validarFormulario()) {
+            modificar();
+        }
         serListEmigrante.serialize();
     }
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
@@ -569,7 +582,7 @@ public class PestaniaEmigrante{
         limpiar();
     }
     public void guardar(){
-        
+
         if (validarDatos.validarTamanioBusquedaDocumento(textCedula.getText())) {
 
         String nombre   = textNombre.getText();
@@ -581,7 +594,8 @@ public class PestaniaEmigrante{
         long telefono =   Long.parseLong(textTelefono.getText());
         String correo   = textCorreo.getText();
 
-        String fecha    = textFecha.getText();
+        // String fecha    = textFecha.getText();
+        String fecha    = control.fechaSistema();
         String origen   = comboBoxOrigen.getSelectedItem().toString();
         String destino  = comboBoxDestino.getSelectedItem().toString();
         String motivo   = comboBoxMotivoDeMigracion.getSelectedItem().toString();
@@ -596,6 +610,7 @@ public class PestaniaEmigrante{
                     listaEmigrante.insertarAlFinal(perEmigrante);
                     System.out.println(perEmigrante.toString());
                     limpiar();
+                    escribir("persona registrada exitosamente");
                 }
             }else{
                 escribir("correo invalido ");                
@@ -604,7 +619,6 @@ public class PestaniaEmigrante{
         }else{
             escribir("la cedula de identidad exede los 7 digitos");
         }
-
     }
     public void emigrar(){
 
@@ -617,7 +631,7 @@ public class PestaniaEmigrante{
         long telefono =   Long.parseLong(textTelefono.getText());
         String correo   = textCorreo.getText();
 
-        String fecha    = textFecha.getText();
+        String fecha    = control.fechaSistema();
         String origen   = comboBoxOrigen.getSelectedItem().toString();
         String destino  = comboBoxDestino.getSelectedItem().toString();
         String motivo   = comboBoxMotivoDeMigracion.getSelectedItem().toString();
@@ -669,7 +683,7 @@ public class PestaniaEmigrante{
                         String telefono   = String.valueOf(objEmigrante.getTelefono());
                         String correo   = objEmigrante.getCorreo();
 
-                        String fecha    = objEmigrante.getFecha();
+                        // String fecha    = objEmigrante.getFecha();
                         String origen   = objEmigrante.getOrigen();
                         String destino  = objEmigrante.getDestino();
                         String motivo   = objEmigrante.getMotivoDeMigracion();
@@ -682,60 +696,68 @@ public class PestaniaEmigrante{
                         textTelefono.setText(telefono);
                         textCorreo.setText(correo);
                         
-                        textFecha.setText(fecha);        
+                        // textFecha.setText(fecha);        
 
-                        if(sexo.equalsIgnoreCase("masculino")){
+                        if(sexo.equalsIgnoreCase("Seleccionar")){
                             comboBoxSexo.setSelectedIndex(0);
-                        }else if(sexo.equalsIgnoreCase("femenino")){
+                        }else if(sexo.equalsIgnoreCase("Masculino")){
                             comboBoxSexo.setSelectedIndex(1);
+                        }else if(sexo.equalsIgnoreCase("Femenino")){
+                            comboBoxSexo.setSelectedIndex(2);
                         }                    
-                        if(origen.equalsIgnoreCase("la paz")){
+                        if(origen.equalsIgnoreCase("Seleccionar")){
                             comboBoxOrigen.setSelectedIndex(0);
-                        }else if(origen.equalsIgnoreCase("pando")){
+                        }else if(origen.equalsIgnoreCase("la paz")){
                             comboBoxOrigen.setSelectedIndex(1);
-                        }else if(origen.equalsIgnoreCase("beni")){
+                        }else if(origen.equalsIgnoreCase("pando")){
                             comboBoxOrigen.setSelectedIndex(2);
-                        }else if(origen.equalsIgnoreCase("cochabamba")){
+                        }else if(origen.equalsIgnoreCase("beni")){
                             comboBoxOrigen.setSelectedIndex(3);
-                        }else if(origen.equalsIgnoreCase("santa cruz")){
+                        }else if(origen.equalsIgnoreCase("cochabamba")){
                             comboBoxOrigen.setSelectedIndex(4);
-                        }else if(origen.equalsIgnoreCase("oruro")){
+                        }else if(origen.equalsIgnoreCase("santa cruz")){
                             comboBoxOrigen.setSelectedIndex(5);
-                        }else if(origen.equalsIgnoreCase("potosi")){
+                        }else if(origen.equalsIgnoreCase("oruro")){
                             comboBoxOrigen.setSelectedIndex(6);
-                        }else if(origen.equalsIgnoreCase("chuquisaca")){
+                        }else if(origen.equalsIgnoreCase("potosi")){
                             comboBoxOrigen.setSelectedIndex(7);
-                        }else if(origen.equalsIgnoreCase("tarija")){
+                        }else if(origen.equalsIgnoreCase("chuquisaca")){
                             comboBoxOrigen.setSelectedIndex(8);
+                        }else if(origen.equalsIgnoreCase("tarija")){
+                            comboBoxOrigen.setSelectedIndex(9);
                         }
 
-                        if(destino.equalsIgnoreCase("la paz")){
+                        if(destino.equalsIgnoreCase("Seleccionar")){
                             comboBoxDestino.setSelectedIndex(0);
-                        }else if(destino.equalsIgnoreCase("pando")){
+                        }else if(destino.equalsIgnoreCase("la paz")){
                             comboBoxDestino.setSelectedIndex(1);
-                        }else if(destino.equalsIgnoreCase("beni")){
+                        }else if(destino.equalsIgnoreCase("pando")){
                             comboBoxDestino.setSelectedIndex(2);
-                        }else if(destino.equalsIgnoreCase("cochabamba")){
+                        }else if(destino.equalsIgnoreCase("beni")){
                             comboBoxDestino.setSelectedIndex(3);
-                        }else if(destino.equalsIgnoreCase("santa cruz")){
+                        }else if(destino.equalsIgnoreCase("cochabamba")){
                             comboBoxDestino.setSelectedIndex(4);
-                        }else if(destino.equalsIgnoreCase("oruro")){
+                        }else if(destino.equalsIgnoreCase("santa cruz")){
                             comboBoxDestino.setSelectedIndex(5);
-                        }else if(destino.equalsIgnoreCase("potosi")){
+                        }else if(destino.equalsIgnoreCase("oruro")){
                             comboBoxDestino.setSelectedIndex(6);
-                        }else if(destino.equalsIgnoreCase("chuquisaca")){
+                        }else if(destino.equalsIgnoreCase("potosi")){
                             comboBoxDestino.setSelectedIndex(7);
-                        }else if(destino.equalsIgnoreCase("tarija")){
+                        }else if(destino.equalsIgnoreCase("chuquisaca")){
                             comboBoxDestino.setSelectedIndex(8);
+                        }else if(destino.equalsIgnoreCase("tarija")){
+                            comboBoxDestino.setSelectedIndex(9);
                         }
 
 
-                        if(motivo.equalsIgnoreCase("Economico")){
+                        if(motivo.equalsIgnoreCase("Seleccionar")){
                             comboBoxMotivoDeMigracion.setSelectedIndex(0);
-                        }else if(motivo.equalsIgnoreCase("Trabajo")){
+                        }else if(motivo.equalsIgnoreCase("Economico")){
                             comboBoxMotivoDeMigracion.setSelectedIndex(1);
-                        }else if(motivo.equalsIgnoreCase("Estudios")){
+                        }else if(motivo.equalsIgnoreCase("Trabajo")){
                             comboBoxMotivoDeMigracion.setSelectedIndex(2);
+                        }else if(motivo.equalsIgnoreCase("Estudios")){
+                            comboBoxMotivoDeMigracion.setSelectedIndex(3);
                         }
                     } 
             }
@@ -775,13 +797,11 @@ public class PestaniaEmigrante{
     }
 
     public  void modificar(){
-        int op = JOptionPane.showConfirmDialog(null,"Deves consultar primero \nDeseas consultar ahora presiona <Si>\nSi ya consultastes presionsa <No>");//confirmacion
-        if(op==0){
-            consultar();
-        }else if(op==1){ //si a puesto opcion no modificar el objeto en el cual nosotros ayamos modificado
-            int n = listaEmigrante.getTamanio();
-            System.out.println("tamanio de la lista es :" +n);
-
+        int op = JOptionPane.showConfirmDialog(null,"Estas seguro de modificar?");//confirmacion
+        if(op==1){
+            System.out.println("modificacion canselada");
+        }else if(op==0){ //si a puesto opcion no modificar el objeto en el cual nosotros ayamos modificado
+            if (validarDatos.validarTamanioBusquedaDocumento(textCedula.getText())) {
                 String nombre   = textNombre.getText();
                 String apellidos= textApellidos.getText();
                 String convirtiendo = textCedula.getText();
@@ -793,51 +813,57 @@ public class PestaniaEmigrante{
                 long telefono =   Long.parseLong(convirtiendo2);
                 String correo   = textCorreo.getText();
 
-                String fecha    = textFecha.getText();
+                // String fecha    = textFecha.getText();
+                String fecha    = control.fechaSistema();
                 String origen   = comboBoxOrigen.getSelectedItem().toString();
                 String destino  = comboBoxDestino.getSelectedItem().toString();
                 String motivo   = comboBoxMotivoDeMigracion.getSelectedItem().toString();
                 String ruta     = "";
 
-                perEmigrante = new Emigrante(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,fecha,origen,destino,ruta,motivo);
-                
-                if(!buscarPersonaEmigrante(cedula)){
-                    listaEmigrante.insertarAlFinal(perEmigrante);
+                if (validarDatos.validateEmail(correo)) {
+
+                    perEmigrante = new Emigrante(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,fecha,origen,destino,ruta,motivo);
+                    
+                    if(!buscarPersonaEmigrante(cedula)){
+                        listaEmigrante.insertarAlFinal(perEmigrante);
+                    }else{
+                        for(Emigrante objEmigrante:listaEmigrante){
+                            long ci = objEmigrante.getCedula();
+                            if (ci==cedula) {
+                                int indice = listaEmigrante.getIndice(objEmigrante);
+                                listaEmigrante.set(indice,perEmigrante);                    
+                            }
+                        }    
+                        limpiar();
+                    }
                 }else{
-                    for(Emigrante objEmigrante:listaEmigrante){
-                        long ci = objEmigrante.getCedula();
-                        if (ci==cedula) {
-                            int indice = listaEmigrante.getIndice(objEmigrante);
-                            System.out.println("el indice antes de modificar"+indice);
-                            listaEmigrante.set(indice,perEmigrante);                    
-                        }
-                    }    
-                    limpiar();
+                    escribir("correo invalido ");                
                 }
-            
+            }else{
+                escribir("la cedula de identidad exede los 7 digitos");
+            }    
         }
     }
 
     public void borrar(){        
-        long op = Long.parseLong(JOptionPane.showInputDialog("Codigo a borrar : "));
+        long op = Long.parseLong(JOptionPane.showInputDialog("Ingrese nuevamente la Cedula de indentidad \n Para borrar de manera definitiva : "));
 
         if(!buscarPersonaEmigrante(op)){
-            escribir("Codigo no existe");
+            escribir("La Cedula de Identidad Ingresada no existe!!");
         }else{
-            for(Emigrante objEmigrante:listaEmigrante){
-                    System.out.println("entroo al for De busqueda");
-             
-                    if (objEmigrante.getCedula() == op) {
-                        System.out.println("##### persona A ELIMINAR ES #####:"+objEmigrante.toString());
+            for(Emigrante objEmigrante:listaEmigrante){             
+                if (objEmigrante.getCedula() == op) {
+                    System.out.println("##### persona A ELIMINAR ES #####:"+objEmigrante.toString());
 
-                        int i = JOptionPane.showConfirmDialog(null,"Estas seguro de borrar...");
-                        if(i==0){           
-                            listaEmigrante.eliminar(listaEmigrante.getIndice(objEmigrante));
-                        }else if(i==1){
-                            escribir("Vuela a intentarlo");
-                        }
-                    }    
-
+                    int i = JOptionPane.showConfirmDialog(null,"Estas seguro de borrar...");
+                    if(i==0){           
+                        listaEmigrante.eliminar(listaEmigrante.getIndice(objEmigrante));
+                        limpiar();
+                        escribir("Emigrante eliminado exitosamente");
+                    }else if(i==1){
+                        escribir("Vuela a intentarlo");
+                    }
+                }    
             } 
 
         }
@@ -853,7 +879,7 @@ public class PestaniaEmigrante{
         textTelefono.setText("");
         textCorreo.setText("");
         
-        textFecha.setText("");        
+        // textFecha.setText("");        
         comboBoxOrigen.setSelectedIndex(0);        
         comboBoxDestino.setSelectedIndex(0);        
         comboBoxMotivoDeMigracion.setSelectedIndex(0);        
@@ -886,19 +912,24 @@ public class PestaniaEmigrante{
 
         String nombre   = textNombre.getText();
         String apellidos= textApellidos.getText();
-        long   cedula   = Long.parseLong(textCedula.getText());
+        String cedula   = textCedula.getText();
         String sexo     = comboBoxSexo.getSelectedItem().toString();
         String nacidoEn = textNacidoEn.getText();
         String direccion= textDireccion.getText();
-        long telefono =   Long.parseLong(textTelefono.getText());
+        String telefono = textTelefono.getText();
         String correo   = textCorreo.getText();
 
-        String fecha    = textFecha.getText();
+        // String fecha    = textFecha.getText();
+        String fecha    = control.fechaSistema();
         String origen   = comboBoxOrigen.getSelectedItem().toString();
         String destino  = comboBoxDestino.getSelectedItem().toString();
         String motivo   = comboBoxMotivoDeMigracion.getSelectedItem().toString();
 
         return validarDatos.validaDatos(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,fecha,origen,destino,motivo);
+    }
+    public boolean validarBusqueda(){
+        String busqueda = textFildCi.getText();
+        return validarDatos.validarCampoBusqueda(busqueda);
     } 
 
     public void escribir(String texto){

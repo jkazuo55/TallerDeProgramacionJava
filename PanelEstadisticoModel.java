@@ -7,11 +7,14 @@ public class PanelEstadisticoModel {
         fileName = "dataHistorialEmigrantes.ser";
         deser_gen = new DeserializableGenerico<Lista>(fileName);
         if(deser_gen.tieneDatos()){
-            listaEmigrantes = deser_gen.deserialize();
+            //listaEmigrantes = deser_gen.deserialize();
         }
     }
 
-    public Lista<Emigrante> listaGeneral(){
+    public Lista<Emigrante> getListaGeneral(){
+        if(deser_gen.tieneDatos()){
+            listaEmigrantes = deser_gen.deserialize();
+        }
         return this.listaEmigrantes;
     }
 }

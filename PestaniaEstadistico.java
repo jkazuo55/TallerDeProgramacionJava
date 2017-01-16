@@ -41,7 +41,7 @@ public class PestaniaEstadistico extends JPanel{
         buttonGroup.add(general);
         buttonGroup.add(porCiudad);
         label = new JLabel("Motivo de Migracion");
-        label2 = new JLabel("SISTEMA DE GESTION DE EMIGRANTES");
+        label2 = new JLabel("GENERAR GRAFICO:");
 	label3 = new JLabel("Año de migracion");
         comboMotivo.addItem("Trabajo");
         comboMotivo.addItem("Academico");
@@ -82,6 +82,7 @@ public class PestaniaEstadistico extends JPanel{
 	comboYear.addItem("2015");
 	comboYear.addItem("2016");
 	comboYear.addItem("2017");
+        menuPanel.add(label2,"wrap");
         menuPanel.add(label,"wrap");
         menuPanel.add(comboMotivo,"wrap");
 	menuPanel.add(label3,"wrap");
@@ -92,7 +93,7 @@ public class PestaniaEstadistico extends JPanel{
         menuPanel.add(comboCiudad, "wrap");
         menuPanel.add(boton);
         comboCiudad.setEnabled(false);
-        this.add(label2,BorderLayout.PAGE_START);
+        //this.add(label2,BorderLayout.PAGE_START);
         this.add(menuPanel,BorderLayout.LINE_START);
         this.add(grafico,BorderLayout.CENTER);
     }

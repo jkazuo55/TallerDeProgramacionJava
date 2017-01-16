@@ -9,6 +9,9 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation; 
 import org.jfree.data.category.DefaultCategoryDataset; 
 import org.jfree.chart.ChartUtilities; 
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.ValueAxis;
+import org.jfree.chart.plot.CategoryPlot;
 
 public class GraficoEmigrante extends JPanel{
 
@@ -33,12 +36,17 @@ public class GraficoEmigrante extends JPanel{
 
     public ChartPanel crearGrafico(){
         barChart = ChartFactory.createBarChart3D(
-         "Flujo de Emigrantes por Departamento", 
+         "GRAFICO DE FLUJO DE EMIGRANTES", 
          "Departamentos",
          "Cantidad",
          dataset,
          PlotOrientation.VERTICAL,
          true, true, false);
+	 CategoryPlot plot = barChart.getCategoryPlot();
+         ValueAxis axis = plot.getRangeAxis();
+         axis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+         axis.setRange(0,10);
+
         ChartPanel panel = new ChartPanel(barChart);
         return panel;
     }

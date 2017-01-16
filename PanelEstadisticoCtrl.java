@@ -99,15 +99,13 @@ public class PanelEstadisticoCtrl implements ActionListener {
         Lista<Emigrante> listaEmigrantes; 
         String ciudadSeleccionada = comboCiudad.getSelectedItem().toString();
         Ciudad ciudad;
+	listaEmigrantes = model.getListaGeneral();
 	this.view.grafico.dataset.clear();
 	if(radioGeneral.isSelected()){
-	    listaEmigrantes = model.listaGeneral();
             this.procesarEmigrantes(listaEmigrantes);
 	}
         if(radioCiudad.isSelected()){
-            //ciudad = this.model.getCiudad(ciudadSeleccionada);
-            //listaEmigrantes = ciudad.getListaEmigrantes();
-	    listaEmigrantes = model.listaGeneral();
+            listaEmigrantes = this.filtrarPorCiudad(listaEmigrantes,ciudadSeleccionada);
             this.procesarEmigrantes(listaEmigrantes);
         }
         CategoryPlot plot = self.view.grafico.barChart.getCategoryPlot();
@@ -115,6 +113,18 @@ public class PanelEstadisticoCtrl implements ActionListener {
         axis.setStandardTickUnits(NumberAxis.createIntegerTickUnits()); 
         axis.setRange(0,10);
         self.view.grafico.revalidate();
+    }
+
+    public Lista<Emigrante> filtrarPorCiudad(Lista<Emigrante> listaEmigrantes, String ciudad){
+        Lista<Emigrante> res = new Lista<Emigrante>();
+        String destino = "";
+        for(Emigrante emigrante:listaEmigrantes){
+            destino = emigrante.getDestino();
+            if(destino.equals(ciudad)){
+                res.insertarAlFinal(emigrante); 
+            }
+        }
+        return res;
     }
 
     @Override

@@ -1,6 +1,13 @@
-//package modelo.serializacion;
-
-
+/**
+* @class SerializableGenerico.java 
+* @brief Implementacion de la Clase SerializableGenerico</br>
+* La clase SerializableGenerico Clase que  nos ayuda a serializar objetos a ficheros Binarios;
+* @param <T> tipo de dato a serializarse
+* @author SoftTux
+* @version 0.2
+* @since 1.0
+* @see https://github.com/jkazuo55/TallerDeProgramacionJava
+*/
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;

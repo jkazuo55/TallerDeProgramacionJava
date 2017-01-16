@@ -1,4 +1,12 @@
-//package modelo;
+/**
+* @class Funsionario.java 
+* @brief Implementacion de la Clase Funsionario</br>
+* La clase Funsionario es parte del modelo en este caso ModeloFunsionario que nos ayuda a representar el objeto funcionario;
+* @author SoftTux
+* @version 0.2
+* @since 1.0
+* @see https://github.com/jkazuo55/TallerDeProgramacionJava
+*/
 
 import java.io.Serializable;
 public class Funcionario extends Persona implements Serializable{

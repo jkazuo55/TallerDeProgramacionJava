@@ -1,3 +1,13 @@
+/**
+* @class DeserializableGenerico.java 
+* @brief Implementacion de la Clase DeserializableGenerico</br>
+* La clase DeserializableGenerico que nos ayuda a descerializar las los archivos serializados y refrescarlos en memoria;
+* @param <T> un tpo de objto geneerico 
+* @author SoftTux
+* @version 0.2
+* @since 1.0
+* @see https://github.com/jkazuo55/TallerDeProgramacionJava
+*/
 import java.io.*;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;

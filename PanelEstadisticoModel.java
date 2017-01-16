@@ -1,4 +1,12 @@
-//package org.softtux.model;
+/**
+* @class PanelEstadisticoModel.java 
+* @brief Implementacion de la Clase PanelEstadisticoModel</br>
+* La clase PanelEstadisticoModel represena al modelo del analisis estadistico;
+* @author SoftTux
+* @version 0.2
+* @since 1.0
+* @see https://github.com/jkazuo55/TallerDeProgramacionJava
+*/
 public class PanelEstadisticoModel {
     private Lista<Emigrante> listaEmigrantes;
     private String fileName;

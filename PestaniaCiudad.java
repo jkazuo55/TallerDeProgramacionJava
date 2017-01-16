@@ -1,3 +1,13 @@
+/**
+* @class PestaniaCiudad.java 
+* @brief Implementacion de la Clase PestaniaCiudad</br>
+* La clase PestaniaCiudad es la vista de la administracion de reportes por ciudad;
+* @author SoftTux
+* @version 0.2
+* @since 1.0
+* @see https://github.com/jkazuo55/TallerDeProgramacionJava
+*/
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;

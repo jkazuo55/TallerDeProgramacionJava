@@ -1,4 +1,12 @@
-//package org.softtux.views;
+/**
+* @class PestaniaEstadistico.java 
+* @brief Implementacion de la Clase PestaniaEstadistico</br>
+* La clase PestaniaEstadistico representa la vista del de la pestania Analisis Estadistico ;
+* @author SoftTux
+* @version 0.2
+* @since 1.0
+* @see https://github.com/jkazuo55/TallerDeProgramacionJava
+*/
 import javax.swing.*;
 import java.awt.*;
 import net.miginfocom.swing.MigLayout;

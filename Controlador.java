@@ -1,3 +1,13 @@
+/**
+* @class Controlador.java 
+* @brief Implementacion de la Clase Controlador</br>
+* La clase Controlador es el controlador del MVC donde se hacen se comparten las funciones entre la vista y el modelo;
+* @author SoftTux
+* @version 0.2
+* @since 1.0
+* @see https://github.com/jkazuo55/TallerDeProgramacionJava
+*/
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Hashtable;
@@ -77,7 +87,8 @@ public class Controlador{
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 vista.setVisible(true); //visualiza la vista
-                vista.setSize(resolucionPantalla("ancho"),resolucionPantalla("alto")); //tamanio de la vista
+                // vista.setSize(resolucionPantalla("ancho"),resolucionPantalla("alto")); //tamanio de la vista
+                vista.setSize(1500,900); //tamanio de la vista
                 vista.setLocationRelativeTo(null);// centra la vista en la pantalla
                 login.setVisible(true);
             }

@@ -1,3 +1,13 @@
+/**
+* @class PestaniaEmigrante.java 
+* @brief Implementacion de la Clase PestaniaEmigrante</br>
+* La clase PestaniaEmigrante es la vista de la administracion de CRUD del emigrante
+* @author SoftTux
+* @version 0.2
+* @since 1.0
+* @see https://github.com/jkazuo55/TallerDeProgramacionJava
+*/
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;

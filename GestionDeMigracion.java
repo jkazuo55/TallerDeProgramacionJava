@@ -1,3 +1,12 @@
+/**
+* @class GestionDeMigracion.java 
+* @brief Implementacion de la Clase GestionDeMigracion </br>
+* Es quien se encarga de relacionar el modelo vista controlador MVC.
+* @author SoftTux
+* @version 0.2
+* @since 1.0
+* @see https://github.com/jkazuo55/TallerDeProgramacionJava
+*/
 public class GestionDeMigracion {
 
 	public void iniciarSistema() {

@@ -1,3 +1,13 @@
+/**
+* @class VentanaPrincipal.java 
+* @brief Implementacion de la Clase VentanaPrincipal </br>
+* La clase VentanaPrincipal es quien administra todo lo que son las vistas del programa 
+* @author SoftTux
+* @version 0.2
+* @since 1.0
+* @see https://github.com/jkazuo55/TallerDeProgramacionJava
+*/
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;

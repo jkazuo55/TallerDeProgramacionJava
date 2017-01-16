@@ -1,3 +1,12 @@
+/**
+* @class Emigrante.java 
+* @brief Implementacion de la Clase Emigrante</br>
+* La clase Emigrante es parte del modelo en este caso ModeloPersona que nos ayuda a representar el objeto persona;
+* @author SoftTux
+* @version 0.2
+* @since 1.0
+* @see https://github.com/jkazuo55/TallerDeProgramacionJava
+*/
 import java.io.Serializable;
 public class Emigrante extends Persona implements Serializable{
 	private String fecha;

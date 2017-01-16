@@ -379,7 +379,13 @@ public class PestaniaFuncionarios{
         labelTituloCabecera.setText("Busqueda de Ciudadano ");
         labelIngreseCi.setText("Ingrese su Cedula de Identidad  ");
         textFildCi.setPreferredSize( new Dimension( 200, 30 ) );
+        textFildCi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                numeroKeyTyped(evt);
+            }
+        });
         btnBuscar.setText("BUSCAR");
+
         btnBuscar.setMaximumSize(new java.awt.Dimension(90, 50));
         btnBuscar.setMinimumSize(new java.awt.Dimension(90, 50));
         btnBuscar.setPreferredSize(new java.awt.Dimension(90, 50));

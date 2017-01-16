@@ -1,3 +1,13 @@
+/**
+* @class Persona.java 
+* @brief Implementacion de la Clase Persona</br>
+* La clase Persona representa El objeto de un modelo de persona donde se instancian objetos de tipo persona ;
+* @author SoftTux
+* @version 0.2
+* @since 1.0
+* @see https://github.com/jkazuo55/TallerDeProgramacionJava
+*/
+
 import java.io.Serializable;
 
 public class Persona implements Serializable{

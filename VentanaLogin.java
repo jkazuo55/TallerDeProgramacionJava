@@ -1,3 +1,13 @@
+/**
+* @class VentanaLogin.java 
+* @brief Implementacion de la Clase VentanaLogin</br>
+* La clase VentanaLogin es la ventana de  la ventana login quin recive un usuario y password;
+* Ademas de implementar un ActionListener
+* @author SoftTux
+* @version 0.2
+* @since 1.0
+* @see https://github.com/jkazuo55/TallerDeProgramacionJava
+*/
 import javax.swing.BoxLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;

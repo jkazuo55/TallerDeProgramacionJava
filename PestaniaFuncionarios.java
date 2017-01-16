@@ -1,3 +1,13 @@
+/**
+* @class PestaniaEmigrante.java 
+* @brief Implementacion de la Clase PestaniaEmigrante</br>
+* La clase PestaniaEmigrante es la vista de la administracion de CRUD del emigrante
+* @author SoftTux
+* @version 0.2
+* @since 1.0
+* @see https://github.com/jkazuo55/TallerDeProgramacionJava
+*/
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -379,7 +389,13 @@ public class PestaniaFuncionarios{
         labelTituloCabecera.setText("Busqueda de Ciudadano ");
         labelIngreseCi.setText("Ingrese su Cedula de Identidad  ");
         textFildCi.setPreferredSize( new Dimension( 200, 30 ) );
+        textFildCi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                numeroKeyTyped(evt);
+            }
+        });
         btnBuscar.setText("BUSCAR");
+
         btnBuscar.setMaximumSize(new java.awt.Dimension(90, 50));
         btnBuscar.setMinimumSize(new java.awt.Dimension(90, 50));
         btnBuscar.setPreferredSize(new java.awt.Dimension(90, 50));

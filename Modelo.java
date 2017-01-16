@@ -1,3 +1,13 @@
+/**
+* @class Modelo.java 
+* @brief Implementacion de la Clase Modelo</br>
+* La clase Modelo representa Al modelo principal donde se tine informacion de usuarios ;
+* @author SoftTux
+* @version 0.2
+* @since 1.0
+* @see https://github.com/jkazuo55/TallerDeProgramacionJava
+*/
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

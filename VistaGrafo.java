@@ -1,3 +1,12 @@
+/**
+* @class VistaGrafo.java 
+* @brief Implementacion de la Clase VistaGrafo</br>
+* La clase VistaGrafo Vista para llenar la representacion de un grafo en una matriz;
+* @author SoftTux
+* @version 0.2
+* @since 1.0
+* @see https://github.com/jkazuo55/TallerDeProgramacionJava
+*/
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;

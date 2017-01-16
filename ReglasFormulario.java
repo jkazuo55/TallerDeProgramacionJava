@@ -1,3 +1,12 @@
+/**
+* @class ReglasForumulario.java 
+* @brief Implementacion de la Clase ReglasForumulario</br>
+* La clase ReglasForumulario es una clase de modelo donde se hacenlas validaciones para los formularios;
+* @author SoftTux
+* @version 0.2
+* @since 1.0
+* @see https://github.com/jkazuo55/TallerDeProgramacionJava
+*/
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;

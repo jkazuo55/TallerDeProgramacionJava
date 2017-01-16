@@ -1,3 +1,12 @@
+/**
+* @class PestaniaEmigrante.java 
+* @brief Implementacion de la Clase PestaniaEmigrante</br>
+* La clase PestaniaEmigrante es la vista de la administracion CRUD de emigrantes;
+* @author SoftTux
+* @version 0.2
+* @since 1.0
+* @see https://github.com/jkazuo55/TallerDeProgramacionJava
+*/
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -308,9 +317,10 @@ public class PestaniaEmigrante{
         comboBoxDestino.addItem("tarija");
 
         comboBoxMotivoDeMigracion.addItem("Seleccionar");
-        comboBoxMotivoDeMigracion.addItem("Economico");
         comboBoxMotivoDeMigracion.addItem("Trabajo");
-        comboBoxMotivoDeMigracion.addItem("Estudios");
+        comboBoxMotivoDeMigracion.addItem("Academico");
+        comboBoxMotivoDeMigracion.addItem("Familia");
+        comboBoxMotivoDeMigracion.addItem("Economico");
         comboBoxMotivoDeMigracion.addItem("Otros");
 
         panelCuerpoDatosEmigranteCabecera .setLayout(new FlowLayout());
@@ -748,12 +758,16 @@ public class PestaniaEmigrante{
 
                         if(motivo.equalsIgnoreCase("Seleccionar")){
                             comboBoxMotivoDeMigracion.setSelectedIndex(0);
-                        }else if(motivo.equalsIgnoreCase("Economico")){
-                            comboBoxMotivoDeMigracion.setSelectedIndex(1);
                         }else if(motivo.equalsIgnoreCase("Trabajo")){
+                            comboBoxMotivoDeMigracion.setSelectedIndex(1);
+                        }else if(motivo.equalsIgnoreCase("Academico")){
                             comboBoxMotivoDeMigracion.setSelectedIndex(2);
-                        }else if(motivo.equalsIgnoreCase("Estudios")){
+                        }else if(motivo.equalsIgnoreCase("Familia")){
                             comboBoxMotivoDeMigracion.setSelectedIndex(3);
+                        }else if(motivo.equalsIgnoreCase("Economico")){
+                            comboBoxMotivoDeMigracion.setSelectedIndex(4);
+                        }else if(motivo.equalsIgnoreCase("Otros")){
+                            comboBoxMotivoDeMigracion.setSelectedIndex(5);
                         }
                     } 
             }
@@ -782,10 +796,7 @@ public class PestaniaEmigrante{
                         i++;
                     } 
             }
-            
-        }else{
-            escribir("cedula no encontrada");
-        }
+        }    
     }
 
     public  void modificar(){

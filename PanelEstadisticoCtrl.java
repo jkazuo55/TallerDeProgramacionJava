@@ -1,7 +1,12 @@
-//package org.softtux.controller;
-
-//import org.softtux.views.PestaniaEstadistico;
-//import org.softtux.model.*;
+/**
+* @class PanelEstadistico.java 
+* @brief Implementacion de la Clase PanelEstadistico</br>
+* La clase PanelEstadistico es controlador auxiliar de la Clase PestaniaAnalisisEstadisco;
+* @author SoftTux
+* @version 0.2
+* @since 1.0
+* @see https://github.com/jkazuo55/TallerDeProgramacionJava
+*/
 import java.awt.event.*;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;

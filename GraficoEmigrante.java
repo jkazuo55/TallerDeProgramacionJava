@@ -1,5 +1,12 @@
-//package org.softtux.views;
-
+/**
+* @class GraficoEmigrante.java 
+* @brief Implementacion de la Clase GraficoEmigrante</br>
+* La clase GraficoEmigrante representa la vista del del analisis Estadistico;
+* @author SoftTux
+* @version 0.2
+* @since 1.0
+* @see https://github.com/jkazuo55/TallerDeProgramacionJava
+*/
 import java.awt.BorderLayout;
 import java.util.Date;
 import javax.swing.JPanel;

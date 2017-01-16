@@ -92,7 +92,7 @@ public class PestaniaMapa{
                 botonActulizarActionPerformed(evt);
             }
         });
-        Image imagen= new ImageIcon("/home/xenial/proyectos/java/TallerDeProgramacionJava/imagenes/Bolivia.png").getImage().getScaledInstance(570,650,Image.SCALE_DEFAULT);
+        Image imagen= new ImageIcon("/imagenes/Bolivia.png").getImage().getScaledInstance(570,650,Image.SCALE_DEFAULT);
 
         labelTituloIzq.setIcon(new ImageIcon(imagen));
 

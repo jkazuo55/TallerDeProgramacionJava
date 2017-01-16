@@ -83,7 +83,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
         barraMenu.add(menu);
         setJMenuBar(barraMenu);
         
-        Image imagen= new ImageIcon("/home/xenial/proyectos/java/TallerDeProgramacionJava/imagenes/banner_opt.png").getImage().getScaledInstance(1400,180,Image.SCALE_DEFAULT);
+        Image imagen= new ImageIcon("imagenes/banner_opt.png").getImage().getScaledInstance(1400,180,Image.SCALE_DEFAULT);
 
         labelTitulo.setIcon(new ImageIcon(imagen));
 

@@ -61,7 +61,7 @@ public class PestaniaCiudad{
     Lista<Emigrante> listaPersonaEmigrante;   //lista    
     // Serializable obj;     
 
-    String fileName = "/home/xenial/proyectos/java/TallerDeProgramacionJava/dataEmigrantes.ser"; 
+    String fileName = "dataEmigrantes.ser"; 
 
     DeserializableGenerico<Lista> deser_gen;  
 

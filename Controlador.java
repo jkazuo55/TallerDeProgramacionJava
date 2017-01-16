@@ -15,7 +15,7 @@ public class Controlador{
 	private Hashtable<Integer,String> tablaCodigoCiudad;
 
     Lista<Emigrante> listaPersonaEmigrante;
-    String fileName = "/home/xenial/proyectos/java/TallerDeProgramacionJava/dataHistorialEmigrantes.ser"; 
+    String fileName = "dataHistorialEmigrantes.ser"; 
     DeserializableGenerico<Lista> deser_gen;  
 
 	public Controlador(){

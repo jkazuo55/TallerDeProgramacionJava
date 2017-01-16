@@ -90,7 +90,7 @@ public class PestaniaFuncionarios{
     Funcionario perFuncionario;
     
     Lista<Funcionario> listaFuncionario;   //lista    
-    String fileName = "/home/xenial/proyectos/java/TallerDeProgramacionJava/dataFuncionarios.ser"; 
+    String fileName = "dataFuncionarios.ser"; 
 
     SerializableGenerico<Lista> ser_gen; 
     DeserializableGenerico<Lista> deser_gen;  

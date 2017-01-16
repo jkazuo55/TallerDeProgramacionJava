@@ -15,7 +15,7 @@ public class Modelo{
 	Controlador control;
 
 	Lista<Funcionario> listaFuncionario; 
-    String fileName = "/home/xenial/proyectos/java/TallerDeProgramacionJava/dataFuncionarios.ser"; 
+    String fileName = "dataFuncionarios.ser"; 
 
     DeserializableGenerico<Lista> deser_gen;  
 

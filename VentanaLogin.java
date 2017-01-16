@@ -83,7 +83,7 @@ public class VentanaLogin extends JDialog implements ActionListener{
         labelRol = new javax.swing.JLabel();
         labelUser = new javax.swing.JLabel();
         labelPass = new javax.swing.JLabel();
-        ImageIcon imageBoton = new ImageIcon("/home/xenial/proyectos/java/TallerDeProgramacionJava/imagenes/login_opt.png");
+        ImageIcon imageBoton = new ImageIcon("imagenes/login_opt.png");
         botonAceptar = new javax.swing.JButton(imageBoton);
         comboUsuarios = new javax.swing.JComboBox();
         campoUser = new JTextField();
@@ -108,7 +108,7 @@ public class VentanaLogin extends JDialog implements ActionListener{
         panelTitulo.setMinimumSize(new java.awt.Dimension(400, 150));
         panelTitulo.setPreferredSize(new java.awt.Dimension(400, 150));
 
-        Image imagen= new ImageIcon("/home/xenial/proyectos/java/TallerDeProgramacionJava/imagenes/candado1.png").getImage().getScaledInstance(200,200,Image.SCALE_DEFAULT);
+        Image imagen= new ImageIcon("imagenes/candado1.png").getImage().getScaledInstance(200,200,Image.SCALE_DEFAULT);
 
         labelImagen.setIcon(new ImageIcon(imagen));
         labelImagen.setMaximumSize(new java.awt.Dimension(400, 200));

@@ -115,8 +115,8 @@ public class PestaniaEmigrante{
     Lista<Emigrante> listaGeneralEmigrantes;   //lista    
     // Serializable obj;     
 
-    String fileEmigrantes     = "/home/xenial/proyectos/java/TallerDeProgramacionJava/dataEmigrantes.ser"; 
-    String fileGnrlEmigrantes = "/home/xenial/proyectos/java/TallerDeProgramacionJava/dataHistorialEmigrantes.ser"; 
+    String fileEmigrantes     = "dataEmigrantes.ser"; 
+    String fileGnrlEmigrantes = "dataHistorialEmigrantes.ser"; 
 
     SerializableGenerico<Lista> serListEmigrante; 
     SerializableGenerico<Lista> serListGnrlEmigrante; 

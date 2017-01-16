@@ -132,8 +132,10 @@ public class PestaniaEmigrante{
         deserListGnrlEmigrante = new DeserializableGenerico<Lista>(fileGnrlEmigrantes);
         
         System.out.println("cargar la lista de del archivo serializado");
-        // listaEmigrante = deserListEmigrante.deserialize();
-        // listaGeneralEmigrantes = deserListGnrlEmigrante.deserialize();
+        if(deserListEmigrante.tieneDatos()){
+            listaEmigrante = deserListEmigrante.deserialize();
+            listaGeneralEmigrantes = deserListGnrlEmigrante.deserialize();
+        }
         System.out.println("tam listaEmigrante/"+listaEmigrante.getTamanio());
         
 
@@ -547,8 +549,8 @@ public class PestaniaEmigrante{
                 escribir("cedula demasiada grande");
             }
 
-            // vaciar_tabla();
-            // filtrar();
+            vaciar_tabla();
+            filtrar();
         }else{
             escribir("Debe ingresar una Cedula ");
         }

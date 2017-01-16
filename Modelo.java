@@ -20,9 +20,11 @@ public class Modelo{
     DeserializableGenerico<Lista> deser_gen;  
 
 	public Modelo(){
-    	listaFuncionario = new Lista<Funcionario>(); 
-        // deser_gen = new DeserializableGenerico<Lista>(fileName);        
-        // listaFuncionario = deser_gen.deserialize();
+    	listaFuncionario = new Lista<Funcionario>();
+            deser_gen = new DeserializableGenerico<Lista>(fileName);
+            if(deser_gen.tieneDatos()){
+                listaFuncionario = deser_gen.deserialize();
+            }        
 	}
 
 	public void setControlador(Controlador control){
@@ -42,20 +44,34 @@ public class Modelo{
 		String retorno="";
 		switch(index){
 			case ADMINISTRADOR:
-				if (pass.equals(PASS_ADMIN)) {
-				// if (validarPasswordFromFile("Administrador",user,pass)) {
-					retorno="Administrador";	
-				}else{
-					retorno="invalido";
-				}
+                                if(deser_gen.tieneDatos()){
+                                    if (validarPasswordFromFile("Administrador",user,pass)) {
+                                            retorno="Administrador";	
+                                    }else{
+                                            retorno="invalido";
+                                    }
+                                }else{
+                                    if(pass.equals(PASS_ADMIN)) {
+                                            retorno="Administrador";	
+                                    }else{
+                                            retorno="invalido";
+                                    } 
+                                }
 			break;
 			case USUARIO:
-				if (pass.equals(PASS_USER)) {
-				// if (validarPasswordFromFile("Usuario",user,pass)) {
-					retorno="Usuario";	
-				}else{
-					retorno="invalido";
-				}
+                                if(deser_gen.tieneDatos()){
+                                    if (validarPasswordFromFile("Usuario",user,pass)) {
+                                            retorno="Usuario";	
+                                    }else{
+                                            retorno="invalido";
+                                    }
+                                }else{
+                                    if(pass.equals(PASS_USER)) {
+                                            retorno="Usuario";	
+                                    }else{
+                                            retorno="invalido";
+                                    } 
+                                }
 			break;			
 		}
 		return retorno;

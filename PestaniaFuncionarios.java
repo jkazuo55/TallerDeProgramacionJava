@@ -109,7 +109,9 @@ public class PestaniaFuncionarios{
         
 
         System.out.println("llegoHasta aki 1 PestaniaFuncionarios");
-        // listaFuncionario = deser_gen.deserialize();      
+        if(deser_gen.tieneDatos()){
+            listaFuncionario = deser_gen.deserialize();
+        }      
         System.out.println("llegoHasta aki 2 PestaniaFuncionarios");
 
         //DatosPersonales
@@ -457,8 +459,8 @@ public class PestaniaFuncionarios{
                 escribir("cedula demasiada grande");
             }
 
-            // vaciar_tabla();
-            // filtrar();
+            //vaciar_tabla();
+            //filtrar();
         }else{
             escribir("Debe ingresar una Cedula ");
         }
@@ -515,8 +517,8 @@ public class PestaniaFuncionarios{
                     listaFuncionario.insertarAlFinal(perFuncionario);
                     System.out.println(perFuncionario.toString());
                     
-                    // obj.grabar();
-                    // actualizar();
+                    //obj.grabar();
+                    //actualizar();
                    limpiar();
                    escribir("persona registrada exitosamente");
                 }

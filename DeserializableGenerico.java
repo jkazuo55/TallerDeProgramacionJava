@@ -45,5 +45,28 @@ public class DeserializableGenerico<T> {
         }
         return data;
       }
+
+      public boolean tieneDatos(){
+          boolean res = false;
+          FileInputStream fis = null;
+          ObjectInputStream ois= null;
+          try{
+          fis = new FileInputStream(fileName);
+          if (fis!=null) {
+              System.out.println(fis);
+              ois = new ObjectInputStream(fis);
+              if(ois != null){
+                  res = true;
+                  System.out.println("Archivo con datos");
+              }else{
+                  System.out.println("Archivo sin datos");
+              
+              }
+          }
+          }catch(IOException e){
+              e.printStackTrace();
+          }
+          return res;
+      }
  
 }

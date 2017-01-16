@@ -6,7 +6,9 @@ public class PanelEstadisticoModel {
     public PanelEstadisticoModel(){
         fileName = "dataHistorialEmigrantes.ser";
         deser_gen = new DeserializableGenerico<Lista>(fileName);
-        //listaEmigrantes = deser_gen.deserialize();
+        if(deser_gen.tieneDatos()){
+            listaEmigrantes = deser_gen.deserialize();
+        }
     }
 
     public Lista<Emigrante> listaGeneral(){

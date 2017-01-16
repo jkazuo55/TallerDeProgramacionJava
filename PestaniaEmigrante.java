@@ -527,7 +527,6 @@ public class PestaniaEmigrante{
     private void cadenaKeyTyped(java.awt.event.KeyEvent evt) {                                     
         char c;
         c = evt.getKeyChar();
-        // if((c<'a'||c>'z')&&(c<'A')|c>'Z'){
         if ( (c<'a'||c>'z')&&(c<'A'||c>'Z')&& c!=evt.VK_SPACE){
             evt.consume();
         }
@@ -578,28 +577,27 @@ public class PestaniaEmigrante{
         serListEmigrante.serialize();
     }
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
-        System.out.println("se ejecuto el validator");
         limpiar();
     }
     public void guardar(){
 
         if (validarDatos.validarTamanioBusquedaDocumento(textCedula.getText())) {
 
-        String nombre   = textNombre.getText();
-        String apellidos= textApellidos.getText();
-        long   cedula   = Long.parseLong(textCedula.getText());
-        String sexo     = comboBoxSexo.getSelectedItem().toString();
-        String nacidoEn = textNacidoEn.getText();
-        String direccion= textDireccion.getText();
-        long telefono =   Long.parseLong(textTelefono.getText());
-        String correo   = textCorreo.getText();
+            String nombre   = textNombre.getText();
+            String apellidos= textApellidos.getText();
+            long   cedula   = Long.parseLong(textCedula.getText());
+            String sexo     = comboBoxSexo.getSelectedItem().toString();
+            String nacidoEn = textNacidoEn.getText();
+            String direccion= textDireccion.getText();
+            long telefono =   Long.parseLong(textTelefono.getText());
+            String correo   = textCorreo.getText();
 
-        // String fecha    = textFecha.getText();
-        String fecha    = control.fechaSistema();
-        String origen   = comboBoxOrigen.getSelectedItem().toString();
-        String destino  = comboBoxDestino.getSelectedItem().toString();
-        String motivo   = comboBoxMotivoDeMigracion.getSelectedItem().toString();
-        String ruta     = "";
+            // String fecha    = textFecha.getText();
+            String fecha    = control.fechaSistema();
+            String origen   = comboBoxOrigen.getSelectedItem().toString();
+            String destino  = comboBoxDestino.getSelectedItem().toString();
+            String motivo   = comboBoxMotivoDeMigracion.getSelectedItem().toString();
+            String ruta     = "";
 
             if (validarDatos.validateEmail(correo)) {
                 perEmigrante = new Emigrante(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,fecha,origen,destino,ruta,motivo);
@@ -654,16 +652,11 @@ public class PestaniaEmigrante{
             model.removeRow(0);
         }
     }
-
     public void consultar(){
-        // keyTyped(textFildCi.getText());
         long obtenidoCedula;        
         long cedula = Long.parseLong(textFildCi.getText());
-
         System.out.println("########## CI BUSQUEDA:::__"+cedula);        
         int i=0;
-        // System.out.println("tmanio de la lista : " + listaEmigrante.getTamanio());
-
         if (buscarPersonaEmigrante(cedula)) {
 
             for(Emigrante objEmigrante:listaEmigrante){

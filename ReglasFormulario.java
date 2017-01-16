@@ -1,14 +1,24 @@
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 public class ReglasFormulario{
 
 	public boolean validaDatos(String nombre,String apellidos,String cedula, String sexo , String nacidoEn,String direccion, String telefono,String correo,String fecha, String origen,String destino, String motivoDeMigracion){
-		boolean res=false;
-		System.out.println(motivoDeMigracion.equals(""));
+        boolean res=false;
+        System.out.println(motivoDeMigracion.equals(""));
 
-		if (nombre.equals("")||apellidos.equals("")||cedula.equals("")||sexo.equals("Seleccionar")||nacidoEn.equals("")||direccion.equals("")||telefono.equals("")||correo.equals("")||fecha.equals("")||origen.equals("Seleccionar")||destino.equals("Seleccionar")||motivoDeMigracion.equals("")) {
+        if (nombre.equals("")||apellidos.equals("")||cedula.equals("")||sexo.equals("Seleccionar")||nacidoEn.equals("")||direccion.equals("")||telefono.equals("")||correo.equals("")||fecha.equals("")||origen.equals("Seleccionar")||destino.equals("Seleccionar")||motivoDeMigracion.equals("")) {
+            res= false;
+            escribir("no puede dejar espacios en blanco");      
+        }else{
+            escribir("se completo los campos del formulario");
+            res = true;
+        }
+        return res;
+    }
+    public boolean validaDatosEmpleado(String nombre,String apellidos,String cedula, String sexo , String nacidoEn,String direccion, String telefono,String correo,String usuario,String contrasenia, String rol){
+		boolean res=false;
+		if (nombre.equals("")||apellidos.equals("")||cedula.equals("")||sexo.equals("Seleccionar")||nacidoEn.equals("")||direccion.equals("")||telefono.equals("")||correo.equals("")||usuario.equals("Seleccionar")||contrasenia.equals("Seleccionar")||rol.equals("Seleccionar")) {
 			res= false;
 			escribir("no puede dejar espacios en blanco");		
 		}else{
@@ -17,6 +27,7 @@ public class ReglasFormulario{
 		}
 		return res;
 	}
+
 	public void escribir(String texto){
         JOptionPane.showMessageDialog(null, texto);
     }
@@ -30,26 +41,6 @@ public class ReglasFormulario{
     	}
     	return res;
     }
-
-    // public boolean validarTamanioDocumento(long cedula){
-    // 	boolean res=false;
-    // 	Long tamanioCI;
-    // 	String cadenaCi=Long.toString(cedula);  	
-    // 	tamanioCI=Long.valueOf(cadenaCi.length());
-    // 	System.out.println("el tamanio del documento es ???"+ tamanioCI);
-    // 	if (tamanioCI<=7) {
-    // 		res=true;
-    // 	}
-    // 	return res;
-    // }
-
-    // public boolean validarTamanioDocumento(String cedula){
-    // 	boolean res=false;
-    // 	if (cedula.length()<=7) {
-    // 		res=true;
-    // 	}
-    // 	return res;
-    // }
     public boolean validarTamanioBusquedaDocumento(String cedula){
     	boolean res=false;
     	if (cedula.length()<=7) {

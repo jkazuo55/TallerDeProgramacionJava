@@ -12,6 +12,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
 
 
 public class PestaniaFuncionarios{
@@ -77,8 +79,10 @@ public class PestaniaFuncionarios{
     //Pie
     private JButton btnRegistrar;
     private JButton btnModificar;
+    private JButton btnLimpiar;
     private JButton btnBorrar;
-    static public JButton btnPrueba;
+
+    ReglasFormulario validarDatos;
 
     //datosPersonales
 
@@ -96,6 +100,7 @@ public class PestaniaFuncionarios{
         
     private void inicializarRegistroFuncionario(){
 
+        validarDatos = new ReglasFormulario(); 
         listaFuncionario = new Lista<Funcionario>(); 
 
         ser_gen = new SerializableGenerico<Lista>(fileName,listaFuncionario);
@@ -108,10 +113,6 @@ public class PestaniaFuncionarios{
         //     listaFuncionario = deser_gen.deserialize();
         // }
         System.out.println("llegoHasta aki 2 PestaniaFuncionarios");
-
-    
-        
-        // prueba =  new Lista<Funcionario>(); 
 
         //DatosPersonales
         panelGeneral = new JPanel();
@@ -169,12 +170,34 @@ public class PestaniaFuncionarios{
         textNombre.setText("");
         textApellidos.setText("");
         textCedula.setText("");
+        comboBoxSexo.addItem("Seleccionar");
         comboBoxSexo.addItem("Masculino");
         comboBoxSexo.addItem("Femenino");
         textNacidoEn.setText("");
         textDireccion.setText("");
         textTelefono.setText("");
         textCorreo.setText("");
+
+        textNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cadenaKeyTyped(evt);
+            }
+        });
+        textApellidos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cadenaKeyTyped(evt);
+            }
+        });
+        textCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                numeroKeyTyped(evt);
+            }
+        });
+        textTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                numeroKeyTyped(evt);
+            }
+        });
 
         panelCuerpoDatosPersonalesCabecera.setLayout(new FlowLayout());
         panelCuerpoDatosPersonalesCabecera.add(tituloDatosPersonales);    
@@ -231,6 +254,7 @@ public class PestaniaFuncionarios{
 
         textNombreUsuario.setText("");
         textContrasenia.setText("");
+        comboBoxRol.addItem("Seleccionar");
         comboBoxRol.addItem("Administrador");
         comboBoxRol.addItem("Usuario");
 
@@ -264,13 +288,13 @@ public class PestaniaFuncionarios{
 
         btnRegistrar = new JButton();
         btnModificar = new JButton();
+        btnLimpiar    = new JButton();
         btnBorrar    = new JButton();
-        btnPrueba    = new JButton();
 
         btnRegistrar.setText("REGISTRAR");
         btnModificar.setText("MODIFICAR");
+        btnLimpiar.setText("LIMPIAR");
         btnBorrar.setText("BORRAR");
-        btnPrueba.setText("prueba");
 
 
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -282,6 +306,11 @@ public class PestaniaFuncionarios{
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
+            }
+        });
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
             }
         });
 
@@ -296,8 +325,8 @@ public class PestaniaFuncionarios{
         panelPie.setLayout(new FlowLayout());
         panelPie.add(btnRegistrar);
         panelPie.add(btnModificar);
+        panelPie.add(btnLimpiar);
         panelPie.add(btnBorrar);
-        panelPie.add(btnPrueba);
 
         panelPie.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
 
@@ -380,26 +409,60 @@ public class PestaniaFuncionarios{
 
     }
 
+    private void numeroKeyTyped(java.awt.event.KeyEvent evt) {                                     
+        char c;
+        c = evt.getKeyChar();
+        if(c<'0'||c>'9'){
+            evt.consume();
+        }
+    }
+
+    private void cadenaKeyTyped(java.awt.event.KeyEvent evt) {                                     
+        char c;
+        c = evt.getKeyChar();
+        if ( (c<'a'||c>'z')&&(c<'A'||c>'Z')&& c!=evt.VK_SPACE){
+            evt.consume();
+        }
+    }
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {
-        guardar();
-        ser_gen.serialize();
-        System.out.println("RegistroExitoso");
-    }
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {
-        // System.out.println("tmanio de la listaa #### : " + listaRegistroPersonaEmigrante.tamanioLista());
-        for(Funcionario objEmigrante:listaFuncionario){
-            System.out.println(objEmigrante.toString());
+        if(validarFormulario()){
+            guardar();
         }
-        consultar();
+
+        ser_gen.serialize();
+
     }
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {        
+        if (!validarBusqueda()) {
+            // System.out.println("entro a valdiar busqueda");
+            if (validarDatos.validarTamanioBusquedaDocumento(textFildCi.getText())) {
+                consultar();
+                        
+            }else{
+                escribir("cedula demasiada grande");
+            }
+
+            // vaciar_tabla();
+            // filtrar();
+        }else{
+            escribir("Debe ingresar una Cedula ");
+        }
+    }
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
+        limpiar();
+    }
+
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {
         borrar();
         ser_gen.serialize();
     }
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {
-        modificar();
+        if (validarFormulario()) {
+            modificar();
+        }
         ser_gen.serialize();
     }
 
@@ -409,52 +472,53 @@ public class PestaniaFuncionarios{
 
 
     public void guardar(){
+        if (validarDatos.validarTamanioBusquedaDocumento(textCedula.getText())) {
 
-        String nombre   = textNombre.getText();
-        String apellidos= textApellidos.getText();
-        long   cedula   = Long.parseLong(textCedula.getText());
-        String sexo     = comboBoxSexo.getSelectedItem().toString();
-        String nacidoEn = textNacidoEn.getText();
-        String direccion= textDireccion.getText();
-        long telefono =   Long.parseLong(textTelefono.getText());
-        String correo   = textCorreo.getText();
+            String nombre   = textNombre.getText();
+            String apellidos= textApellidos.getText();
+            long   cedula   = Long.parseLong(textCedula.getText());
+            String sexo     = comboBoxSexo.getSelectedItem().toString();
+            String nacidoEn = textNacidoEn.getText();
+            String direccion= textDireccion.getText();
+            long telefono =   Long.parseLong(textTelefono.getText());
+            String correo   = textCorreo.getText();
 
-        String funcionario = textNombreUsuario.getText();
-        String contrasenia    = textContrasenia.getText();
-        String rol   = comboBoxRol.getSelectedItem().toString();
+            String funcionario = textNombreUsuario.getText();
+            String contrasenia    = textContrasenia.getText();
+            String rol   = comboBoxRol.getSelectedItem().toString();
 
-        perFuncionario = new Funcionario(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,funcionario ,contrasenia,rol);
-        //condicion del arreglo buscar el objeto con el codiog que se acaba de colocar
+            if (validarDatos.validateEmail(correo)) {
 
-        if(buscarPersonaEmigrante(cedula)){
-            escribir("Hay otra persona registrada con el numero de cedula Cambie la Cedula de Identidad");
+                perFuncionario = new Funcionario(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,funcionario ,contrasenia,rol);
+                //condicion del arreglo buscar el objeto con el codiog que se acaba de colocar
+
+                if(buscarPersonaEmigrante(cedula)){
+                    escribir("Hay otra persona registrada con el numero de cedula Cambie la Cedula de Identidad");
+                }else{
+                    System.out.println("LA PERSONA A REGISTRARSE ES: ");
+
+                    listaFuncionario.insertarAlFinal(perFuncionario);
+                    System.out.println(perFuncionario.toString());
+                    
+                    // obj.grabar();
+                    // actualizar();
+                   limpiar();
+                   escribir("persona registrada exitosamente");
+                }
+            }else{
+                escribir("correo invalido");
+            }    
         }else{
-            System.out.println("LA PERSONA A REGISTRARSE ES: ");
-
-            listaFuncionario.insertarAlFinal(perFuncionario);
-            System.out.println(perFuncionario.toString());
-            
-            System.out.println("funcionario  AGREGADO ALA LISTA");
-            // obj.grabar();
-            
-
-            // System.out.println("grabado en el archivo  binario");
-            // actualizar();
-           limpiar();
-        }
-        System.out.println("llamando al tamanioLista : "+listaFuncionario.getTamanio());
+            escribir("la cedula de identidad exede los 7 digitos");
+        }    
     }
 
     public void consultar(){
        
         long obtenidoCedula;
         long cedula = Long.parseLong(textFildCi.getText());
-
         System.out.println("########## El numero a buscar  : "+cedula);
-        
         int i=0;
-
-        System.out.println("tmanio de la lista : " + listaFuncionario.getTamanio());
 
         // while(i<=listaFuncionario.getTamanio()){
         if (buscarPersonaEmigrante(cedula)) {
@@ -496,7 +560,9 @@ public class PestaniaFuncionarios{
                         textNombreUsuario.setText(usuario);        
                         textContrasenia.setText(contrasenia);        
 
-                        if(rol.equalsIgnoreCase("administrador")){
+                        if(rol.equalsIgnoreCase("Seleccionar")){
+                            comboBoxSexo.setSelectedIndex(0);
+                        }else if(rol.equalsIgnoreCase("administrador")){
                             comboBoxSexo.setSelectedIndex(1);
                         }else if(rol.equalsIgnoreCase("usuario")){
                             comboBoxSexo.setSelectedIndex(2);
@@ -515,12 +581,11 @@ public class PestaniaFuncionarios{
     }
 
     public  void modificar(){
-        int op = JOptionPane.showConfirmDialog(null,"Deves consultar primero \nDeseas consultar ahora presiona <Si>\nSi ya consultastes presionsa <No>");//confirmacion
-        if(op==0){
-            consultar();
-        }else if(op==1){ //si a puesto opcion no modificar el objeto en el cual nosotros ayamos modificado
-            int n = listaFuncionario.getTamanio();
-            System.out.println("tamanio de la lista es :" +n);
+        int op = JOptionPane.showConfirmDialog(null,"Estas seguro de modificar?");//confirmacion
+        if(op==1){
+            System.out.println("modificacion canselada");
+        }else if(op==0){ //si a puesto opcion no modificar el objeto en el cual nosotros ayamos modificado
+            if (validarDatos.validarTamanioBusquedaDocumento(textCedula.getText())) {
 
                 String nombre   = textNombre.getText();
                 String apellidos= textApellidos.getText();
@@ -537,22 +602,29 @@ public class PestaniaFuncionarios{
                 String contrasenia    = textContrasenia.getText();
                 String rol   = comboBoxRol.getSelectedItem().toString();
 
-                perFuncionario = new Funcionario(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,funcionario ,contrasenia,rol);
-                
-                if(!buscarPersonaEmigrante(cedula)){
-                    listaFuncionario.insertarAlFinal(perFuncionario);
+                if (validarDatos.validateEmail(correo)) {
+
+                    perFuncionario = new Funcionario(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,funcionario ,contrasenia,rol);
+                    
+                    if(!buscarPersonaEmigrante(cedula)){
+                        listaFuncionario.insertarAlFinal(perFuncionario);
+                    }else{
+                        for(Funcionario objEmigrante:listaFuncionario){
+                            long ci = objEmigrante.getCedula();
+                            if (ci==cedula) {
+                                int indice = listaFuncionario.getIndice(objEmigrante);
+                                System.out.println("el indice antes de modificar"+indice);
+                                listaFuncionario.set(indice,perFuncionario);                    
+                            }
+                        }    
+                        limpiar();
+                    }
                 }else{
-                    for(Funcionario objEmigrante:listaFuncionario){
-                        long ci = objEmigrante.getCedula();
-                        if (ci==cedula) {
-                            int indice = listaFuncionario.getIndice(objEmigrante);
-                            System.out.println("el indice antes de modificar"+indice);
-                            listaFuncionario.set(indice,perFuncionario);                    
-                        }
-                    }    
-                    limpiar();
-                }
-            
+                    escribir("correo invalido ");
+                }    
+            }else{
+                escribir("la cedula de identidad exede los 7 digitos");
+            }
         }
     }
 
@@ -586,10 +658,10 @@ public class PestaniaFuncionarios{
     }
 
     public void borrar(){
-        long op = Long.parseLong(JOptionPane.showInputDialog("Codigo a borrar : "));
+        long op = Long.parseLong(JOptionPane.showInputDialog("Cedula de Empleado a borrar : "));
 
         if(!buscarPersonaEmigrante(op)){
-            escribir("Codigo no existe");
+            escribir("Empleado no existe");
         }else{
             for(Funcionario objEmigrante:listaFuncionario){
                     System.out.println("entroo al for De busqueda");
@@ -610,6 +682,27 @@ public class PestaniaFuncionarios{
         }
     }
 
+    public boolean validarFormulario(){
+
+        String nombre   = textNombre.getText();
+        String apellidos= textApellidos.getText();
+        String cedula   = textCedula.getText();
+        String sexo     = comboBoxSexo.getSelectedItem().toString();
+        String nacidoEn = textNacidoEn.getText();
+        String direccion= textDireccion.getText();
+        String telefono = textTelefono.getText();
+        String correo   = textCorreo.getText();
+
+        String usuario      = textNombreUsuario.getText();
+        String contrasenia  = textContrasenia.getText();
+        String rol          = comboBoxRol.getSelectedItem().toString();
+
+        return validarDatos.validaDatosEmpleado(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,usuario,contrasenia,rol);
+    }
+    public boolean validarBusqueda(){
+        String busqueda = textFildCi.getText();
+        return validarDatos.validarCampoBusqueda(busqueda);
+    }
 
 
 

@@ -65,25 +65,26 @@ public class Controlador{
         login.limpiar();
 		login.setVisible(true);
 	}
+    public int resolucionPantalla(String tipo){
+        if (tipo.equalsIgnoreCase("ancho")) {
+            return java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+        }else
+            return java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    }
 	public void arranca() {
-	    java.awt.EventQueue.invokeLater(new Runnable() {
-	        public void run() {
-	            // vista = new VentanaPrincipal();
-	            // login = new VentanaLogin(vista,true);
-	            vista.setVisible(true); //visualiza la vista
-	            vista.setSize(1500, 900); //tamanio de la vista
-	            vista.setLocationRelativeTo(null);// centra la vista en la pantalla
-	            login.setVisible(true);
-	        }
-	    });
-	    convertirCiudadCodigo();
-	    convertirCodigoCiudad();
-	    insertarVertice();
-	    insertarAristas();  
-        // matrizAdyacencia();  
-        // pesoDistancias();
-        // System.out.println(flujoEmigrantes("cochabamba","santa cruz"));
-	}    
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                vista.setVisible(true); //visualiza la vista
+                vista.setSize(resolucionPantalla("ancho"),resolucionPantalla("alto")); //tamanio de la vista
+                vista.setLocationRelativeTo(null);// centra la vista en la pantalla
+                login.setVisible(true);
+            }
+        });
+        convertirCiudadCodigo();
+        convertirCodigoCiudad();
+        insertarVertice();
+        insertarAristas();  
+    }    
     public void convertirCiudadCodigo(){
     		tablaCiudadCodigo.put("la paz",0);
             tablaCiudadCodigo.put("pando",1);

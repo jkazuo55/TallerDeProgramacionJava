@@ -167,7 +167,6 @@ public class PestaniaCiudad{
         comboBoxCiudad.setAlignmentX(Component.CENTER_ALIGNMENT);
         botonAceptar.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        panelIzquierda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 250, 0))); //verde
         panelIzquierda.setMaximumSize(new Dimension(300, 600));
         panelIzquierda.setMinimumSize(new Dimension(300, 600));
         panelIzquierda.setPreferredSize(new Dimension(300, 600));
@@ -196,7 +195,6 @@ public class PestaniaCiudad{
         panelDerCuerpo.setLayout(new FlowLayout());
         panelDerCuerpo.add(scrollpane);
 
-        panelDerCuerpo.setBorder(BorderFactory.createLineBorder(new Color(0,0 , 250)));
         panelDerCuerpo.setMaximumSize(new Dimension(790, 450));
         panelDerCuerpo.setMinimumSize(new Dimension(790, 450));
         panelDerCuerpo.setPreferredSize(new Dimension(790, 450));
@@ -222,14 +220,12 @@ public class PestaniaCiudad{
         panelDerPie.setLayout(new BoxLayout(panelDerPie,BoxLayout.Y_AXIS));
         panelDerPie.add(panelDerPieTitulo);
         panelDerPie.add(panelDerPieCuerpo);
-        panelDerPie.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(200, 50, 60)));
 
         panelDerecha.setLayout(new BoxLayout(panelDerecha,BoxLayout.Y_AXIS));
         panelDerecha.add(panelDerCabecera);
         panelDerecha.add(panelDerCuerpo);
         panelDerecha.add(panelDerPie);
 
-        panelDerecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 100)));
         panelDerecha.setMaximumSize(new Dimension(800, 600));
         panelDerecha.setMinimumSize(new Dimension(800, 600));
         panelDerecha.setPreferredSize(new Dimension(800, 600));
@@ -238,7 +234,6 @@ public class PestaniaCiudad{
         panelGeneral.add(panelIzquierda);
         panelGeneral.add(panelDerecha);
 
-        panelGeneral.setBorder(BorderFactory.createLineBorder(new Color(250, 0, 0)));
         panelGeneral.setMaximumSize(new Dimension(1100, 600));
         panelGeneral.setMinimumSize(new Dimension(1100, 600));
         panelGeneral.setPreferredSize(new Dimension(1100, 600));

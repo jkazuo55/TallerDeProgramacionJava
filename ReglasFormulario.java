@@ -9,9 +9,7 @@ public class ReglasFormulario{
 
         if (nombre.equals("")||apellidos.equals("")||cedula.equals("")||sexo.equals("Seleccionar")||nacidoEn.equals("")||direccion.equals("")||telefono.equals("")||correo.equals("")||fecha.equals("")||origen.equals("Seleccionar")||destino.equals("Seleccionar")||motivoDeMigracion.equals("")) {
             res= false;
-            escribir("no puede dejar espacios en blanco");      
         }else{
-            escribir("se completo los campos del formulario");
             res = true;
         }
         return res;
@@ -20,9 +18,7 @@ public class ReglasFormulario{
 		boolean res=false;
 		if (nombre.equals("")||apellidos.equals("")||cedula.equals("")||sexo.equals("Seleccionar")||nacidoEn.equals("")||direccion.equals("")||telefono.equals("")||correo.equals("")||usuario.equals("Seleccionar")||contrasenia.equals("Seleccionar")||rol.equals("Seleccionar")) {
 			res= false;
-			escribir("no puede dejar espacios en blanco");		
 		}else{
-			escribir("se completo los campos del formulario");
 			res = true;
 		}
 		return res;

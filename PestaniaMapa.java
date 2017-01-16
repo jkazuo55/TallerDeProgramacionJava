@@ -55,9 +55,6 @@ public class PestaniaMapa{
         inicializarRegistroEmigrante();
     }        
     private void inicializarRegistroEmigrante(){
-
-        // listaPersonaEmigrante = new Lista<Emigrante>(); 
-        // deser_gen = new DeserializableGenerico<Lista>(fileName);        
         panelGeneral = new JPanel();
 
         matrizRelacion = new VistaGrafo();
@@ -69,7 +66,6 @@ public class PestaniaMapa{
         
         panelDerSup = new JPanel();
         panelDerInf =   new JPanel();
-        // panelDerPie =      new JPanel();
 
         panelDerInfIsq = new JPanel();
         panelDerInfDer = new JPanel();
@@ -81,9 +77,8 @@ public class PestaniaMapa{
 
         btnActualizar = new JButton();
 
-        // labelTituloIzq.setText("REPRESENTACION GRAFICA DEL GRAFO");
-        labelTituloDerSup.setText("MATRIZ DE ADYACENCIA");
-        labelTituloDerInfIzq.setText("MATRIZ CON PESOS DISTANCIAS");        
+        labelTituloDerSup.setText("MATRIZ CON PESOS DISTANCIAS");
+        labelTituloDerInfIzq.setText("MATRIZ DE ADYACENCIA");        
         labelTituloDerInfDer.setText("FLUJO DE EMIGRANTES");
 
         btnActualizar.setText("ACTULIZAR");
@@ -92,7 +87,7 @@ public class PestaniaMapa{
                 botonActulizarActionPerformed(evt);
             }
         });
-        Image imagen= new ImageIcon("/imagenes/Bolivia.png").getImage().getScaledInstance(570,650,Image.SCALE_DEFAULT);
+        Image imagen= new ImageIcon("imagenes/Bolivia.png").getImage().getScaledInstance(570,650,Image.SCALE_DEFAULT);
 
         labelTituloIzq.setIcon(new ImageIcon(imagen));
 
@@ -109,11 +104,11 @@ public class PestaniaMapa{
 
         panelDerSup.setLayout(new BoxLayout(panelDerSup,BoxLayout.Y_AXIS));
         panelDerSup.add(labelTituloDerSup);
-        panelDerSup.add(matrizRelacion.panelGeneral);
+        panelDerSup.add(matrizDistancias.panelGeneral);
 
         panelDerInfDer.setLayout(new BoxLayout(panelDerInfDer,BoxLayout.Y_AXIS));
         panelDerInfDer.add(labelTituloDerInfDer);
-        panelDerInfDer.add(matrizDistancias.panelGeneral);
+        panelDerInfDer.add(matrizRelacion.panelGeneral);
 
         panelDerInfIsq.setLayout(new BoxLayout(panelDerInfIsq,BoxLayout.Y_AXIS));
         panelDerInfIsq.add(labelTituloDerInfIzq);

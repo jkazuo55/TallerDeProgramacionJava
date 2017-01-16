@@ -184,14 +184,14 @@ public class PestaniaEmigrante{
 
         tituloDatosPersonales.setText("DATOS PERSONALES ");
 
-        labelNombre.setText("Nombre");
-        labelApellidos.setText("Apellidos");
-        labelCedula.setText("Cedula");
-        labelSexo.setText("Sexo");
-        labelNacidoEn.setText("Nacido En");
-        labelDireccion.setText("Direccion");
-        labelTelefono.setText("Telefono");
-        labelCorreo.setText("Correo");
+        labelNombre.setText("Nombres del Emigrante");
+        labelApellidos.setText("Apellidos del Emigrante");
+        labelCedula.setText("Cedula del Emigrante");
+        labelSexo.setText("Seleccione Sexo");
+        labelNacidoEn.setText("Lugar de Nacimiento");
+        labelDireccion.setText("Direccion actual del Emigrante");
+        labelTelefono.setText("Telefono Celular del emigrante");
+        labelCorreo.setText("Correo del Emigrante");
 
         textNombre.setText("");
         textApellidos.setText("");
@@ -260,8 +260,6 @@ public class PestaniaEmigrante{
         panelCuerpoDatosPersonales.add(panelCuerpoDatosPersonalesCabecera);
         panelCuerpoDatosPersonales.add(panelCuerpoDatosPersonalesContenido);         
 
-        panelCuerpoDatosPersonales.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(200, 50, 60)));
-
         //Datos Emigrante
         tituloDatosEmigrante = new JLabel();
 
@@ -281,9 +279,9 @@ public class PestaniaEmigrante{
 
         tituloDatosEmigrante.setText(" DATOS DE MIGRACION ");
 
-        labelOrigen.setText("Origen");
-        labelDestino.setText("Destino");
-        labelMotivoDeMigracion.setText("Motivo de Migracion");
+        labelOrigen.setText("Seleccione Origen de Migracion");
+        labelDestino.setText("Seleccione Destino de Migracion");
+        labelMotivoDeMigracion.setText("Seleccione Motivo de Migracion");
 
         comboBoxOrigen.addItem("Seleccionar");
         comboBoxOrigen.addItem("la paz");
@@ -328,12 +326,13 @@ public class PestaniaEmigrante{
         panelCuerpoDatosEmigranteContenido.add(labelMotivoDeMigracion);
         panelCuerpoDatosEmigranteContenido.add(comboBoxMotivoDeMigracion);
 
-        panelCuerpoDatosEmigranteContenido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelCuerpoDatosEmigranteContenido.setMaximumSize(new java.awt.Dimension(500, 130));
+        panelCuerpoDatosEmigranteContenido.setMinimumSize(new java.awt.Dimension(500, 130));
+        panelCuerpoDatosEmigranteContenido.setPreferredSize(new java.awt.Dimension(500, 130));
 
-        labelTituloHistorial.setText("Historial De Migraciones");
+        labelTituloHistorial.setText("HISTORIAL DE MIGRACIONES ");
         panelCuerpoDatosEmigranteHistorialTitulo.setLayout(new FlowLayout());
         panelCuerpoDatosEmigranteHistorialTitulo.add(labelTituloHistorial);
-        panelCuerpoDatosEmigranteHistorialTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         tablaEmigrante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -350,12 +349,10 @@ public class PestaniaEmigrante{
         scrollpane.setViewportView(tablaEmigrante);
         panelCuerpoDatosEmigranteHistorialCuerpo.setLayout(new FlowLayout());
         panelCuerpoDatosEmigranteHistorialCuerpo.add(scrollpane);
-        panelCuerpoDatosEmigranteHistorialCuerpo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 255)));
 
         panelCuerpoDatosEmigranteHistorial.setLayout(new BoxLayout(panelCuerpoDatosEmigranteHistorial,BoxLayout.Y_AXIS));
         panelCuerpoDatosEmigranteHistorial.add(panelCuerpoDatosEmigranteHistorialTitulo);
         panelCuerpoDatosEmigranteHistorial.add(panelCuerpoDatosEmigranteHistorialCuerpo);
-        panelCuerpoDatosEmigranteHistorial.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 250, 0)));
 
         panelCuerpoDatosEmigrante.setLayout(new BoxLayout(panelCuerpoDatosEmigrante,BoxLayout.Y_AXIS));
         panelCuerpoDatosEmigrante.add(panelCuerpoDatosEmigranteCabecera);
@@ -363,7 +360,6 @@ public class PestaniaEmigrante{
         panelCuerpoDatosEmigrante.add(panelCuerpoDatosEmigranteHistorial);
 
         panelCuerpoDatosEmigrante.setSize(1000,300);
-        panelCuerpoDatosEmigrante.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         //panelPie
 
@@ -378,6 +374,26 @@ public class PestaniaEmigrante{
         btnModificar.setText("MODIFICAR");
         btnLimpiar.setText("LIMPIAR");
         btnBorrar.setText("BORRAR");
+
+        btnRegistrar.setMaximumSize(new java.awt.Dimension(120, 60));
+        btnRegistrar.setMinimumSize(new java.awt.Dimension(120, 60));
+        btnRegistrar.setPreferredSize(new java.awt.Dimension(120, 60));
+
+        btnEmigrar.setMaximumSize(new java.awt.Dimension(120, 60));
+        btnEmigrar.setMinimumSize(new java.awt.Dimension(120, 60));
+        btnEmigrar.setPreferredSize(new java.awt.Dimension(120, 60));
+
+        btnModificar.setMaximumSize(new java.awt.Dimension(120, 60));
+        btnModificar.setMinimumSize(new java.awt.Dimension(120, 60));
+        btnModificar.setPreferredSize(new java.awt.Dimension(120, 60));
+
+        btnLimpiar.setMaximumSize(new java.awt.Dimension(120, 60));
+        btnLimpiar.setMinimumSize(new java.awt.Dimension(120, 60));
+        btnLimpiar.setPreferredSize(new java.awt.Dimension(120, 60));
+
+        btnBorrar.setMaximumSize(new java.awt.Dimension(120, 60));
+        btnBorrar.setMinimumSize(new java.awt.Dimension(120, 60));
+        btnBorrar.setPreferredSize(new java.awt.Dimension(120, 60));
 
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -415,8 +431,6 @@ public class PestaniaEmigrante{
         panelPie.add(btnLimpiar);
         panelPie.add(btnBorrar);
 
-        panelPie.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-
         //cuerpo
         panelCuerpoDatosPersonales.setMaximumSize(new java.awt.Dimension(500, 0));
         panelCuerpoDatosPersonales.setMinimumSize(new java.awt.Dimension(500, 0));
@@ -434,8 +448,6 @@ public class PestaniaEmigrante{
         panelCuerpo.add(panelCuerpoDatosPersonales,BorderLayout.WEST);
         panelCuerpo.add(panelCuerpoDatosEmigrante,BorderLayout.EAST);
         panelCuerpo.add(panelCentro,BorderLayout.CENTER);            
-
-        panelCuerpo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 255)));
         
         //PanelCabecera
 
@@ -444,9 +456,9 @@ public class PestaniaEmigrante{
         textFildCi = new JTextField();
         btnBuscar = new JButton();
 
-        labelTituloCabecera.setText("Busqueda de Ciudadano ");
+        labelTituloCabecera.setText("BUSQUEDA DE EMIGRANTES ");
         labelIngreseCi.setText("Ingrese su Cedula de Identidad  ");
-        textFildCi.setPreferredSize( new Dimension( 200, 24 ) );
+        textFildCi.setPreferredSize( new Dimension( 200, 30 ) );
 
         textFildCi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -455,6 +467,9 @@ public class PestaniaEmigrante{
         });
 
         btnBuscar.setText("BUSCAR");
+        btnBuscar.setMaximumSize(new java.awt.Dimension(90, 50));
+        btnBuscar.setMinimumSize(new java.awt.Dimension(90, 50));
+        btnBuscar.setPreferredSize(new java.awt.Dimension(90, 50));
 
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -479,20 +494,18 @@ public class PestaniaEmigrante{
         panelCabecera.setPreferredSize(new java.awt.Dimension(700, 80));
 
         panelCabecera.setSize(1000,100);
-        panelCabecera.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         //General
 
-        panelPie.setMaximumSize(new java.awt.Dimension(500, 100));
-        panelPie.setMinimumSize(new java.awt.Dimension(500, 100));
-        panelPie.setPreferredSize(new java.awt.Dimension(500, 100));
+        panelPie.setMaximumSize(new java.awt.Dimension(800, 100));
+        panelPie.setMinimumSize(new java.awt.Dimension(800, 100));
+        panelPie.setPreferredSize(new java.awt.Dimension(800, 100));
 
         panelGeneral.setLayout(new BoxLayout(panelGeneral,BoxLayout.Y_AXIS));
         panelGeneral.add(panelCabecera);
         panelGeneral.add(panelCuerpo);
         panelGeneral.add(panelPie);
 
-        panelGeneral.setBorder(BorderFactory.createLineBorder(new Color(10, 100, 0)));
         panelGeneral.setMaximumSize(new Dimension(1100, 600));
         panelGeneral.setMinimumSize(new Dimension(1100, 600));
         panelGeneral.setPreferredSize(new Dimension(1100, 600));
@@ -519,6 +532,8 @@ public class PestaniaEmigrante{
         if(validarFormulario()){
             guardar();
             serListEmigrante.serialize();        
+        }else{
+            escribir("no se pueden dejar los campos vacios");
         }
 
     }
@@ -542,22 +557,25 @@ public class PestaniaEmigrante{
     private void btnEmigrarActionPerformed(java.awt.event.ActionEvent evt) {
         if (validarFormulario()) {
             emigrar();
+            serListGnrlEmigrante.serialize();
+            escribir("emigracion exitosa");
+        }else{
+            escribir("Antes debe hacer la busqueda del emigrante");
         }
-        serListGnrlEmigrante.serialize();
-        escribir("emigracion exitosa");
     }
     
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {
         borrar();
         serListEmigrante.serialize();
-        escribir("emigrante eliminado Exitosamente");
     }
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {
         if (validarFormulario()) {
             modificar();
+            serListEmigrante.serialize();
+            escribir("emigrante modificado Exitosamente");
+        }else{
+            escribir("Antes debe hacer la busquda del emigrante");
         }
-        serListEmigrante.serialize();
-        escribir("emigrante modificado Exitosamente");
     }
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         limpiar();

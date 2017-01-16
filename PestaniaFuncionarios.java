@@ -156,14 +156,14 @@ public class PestaniaFuncionarios{
 
         tituloDatosPersonales.setText("  DATOS PERSONALES ");
 
-        labelNombre.setText("Nombre");
-        labelApellidos.setText("Apellidos");
-        labelCedula.setText("Cedula");
-        labelSexo.setText("Sexo");
-        labelNacidoEn.setText("Nacido En");
-        labelDireccion.setText("Direccion");
-        labelTelefono.setText("Telefono");
-        labelCorreo.setText("Correo");
+        labelNombre.setText("Nombres del Empleado");
+        labelApellidos.setText("Apellidos del Empleado");
+        labelCedula.setText("Cedula de Identidad del Empleado");
+        labelSexo.setText("Seleccione Sexo");
+        labelNacidoEn.setText("Lugar de nacimiento del Empleado");
+        labelDireccion.setText("Direccion actual del Empleado");
+        labelTelefono.setText("Telefono Celular del Empleado");
+        labelCorreo.setText("Correo electronico del Empleado");
 
         textNombre.setText("");
         textApellidos.setText("");
@@ -233,7 +233,6 @@ public class PestaniaFuncionarios{
         panelCuerpoDatosPersonales.add(panelCuerpoDatosPersonalesCabecera);
         panelCuerpoDatosPersonales.add(panelCuerpoDatosPersonalesContenido);         
 
-        panelCuerpoDatosPersonales.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(200, 50, 60)));
 
         //Datos funcionario 
 
@@ -247,11 +246,11 @@ public class PestaniaFuncionarios{
         textContrasenia = new JTextField();
         comboBoxRol = new JComboBox();
 
-        tituloDatosEmigrante.setText(" DATOS DEL USUARIO ");
+        tituloDatosEmigrante.setText(" DATOS DEL EMPLEADO ");
 
-        labelNombreUsuario.setText("Nombre de Usuario");
-        labelContrasenia.setText("Contrasenia");
-        labelRol.setText("Rol");
+        labelNombreUsuario.setText("Nombre de Usuario del Empleado");
+        labelContrasenia.setText("Crear una contrasenia");
+        labelRol.setText("Rol que cumplira el Empleado");
 
         textNombreUsuario.setText("");
         textContrasenia.setText("");
@@ -274,16 +273,15 @@ public class PestaniaFuncionarios{
         panelCuerpoDatosEmigranteCabecera.setMinimumSize(new java.awt.Dimension(500, 30));
         panelCuerpoDatosEmigranteCabecera.setPreferredSize(new java.awt.Dimension(500, 30));
 
-        panelCuerpoDatosEmigranteContenido.setMaximumSize(new java.awt.Dimension(500, 350));
-        panelCuerpoDatosEmigranteContenido.setMinimumSize(new java.awt.Dimension(500, 350));
-        panelCuerpoDatosEmigranteContenido.setPreferredSize(new java.awt.Dimension(500, 350));
+        panelCuerpoDatosEmigranteContenido.setMaximumSize(new java.awt.Dimension(500, 240));
+        panelCuerpoDatosEmigranteContenido.setMinimumSize(new java.awt.Dimension(500, 240));
+        panelCuerpoDatosEmigranteContenido.setPreferredSize(new java.awt.Dimension(500, 240));
 
         panelCuerpoDatosEmigrante.setLayout(new BoxLayout(panelCuerpoDatosEmigrante,BoxLayout.Y_AXIS));
         panelCuerpoDatosEmigrante.add(panelCuerpoDatosEmigranteCabecera);
         panelCuerpoDatosEmigrante.add(panelCuerpoDatosEmigranteContenido);
 
         panelCuerpoDatosEmigrante.setSize(1000,300);
-        panelCuerpoDatosEmigrante.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         //panelPie
 
@@ -296,6 +294,22 @@ public class PestaniaFuncionarios{
         btnModificar.setText("MODIFICAR");
         btnLimpiar.setText("LIMPIAR");
         btnBorrar.setText("BORRAR");
+
+        btnRegistrar.setMaximumSize(new java.awt.Dimension(120, 60));
+        btnRegistrar.setMinimumSize(new java.awt.Dimension(120, 60));
+        btnRegistrar.setPreferredSize(new java.awt.Dimension(120, 60));
+
+        btnModificar.setMaximumSize(new java.awt.Dimension(120, 60));
+        btnModificar.setMinimumSize(new java.awt.Dimension(120, 60));
+        btnModificar.setPreferredSize(new java.awt.Dimension(120, 60));
+
+        btnLimpiar.setMaximumSize(new java.awt.Dimension(120, 60));
+        btnLimpiar.setMinimumSize(new java.awt.Dimension(120, 60));
+        btnLimpiar.setPreferredSize(new java.awt.Dimension(120, 60));
+
+        btnBorrar.setMaximumSize(new java.awt.Dimension(120, 60));
+        btnBorrar.setMinimumSize(new java.awt.Dimension(120, 60));
+        btnBorrar.setPreferredSize(new java.awt.Dimension(120, 60));
 
 
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -329,7 +343,6 @@ public class PestaniaFuncionarios{
         panelPie.add(btnLimpiar);
         panelPie.add(btnBorrar);
 
-        panelPie.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
 
         //cuerpo
         panelCuerpoDatosPersonales.setMaximumSize(new java.awt.Dimension(500, 0));
@@ -351,7 +364,6 @@ public class PestaniaFuncionarios{
         panelCuerpo.add(panelCuerpoDatosEmigrante,BorderLayout.EAST);
         panelCuerpo.add(panelCentro,BorderLayout.CENTER);            
 
-        panelCuerpo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 255)));
         
         //PanelCabecera
 
@@ -364,8 +376,11 @@ public class PestaniaFuncionarios{
 
         labelTituloCabecera.setText("Busqueda de Ciudadano ");
         labelIngreseCi.setText("Ingrese su Cedula de Identidad  ");
-        textFildCi.setPreferredSize( new Dimension( 200, 24 ) );
+        textFildCi.setPreferredSize( new Dimension( 200, 30 ) );
         btnBuscar.setText("BUSCAR");
+        btnBuscar.setMaximumSize(new java.awt.Dimension(90, 50));
+        btnBuscar.setMinimumSize(new java.awt.Dimension(90, 50));
+        btnBuscar.setPreferredSize(new java.awt.Dimension(90, 50));
 
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -390,7 +405,6 @@ public class PestaniaFuncionarios{
         panelCabecera.setPreferredSize(new java.awt.Dimension(700, 80));
 
         // panelCabecera.setSize(1000,100);
-        panelCabecera.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         //General
 
@@ -403,7 +417,6 @@ public class PestaniaFuncionarios{
         panelGeneral.add(panelCuerpo);
         panelGeneral.add(panelPie);
 
-        panelGeneral.setBorder(BorderFactory.createLineBorder(new Color(10, 100, 0)));
         panelGeneral.setMaximumSize(new Dimension(1100, 600));
         panelGeneral.setMinimumSize(new Dimension(1100, 600));
         panelGeneral.setPreferredSize(new Dimension(1100, 600));
@@ -430,8 +443,10 @@ public class PestaniaFuncionarios{
         if(validarFormulario()){
             guardar();
             ser_gen.serialize();
+            escribir("Empleado registrado exitosamente");    
+        }else{
+            escribir("no puede dejar los campos vacios");
         }
-        escribir("Empleado registrado exitosamente");    
     }
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {        
         if (!validarBusqueda()) {
@@ -455,16 +470,17 @@ public class PestaniaFuncionarios{
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {
         borrar();
-        ser_gen.serialize();
-        escribir("Empleado eliminado exitosamente!");
+        ser_gen.serialize();       
     }
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {
         if (validarFormulario()) {
             modificar();
             ser_gen.serialize();
+            escribir("Empleado modifcado exitosamente!");
+        }else{
+            escribir("Antes debe hacer la busqueda");
         }
-        escribir("Empleado modifcado exitosamente!");
     }
 
     public void escribir(String texto){
@@ -671,6 +687,7 @@ public class PestaniaFuncionarios{
                         int i = JOptionPane.showConfirmDialog(null,"Estas seguro de borrar...");
                         if(i==0){           
                             listaFuncionario.eliminar(listaFuncionario.getIndice(objEmigrante));
+                            escribir("Empleado eliminado exitosamente!");
                         }else if(i==1){
                             escribir("Vuela a intentarlo");
                         }

@@ -87,13 +87,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 
         labelTitulo.setIcon(new ImageIcon(imagen));
 
-        panelcabecera.setBorder(BorderFactory.createLineBorder(new Color(100, 0, 0)));
         panelcabecera.setMaximumSize(new Dimension(1500, 180));
         panelcabecera.setMinimumSize(new Dimension(1500, 180));
         panelcabecera.setPreferredSize(new Dimension(1500, 180));
 
 
-        panelPestanias.setBorder(BorderFactory.createLineBorder(new Color(0, 100, 0)));
         panelPestanias.setMaximumSize(new Dimension(1500, 720));
         panelPestanias.setMinimumSize(new Dimension(1500, 720));
         panelPestanias.setPreferredSize(new Dimension(1500, 720));
@@ -121,11 +119,10 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
     }
 
     public void asignarPrivilegios(String usuario){
-        labelTitulo.setText("Bienbenido: " + usuario);
+        // labelTitulo.setText("Bienbenido: " + usuario);
         if (usuario.equals("Usuario")) {
             pestanias.setEnabledAt(pestanias.getTabCount()-1, false);
             pestanias.setEnabledAt(pestanias.getTabCount()-2, false);
-            // pestanias.setEnabledAt(pestanias.getTabCount()-1, false);
         }
     }
 

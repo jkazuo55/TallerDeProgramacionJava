@@ -123,9 +123,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
     public void asignarPrivilegios(String usuario){
         labelTitulo.setText("Bienbenido: " + usuario);
         if (usuario.equals("Usuario")) {
-            pestanias.setEnabledAt(pestanias.getTabCount()-6, false);
-            pestanias.setEnabledAt(pestanias.getTabCount()-3, false);
+            pestanias.setEnabledAt(pestanias.getTabCount()-1, false);
             pestanias.setEnabledAt(pestanias.getTabCount()-2, false);
+            // pestanias.setEnabledAt(pestanias.getTabCount()-1, false);
         }
     }
 

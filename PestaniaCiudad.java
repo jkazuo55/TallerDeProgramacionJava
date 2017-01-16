@@ -57,10 +57,7 @@ public class PestaniaCiudad{
 
     private Controlador control;
 
-    // Emigrante perGeneralEmigrantes;    
     Lista<Emigrante> listaPersonaEmigrante;   //lista    
-    // Serializable obj;     
-
     String fileName = "dataEmigrantes.ser"; 
 
     DeserializableGenerico<Lista> deser_gen;  
@@ -357,126 +354,5 @@ public class PestaniaCiudad{
             model.removeRow(0);
         }
     }
-
-    // public void consultar(){
-       
-    //     long obtenidoCedula;
-    //     long cedula = Long.parseLong(textFildCi.getText());
-
-    //     System.out.println("########## El numero a buscar  : "+cedula);
-        
-    //     int i=0;
-
-    //     System.out.println("tmanio de la lista : " + listaPersonaEmigrante.getTamanio());
-
-    //     // while(i<=listaPersonaEmigrante.getTamanio()){
-    //     if (buscarPersonaEmigrante(cedula)) {
-
-    //         for(Emigrante objEmigrante:listaPersonaEmigrante){
-    //                 // System.out.println(i);
-    //                 // Emigrante objEmigrante = listaPersonaEmigrante.get(i);
-
-    //                 System.out.println("entroo al for De busqueda");
-             
-    //                 // obtenidoCedula = objEmigrante.getCedula();
-    //                 obtenidoCedula = objEmigrante.getCedula();
-
-    //                 if (obtenidoCedula == cedula) {
-
-    //                     System.out.println("persona encontrada"+objEmigrante.toString());
-
-    //                     String nombre   = objEmigrante.getNombre();
-    //                     String apellidos= objEmigrante.getApellidos();
-    //                     String carnet   = String.valueOf(objEmigrante.getCedula());
-    //                     String sexo     = objEmigrante.getSexo();
-    //                     String nacidoEn = objEmigrante.getNacidoEn();
-    //                     String direccion= objEmigrante.getDireccion();
-    //                     String telefono = objEmigrante.getTelefono();
-    //                     String correo   = objEmigrante.getCorreo();
-
-    //                     String esEmigrante= objEmigrante.getEmigranteSiNo();
-    //                     String fecha    = objEmigrante.getFecha();
-    //                     String origen   = objEmigrante.getOrigen();
-    //                     String destino  = objEmigrante.getDestino();
-    //                     String motivo   = objEmigrante.getMotivoDeMigracion();
-
-    //                     textNombre.setText(nombre);
-    //                     textApellidos.setText(apellidos);
-    //                     textCedula.setText(carnet);
-    //                     textNacidoEn.setText(nacidoEn);
-    //                     textDireccion.setText(direccion);
-    //                     textTelefono.setText(telefono);
-    //                     textCorreo.setText(correo);
-                        
-    //                     textEmigranteSiNo.setText(esEmigrante);        
-    //                     textFecha.setText(fecha);        
-
-    //                     if(sexo.equalsIgnoreCase("masculino")){
-    //                         comboBoxSexo.setSelectedIndex(1);
-    //                     }else if(sexo.equalsIgnoreCase("femenino")){
-    //                         comboBoxSexo.setSelectedIndex(2);
-    //                     }                    
-    //                     if(origen.equalsIgnoreCase("cochabamba")){
-    //                         comboBoxOrigen.setSelectedIndex(1);
-    //                     }else if(origen.equalsIgnoreCase("tarija")){
-    //                         comboBoxOrigen.setSelectedIndex(2);
-    //                     }
-    //                     if(destino.equalsIgnoreCase("cochabamba")){
-    //                         comboBoxDestino.setSelectedIndex(1);
-    //                     }else if(destino.equalsIgnoreCase("tarija")){
-    //                         comboBoxDestino.setSelectedIndex(2);
-    //                     }else if(destino.equalsIgnoreCase("pando")){
-    //                         comboBoxDestino.setSelectedIndex(3);
-    //                     }
-    //                     if(motivo.equalsIgnoreCase("Economico")){
-    //                         comboBoxMotivoDeMigracion.setSelectedIndex(1);
-    //                     }else if(motivo.equalsIgnoreCase("Trabajo")){
-    //                         comboBoxMotivoDeMigracion.setSelectedIndex(2);
-    //                     }else if(motivo.equalsIgnoreCase("Estudios")){
-    //                         comboBoxMotivoDeMigracion.setSelectedIndex(3);
-    //                     }else{
-    //                          System.out.println("se mostro");
-    //                     }
-    //                 } 
-    //                 // else{
-    //                 //     escribir("cedula no encontrada");
-    //                 // }
-    //         }
-            
-    //     }else{
-    //         escribir("cedula no encontrada");
-    //     }
-    // }
-
-    // public void limpiar(){
-    //     textNombre.setText("");
-    //     textApellidos.setText("");
-    //     textCedula.setText("");
-    //     comboBoxSexo.setSelectedIndex(0);
-    //     textNacidoEn.setText("");
-    //     textDireccion.setText("");
-    //     textTelefono.setText("");
-    //     textCorreo.setText("");
-        
-    //     textEmigranteSiNo.setText("");        
-    //     textFecha.setText("");        
-    //     comboBoxOrigen.setSelectedIndex(0);        
-    //     comboBoxDestino.setSelectedIndex(0);        
-    //     comboBoxMotivoDeMigracion.setSelectedIndex(0);        
-    // }
-
-    // public boolean buscarPersonaEmigrante(long cedula){
-
-    //     boolean encontrado =false;
-    //     int i=0;
-    //     while(encontrado == false && i<listaPersonaEmigrante.getTamanio()){
-    //         if (listaPersonaEmigrante.get(i).getCedula() == cedula) {
-    //             encontrado=true;
-    //         }else{
-    //             i++;
-    //         }
-    //     }
-    //     return encontrado;    
-    // }
 
 }

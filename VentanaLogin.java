@@ -15,12 +15,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author User
- */
 public class VentanaLogin extends JDialog implements ActionListener{
-    // Variables declaration - do not modify                     
     private javax.swing.JButton botonAceptar;
     private JTextField campoUser;
     private javax.swing.JPasswordField campoPass;
@@ -38,9 +33,6 @@ public class VentanaLogin extends JDialog implements ActionListener{
     private javax.swing.JLabel labelImagen;
     private Controlador control;
     
-    /**
-     * Creates new form VentanaLogin
-     */
     public VentanaLogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();

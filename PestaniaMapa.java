@@ -103,7 +103,6 @@ public class PestaniaMapa{
         panelIzquierda.setLayout(new BoxLayout(panelIzquierda,BoxLayout.Y_AXIS));
         panelIzquierda.add(labelTituloIzq);
 
-
         panelIzquierda.setMaximumSize(new Dimension(500, 600));
         panelIzquierda.setMinimumSize(new Dimension(500, 600));
         panelIzquierda.setPreferredSize(new Dimension(500, 600));

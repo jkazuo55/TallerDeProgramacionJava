@@ -109,9 +109,7 @@ public class PestaniaFuncionarios{
         
 
         System.out.println("llegoHasta aki 1 PestaniaFuncionarios");
-        // if (deser_gen.deserialize()!=null) {
-        //     listaFuncionario = deser_gen.deserialize();
-        // }
+        // listaFuncionario = deser_gen.deserialize();      
         System.out.println("llegoHasta aki 2 PestaniaFuncionarios");
 
         //DatosPersonales
@@ -228,7 +226,10 @@ public class PestaniaFuncionarios{
         panelCuerpoDatosPersonalesContenido.setMaximumSize(new java.awt.Dimension(500, 350));
         panelCuerpoDatosPersonalesContenido.setMinimumSize(new java.awt.Dimension(500, 350));
         panelCuerpoDatosPersonalesContenido.setPreferredSize(new java.awt.Dimension(500, 350));
+
         panelCuerpoDatosPersonales.setMaximumSize(new java.awt.Dimension(500, 100));
+
+        panelCuerpoDatosPersonales.setLayout(new BoxLayout(panelCuerpoDatosPersonales,BoxLayout.Y_AXIS));
         panelCuerpoDatosPersonales.add(panelCuerpoDatosPersonalesCabecera);
         panelCuerpoDatosPersonales.add(panelCuerpoDatosPersonalesContenido);         
 
@@ -428,14 +429,12 @@ public class PestaniaFuncionarios{
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {
         if(validarFormulario()){
             guardar();
+            ser_gen.serialize();
         }
-
-        ser_gen.serialize();
-
+        escribir("Empleado registrado exitosamente");    
     }
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {        
         if (!validarBusqueda()) {
-            // System.out.println("entro a valdiar busqueda");
             if (validarDatos.validarTamanioBusquedaDocumento(textFildCi.getText())) {
                 consultar();
                         
@@ -457,20 +456,20 @@ public class PestaniaFuncionarios{
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {
         borrar();
         ser_gen.serialize();
+        escribir("Empleado eliminado exitosamente!");
     }
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {
         if (validarFormulario()) {
             modificar();
+            ser_gen.serialize();
         }
-        ser_gen.serialize();
+        escribir("Empleado modifcado exitosamente!");
     }
 
     public void escribir(String texto){
         JOptionPane.showMessageDialog(panelGeneral, texto);
     }
-
-
     public void guardar(){
         if (validarDatos.validarTamanioBusquedaDocumento(textCedula.getText())) {
 
@@ -703,41 +702,5 @@ public class PestaniaFuncionarios{
         String busqueda = textFildCi.getText();
         return validarDatos.validarCampoBusqueda(busqueda);
     }
-
-
-
-    //         private void botonGuardarActionPerformed(ActionEvent event){
-    //             if (textNombre.getText().equals("")) {
-    //                 JOptionPane.showMessageDialog(null,"por favor ingrese el nombre");
-    //                 return;
-    //             }
-    //             if (textApellidos.getText().equals("")) {
-    //                 JOptionPane.showMessageDialog(null,"por favor ingrese su apellido");
-    //                 return;
-    //             }
-    //             if (textCedula.getText().equals("")) {
-    //                 JOptionPane.showMessageDialog(null,"por favor ingrese el Cedula");
-    //                 return;
-    //             }
-    //             if (textNacidoEn.getText().equals("")) {
-    //                 JOptionPane.showMessageDialog(null,"por favor ingrese su lugar de Nacimiento");
-    //                 return;
-    //             }
-    //             if (textDireccion.getText().equals("")) {
-    //                 JOptionPane.showMessageDialog(null,"por favor ingrese su direccion");
-    //                 return;
-    //             }
-    //             if (textTelefono.getText().equals("")) {
-    //                 JOptionPane.showMessageDialog(null,"por favor ingrese su Telefono");
-    //                 return;
-    //             }
-    //         }
-    //         private void txtNombreKeyTyped(java.awt.event.KeyEvent event){
-    //             }
-
-    //             char tipoDeLetra = event.getKeyChar();
-    //             if (Character.isDigit(tipoDeLetra)) {
-    //                 event.consume();
-    //             }
-    //         }
+    
 }

@@ -144,10 +144,6 @@ public class Controlador{
     		grafo.insertarAristaP(tablaCiudadCodigo.get("tarija"),tablaCiudadCodigo.get("potosi"),247);
     		grafo.insertarAristaP(tablaCiudadCodigo.get("tarija"),tablaCiudadCodigo.get("chuquisaca"),470);
     }
-    // public String ruta(String origen , String destino){
-    // 	String ruta = Integer.toString(grafo.longRutaMinimaDijkstra(tablaCiudadCodigo.get(origen),tablaCiudadCodigo.get(destino)));
-    // 	return ruta;
-    // }
     public String ruta(String origen , String destino){
     	String cadena="";
     	// Lista<Integer> aux = grafo.rutaMinimaDijkstra(origen,destino);

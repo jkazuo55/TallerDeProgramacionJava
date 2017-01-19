@@ -5,7 +5,6 @@ import java.io.ObjectInputStream;
 public class DeserializableGenerico<T> {
  
      private String fileName;
-
      
      public DeserializableGenerico(String fileName) {
       super();
@@ -31,12 +30,9 @@ public class DeserializableGenerico<T> {
                 System.out.println(fis);
                 ois = new ObjectInputStream(fis);
                 data = (T) ois.readObject();
+                ois.close();
+                fis.close();
             }
-
-            // System.out.println(data+"-----------------------------la data despues del casting");
-
-            ois.close();
-            fis.close();
         }catch(IOException e) {
             e.printStackTrace();
         }catch(ClassNotFoundException e) {

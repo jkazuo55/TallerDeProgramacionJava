@@ -103,16 +103,16 @@ public class PestaniaEmigrante{
     Emigrante perEmigrante;
     // Emigrante perGeneralEmigrantes;
     
-    Lista<Emigrante> listaEmigrante;   //lista    
-    Lista<Emigrante> listaGeneralEmigrantes;   //lista    
+    // Lista<Emigrante> control.getListaEmigrante();   //lista    
+    // Lista<Emigrante> control.getListaGeneralEmigrante();   //lista    
 
-    String fileEmigrantes     = "dataEmigrantes.ser"; 
-    String fileGnrlEmigrantes = "dataHistorialEmigrantes.ser"; 
+    // String fileEmigrantes     = "dataEmigrantes.ser"; 
+    // String fileGnrlEmigrantes = "dataHistorialEmigrantes.ser"; 
 
-    SerializableGenerico<Lista> serListEmigrante; 
-    SerializableGenerico<Lista> serListGnrlEmigrante; 
-    DeserializableGenerico<Lista> deserListEmigrante;  
-    DeserializableGenerico<Lista> deserListGnrlEmigrante;  
+    // SerializableGenerico<Lista> serListEmigrante; 
+    // SerializableGenerico<Lista> serListGnrlEmigrante; 
+    // DeserializableGenerico<Lista> deserListEmigrante;  
+    // DeserializableGenerico<Lista> deserListGnrlEmigrante;  
 
     public PestaniaEmigrante(){ 
         inicializarRegistroEmigrante();
@@ -122,19 +122,19 @@ public class PestaniaEmigrante{
     private void inicializarRegistroEmigrante(){
 
         validarDatos = new ReglasFormulario(); 
-        listaEmigrante = new Lista<Emigrante>(); 
-        listaGeneralEmigrantes = new Lista<Emigrante>();
+        // listaEmigrante = new Lista<Emigrante>(); 
+        // control.getListaGeneralEmigrante() = new Lista<Emigrante>();
 
-        serListEmigrante = new SerializableGenerico<Lista>(fileEmigrantes,listaEmigrante);
-        serListGnrlEmigrante = new SerializableGenerico<Lista>(fileGnrlEmigrantes,listaGeneralEmigrantes);
+        // serListEmigrante = new SerializableGenerico<Lista>(fileEmigrantes,listaEmigrante);
+        // serListGnrlEmigrante = new SerializableGenerico<Lista>(fileGnrlEmigrantes,control.getListaGeneralEmigrante());
 
-        deserListEmigrante = new DeserializableGenerico<Lista>(fileEmigrantes);
-        deserListGnrlEmigrante = new DeserializableGenerico<Lista>(fileGnrlEmigrantes);
+        // deserListEmigrante = new DeserializableGenerico<Lista>(fileEmigrantes);
+        // deserListGnrlEmigrante = new DeserializableGenerico<Lista>(fileGnrlEmigrantes);
         
-        System.out.println("cargar la lista de del archivo serializado");
-        // listaEmigrante = deserListEmigrante.deserialize();
-        // listaGeneralEmigrantes = deserListGnrlEmigrante.deserialize();
-        System.out.println("tam listaEmigrante/"+listaEmigrante.getTamanio());
+        // System.out.println("cargar la lista de del archivo serializado");
+        // // listaEmigrante = deserListEmigrante.deserialize();
+        // // control.getListaGeneralEmigrante() = deserListGnrlEmigrante.deserialize();
+        // System.out.println("tam listaEmigrante/"+listaEmigrante.getTamanio());
         
 
         //DatosPersonales
@@ -531,7 +531,7 @@ public class PestaniaEmigrante{
 
         if(validarFormulario()){
             guardar();
-            serListEmigrante.serialize();        
+            // control.setSerListEmigrante().serialize();        
         }else{
             escribir("no se pueden dejar los campos vacios");
         }
@@ -547,8 +547,8 @@ public class PestaniaEmigrante{
                 escribir("cedula demasiada grande");
             }
 
-            // vaciar_tabla();
-            // filtrar();
+            vaciar_tabla();
+            filtrar();
         }else{
             escribir("Debe ingresar una Cedula ");
         }
@@ -557,7 +557,7 @@ public class PestaniaEmigrante{
     private void btnEmigrarActionPerformed(java.awt.event.ActionEvent evt) {
         if (validarFormulario()) {
             emigrar();
-            serListGnrlEmigrante.serialize();
+            // control.setSerListGnrlEmigrante().serialize();
             escribir("emigracion exitosa");
         }else{
             escribir("Antes debe hacer la busqueda del emigrante");
@@ -566,12 +566,12 @@ public class PestaniaEmigrante{
     
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {
         borrar();
-        serListEmigrante.serialize();
+        // control.setSerListEmigrante().serialize();
     }
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {
         if (validarFormulario()) {
             modificar();
-            serListEmigrante.serialize();
+            // control.setSerListEmigrante().serialize();
             escribir("emigrante modificado Exitosamente");
         }else{
             escribir("Antes debe hacer la busquda del emigrante");
@@ -606,7 +606,7 @@ public class PestaniaEmigrante{
                     escribir("Hay otra persona registrada con el numero de cedula Cambie la Cedula de Identidad");
                 }else{
                     System.out.println("LA PERSONA A REGISTRARSE ES: ");
-                    listaEmigrante.insertarAlFinal(perEmigrante);
+                    control.getListaEmigrante().insertarAlFinal(perEmigrante);
                     System.out.println(perEmigrante.toString());
                     limpiar();
                     escribir("persona registrada exitosamente");
@@ -638,10 +638,10 @@ public class PestaniaEmigrante{
 
         perEmigrante = new Emigrante(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,fecha,origen,destino,ruta,motivo);
         
-        listaGeneralEmigrantes.insertarAlFinal(perEmigrante);
+        control.getListaGeneralEmigrante().insertarAlFinal(perEmigrante);
         // System.out.println(perEmigrante.toString());
         limpiar();
-        // System.out.println("llamando al tamanioListageralPersonaEmigrante : "+listaGeneralEmigrantes.getTamanio());
+        // System.out.println("llamando al tamanioListageralPersonaEmigrante : "+control.getListaGeneralEmigrante().getTamanio());
     }
     public void filtrar(){
        long cedula = Long.parseLong(textFildCi.getText()); 
@@ -660,7 +660,7 @@ public class PestaniaEmigrante{
         int i=0;
         if (buscarPersonaEmigrante(cedula)) {
 
-            for(Emigrante objEmigrante:listaEmigrante){
+            for(Emigrante objEmigrante:control.getListaEmigrante()){
                     System.out.println("entroo al for De Consulta");
                     obtenidoCedula = objEmigrante.getCedula();
 
@@ -765,7 +765,7 @@ public class PestaniaEmigrante{
         long obtenidoCedula;
         if (buscarPersonaEmigrante(cedula)) {
 
-            for(Emigrante objEmigrante:listaGeneralEmigrantes){
+            for(Emigrante objEmigrante:control.getListaGeneralEmigrante()){
                     System.out.println("entroo al for De busqueda");           
                     obtenidoCedula = objEmigrante.getCedula();
                     if (obtenidoCedula == cedula) {
@@ -815,13 +815,13 @@ public class PestaniaEmigrante{
                     perEmigrante = new Emigrante(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,fecha,origen,destino,ruta,motivo);
                     
                     if(!buscarPersonaEmigrante(cedula)){
-                        listaEmigrante.insertarAlFinal(perEmigrante);
+                        control.getListaEmigrante().insertarAlFinal(perEmigrante);
                     }else{
-                        for(Emigrante objEmigrante:listaEmigrante){
+                        for(Emigrante objEmigrante:control.getListaEmigrante()){
                             long ci = objEmigrante.getCedula();
                             if (ci==cedula) {
-                                int indice = listaEmigrante.getIndice(objEmigrante);
-                                listaEmigrante.set(indice,perEmigrante);                    
+                                int indice = control.getListaEmigrante().getIndice(objEmigrante);
+                                control.getListaEmigrante().set(indice,perEmigrante);                    
                             }
                         }    
                         limpiar();
@@ -841,13 +841,13 @@ public class PestaniaEmigrante{
         if(!buscarPersonaEmigrante(op)){
             escribir("La Cedula de Identidad Ingresada no existe!!");
         }else{
-            for(Emigrante objEmigrante:listaEmigrante){             
+            for(Emigrante objEmigrante:control.getListaEmigrante()){             
                 if (objEmigrante.getCedula() == op) {
                     System.out.println("##### persona A ELIMINAR ES #####:"+objEmigrante.toString());
 
                     int i = JOptionPane.showConfirmDialog(null,"Estas seguro de borrar...");
                     if(i==0){           
-                        listaEmigrante.eliminar(listaEmigrante.getIndice(objEmigrante));
+                        control.getListaEmigrante().eliminar(control.getListaEmigrante().getIndice(objEmigrante));
                         limpiar();
                         escribir("Emigrante eliminado exitosamente");
                     }else if(i==1){
@@ -879,8 +879,8 @@ public class PestaniaEmigrante{
 
         boolean encontrado =false;
         int i=0;
-        while(encontrado == false && i<listaEmigrante.getTamanio()){
-            if (listaEmigrante.get(i).getCedula() == cedula) {
+        while(encontrado == false && i<control.getListaEmigrante().getTamanio()){
+            if (control.getListaEmigrante().get(i).getCedula() == cedula) {
                 encontrado=true;
             }else{
                 i++;

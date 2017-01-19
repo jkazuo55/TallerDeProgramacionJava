@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import java.awt.Image;
+import javax.swing.JOptionPane;
 
 public class VentanaPrincipal extends JFrame implements ActionListener{
     
@@ -70,7 +71,14 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
         labelTitulo = new JLabel();
         pestanias = new JTabbedPane();
         
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        // setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                close();
+            }
+        });
 
         barraMenu = new JMenuBar();
         menu = new JMenu();
@@ -124,6 +132,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
             pestanias.setEnabledAt(pestanias.getTabCount()-1, false);
             pestanias.setEnabledAt(pestanias.getTabCount()-2, false);
         }
+    }
+    private void close(){
+        if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente salir del sistema?","Salir del sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+            control.serializarTodo();            
+            System.exit(0);
     }
 
     @Override

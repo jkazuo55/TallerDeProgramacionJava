@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Hashtable;
@@ -14,19 +15,63 @@ public class Controlador{
 	private Hashtable<String,Integer> tablaCiudadCodigo;
 	private Hashtable<Integer,String> tablaCodigoCiudad;
 
-    Lista<Emigrante> listaPersonaEmigrante;
-    String fileName = "dataHistorialEmigrantes.ser"; 
-    DeserializableGenerico<Lista> deser_gen;  
+    Lista<Emigrante> listaEmigrante;   //lista    
+    Lista<Emigrante> listaGeneralEmigrantes;   //lista    
+
+    String fileEmigrantes     = "dataEmigrantes.ser"; 
+    String fileGnrlEmigrantes = "dataHistorialEmigrantes.ser"; 
+
+    SerializableGenerico<Lista> serListEmigrante; 
+    SerializableGenerico<Lista> serListGnrlEmigrante;
+
+    DeserializableGenerico<Lista> deserListEmigrante;  
+    DeserializableGenerico<Lista> deserListGnrlEmigrante;
 
 	public Controlador(){
-        listaPersonaEmigrante = new Lista<Emigrante>(); 
-        // deser_gen = new DeserializableGenerico<Lista>(fileName);        
-        // listaPersonaEmigrante = deser_gen.deserialize();
 
 		tablaCiudadCodigo = new Hashtable<String,Integer>();
 		tablaCodigoCiudad = new Hashtable<Integer,String>();
 		grafo = new GrafoND<Integer>();
-	}	
+
+        listaEmigrante = new Lista<Emigrante>(); 
+        listaGeneralEmigrantes = new Lista<Emigrante>();
+
+        serListEmigrante = new SerializableGenerico<Lista>(fileEmigrantes,listaEmigrante);
+        serListGnrlEmigrante = new SerializableGenerico<Lista>(fileGnrlEmigrantes,listaGeneralEmigrantes);
+
+        deserListEmigrante = new DeserializableGenerico<Lista>(fileEmigrantes);
+        deserListGnrlEmigrante = new DeserializableGenerico<Lista>(fileGnrlEmigrantes);
+        
+        System.out.println("cargar la lista de del archivo serializado");
+        // listaEmigrante = deserListEmigrante.deserialize();
+        // listaGeneralEmigrantes = deserListGnrlEmigrante.deserialize();
+        System.out.println("tam listaEmigrante/"+listaEmigrante.getTamanio());
+        System.out.println("tam listaGeneralEmigrantes/"+listaGeneralEmigrantes.getTamanio());
+
+
+	}
+    public void serializarTodo(){
+        System.out.println("+++++++++++++++++++++++++");
+        for (Emigrante obj:listaEmigrante ) {
+            System.out.println(obj.toString());
+        }
+        System.out.println("+++++++++++++++++++++++++");
+        serListEmigrante.serialize();
+        serListGnrlEmigrante.serialize();
+    }
+
+    public Lista<Emigrante> getListaEmigrante(){
+        return listaEmigrante;
+    }
+    public Lista<Emigrante> getListaGeneralEmigrante(){
+        return listaGeneralEmigrantes;
+    }
+    public SerializableGenerico<Lista> setSerListEmigrante(){
+        return serListEmigrante;
+    } 
+    public SerializableGenerico<Lista> setSerListGnrlEmigrante(){
+        return serListGnrlEmigrante;
+    }	
 	public Controlador(VentanaPrincipal vista, Modelo modelo){
 		this.vista = vista;
 		this.modelo = modelo;
@@ -183,7 +228,7 @@ public class Controlador{
         int cont=0;
         String aux1;        
         String aux2;        
-        for (Emigrante obj:listaPersonaEmigrante) {
+        for (Emigrante obj:listaGeneralEmigrantes) {
             // System.out.println(obj.toString());
             aux1=obj.getOrigen();
             aux2=obj.getDestino();

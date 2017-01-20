@@ -515,8 +515,7 @@ public class PestaniaEmigrante{
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {
 
         if(validarFormulario()){
-            guardar();
-            // serListEmigrante.serialize();        
+            guardar();       
         }else{
             escribir("no se pueden dejar los campos vacios");
         }
@@ -529,7 +528,7 @@ public class PestaniaEmigrante{
                 consultar();
                         
             }else{
-                escribir("cedula demasiada grande");
+                escribir("cedula no valida");
             }
 
             vaciar_tabla();
@@ -541,9 +540,7 @@ public class PestaniaEmigrante{
 
     private void btnEmigrarActionPerformed(java.awt.event.ActionEvent evt) {
         if (validarFormulario()) {
-            emigrar();
-            // serListGnrlEmigrante.serialize();
-            escribir("emigracion exitosa");
+            emigrar();            
         }else{
             escribir("Antes debe hacer la busqueda del emigrante");
         }
@@ -551,13 +548,10 @@ public class PestaniaEmigrante{
     
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {
         borrar();
-        // serListEmigrante.serialize();
     }
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {
         if (validarFormulario()) {
             modificar();
-            // serListEmigrante.serialize();
-            escribir("emigrante modificado Exitosamente");
         }else{
             escribir("Antes debe hacer la busquda del emigrante");
         }
@@ -584,24 +578,27 @@ public class PestaniaEmigrante{
             String destino  = comboBoxDestino.getSelectedItem().toString();
             String motivo   = comboBoxMotivoDeMigracion.getSelectedItem().toString();
             String ruta     = "";
+            if ( validarDatos.validarTamanioCelular( textTelefono.getText() ) ) {
 
-            if (validarDatos.validateEmail(correo)) {
-                perEmigrante = new Emigrante(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,fecha,origen,destino,ruta,motivo);
-                if(buscarPersonaEmigrante(cedula)){
-                    escribir("Hay otra persona registrada con el numero de cedula Cambie la Cedula de Identidad");
+                if (validarDatos.validateEmail(correo)) {
+                    perEmigrante = new Emigrante(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,fecha,origen,destino,ruta,motivo);
+                    if(buscarPersonaEmigrante(cedula)){
+                        escribir("Hay otra persona registrada con el numero de cedula Cambie la Cedula de Identidad");
+                    }else{
+                        System.out.println("LA PERSONA A REGISTRARSE ES: ");
+                        control.getListaEmigrante().insertarAlFinal(perEmigrante);
+                        System.out.println(perEmigrante.toString());
+                        limpiar();
+                        escribir("persona registrada exitosamente");
+                    }
                 }else{
-                    System.out.println("LA PERSONA A REGISTRARSE ES: ");
-                    control.getListaEmigrante().insertarAlFinal(perEmigrante);
-                    System.out.println(perEmigrante.toString());
-                    limpiar();
-                    escribir("persona registrada exitosamente");
+                    escribir("correo invalido ");                
                 }
             }else{
-                escribir("correo invalido ");                
+                escribir("telefono celular no valido"); 
             }
-            
         }else{
-            escribir("la cedula de identidad exede los 7 digitos");
+            escribir("cedula de identidad invalida");
         }
     }
     public void emigrar(){
@@ -624,10 +621,12 @@ public class PestaniaEmigrante{
         perEmigrante = new Emigrante(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,fecha,origen,destino,ruta,motivo);
         
         control.getListaGeneralEmigrante().insertarAlFinal(perEmigrante);
+        escribir("emigracion exitosa");
         // System.out.println(perEmigrante.toString());
         limpiar();
         // System.out.println("llamando al tamanioListageralPersonaEmigrante : "+control.getListaGeneralEmigrante().getTamanio());
     }
+
     public void filtrar(){
        long cedula = Long.parseLong(textFildCi.getText()); 
        historial(cedula);
@@ -807,7 +806,8 @@ public class PestaniaEmigrante{
                             long ci = objEmigrante.getCedula();
                             if (ci==cedula) {
                                 int indice = control.getListaEmigrante().getIndice(objEmigrante);
-                                control.getListaEmigrante().set(indice,perEmigrante);                    
+                                control.getListaEmigrante().set(indice,perEmigrante);
+                                escribir("emigrante modificado Exitosamente");                    
                             }
                         }    
                         limpiar();

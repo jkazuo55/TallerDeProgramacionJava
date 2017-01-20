@@ -48,21 +48,18 @@ public class ReglasFormulario{
     }
     public boolean validarTamanioBusquedaDocumento(String cedula){
     	boolean res=false;
-    	if (cedula.length()<=7) {
+    	if ((cedula.length()<=8)&&(cedula.length()>=5)) {
     		res=true;
     	}
     	return res;
     }
 
-    public boolean validarTamanioCelular(long celular){
-    	boolean res=false;
-    	Long tamanioCelular;
-    	String cadenaCelular=Long.toString(celular);  	
-    	tamanioCelular=Long.valueOf(cadenaCelular.length());
-    	if (tamanioCelular<=8) {
-    		res=true;
-    	}
-    	return res;
+    public boolean validarTamanioCelular(String celular){
+        boolean res=false;
+        if (celular.length()==8) {
+            res=true;
+        }
+        return res;	
     }
 
     public boolean validarTamanioNombre(String nombre){

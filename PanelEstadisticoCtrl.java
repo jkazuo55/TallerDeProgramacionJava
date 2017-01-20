@@ -31,6 +31,7 @@ public class PanelEstadisticoCtrl implements ActionListener {
     private JComboBox<String> comboCiudad;
     private JComboBox<String> comboYear;
     private HashMap<String,String[]> filterData;
+    private Controlador generalController;
 
     public PanelEstadisticoCtrl(PestaniaEstadistico panelView) {
         self = this;
@@ -103,7 +104,6 @@ public class PanelEstadisticoCtrl implements ActionListener {
     public void accionGraphicButton(){
         Lista<Emigrante> listaEmigrantes; 
         String ciudadSeleccionada = comboCiudad.getSelectedItem().toString();
-        Ciudad ciudad;
 	listaEmigrantes = model.getListaGeneral();
 	this.view.grafico.dataset.clear();
 	if(radioGeneral.isSelected()){
@@ -150,5 +150,12 @@ public class PanelEstadisticoCtrl implements ActionListener {
         if (actionEvent.getActionCommand().equals("radioGeneral")) {
             comboCiudad.setEnabled(false);
         }
+    }
+
+    public void setGeneralController(Controlador control){
+        this.generalController = control;
+        this.model.setControlador(control);
+    
+    
     }
 }

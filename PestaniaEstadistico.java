@@ -20,16 +20,17 @@ public class PestaniaEstadistico extends JPanel{
     private BorderLayout borderLayout;
     public GraficoEmigrante grafico;
     private JButton boton;
-    private PanelEstadisticoCtrl controller;
+    public PanelEstadisticoCtrl controller;
 
     public PestaniaEstadistico(){
+        controller = new PanelEstadisticoCtrl(this);
         setUi();
     }
 
     public void setUi(){
         boton = new JButton("Generar");
         boton.setActionCommand("graphicButton");
-        boton.addActionListener(new PanelEstadisticoCtrl(this));
+        boton.addActionListener(controller);
         borderLayout = new BorderLayout();
         comboMotivo = new JComboBox<String>();
         comboCiudad = new JComboBox<String>();
@@ -42,10 +43,10 @@ public class PestaniaEstadistico extends JPanel{
         general = new JRadioButton("General",true);
         general.setActionCommand("radioGeneral");
         general.setActionCommand("radioGeneral");
-        general.addActionListener(new PanelEstadisticoCtrl(this));
+        general.addActionListener(controller);
         porCiudad = new JRadioButton("Ciudad");
         porCiudad.setActionCommand("radioCiudad");
-        porCiudad.addActionListener(new PanelEstadisticoCtrl(this));
+        porCiudad.addActionListener(controller);
         buttonGroup.add(general);
         buttonGroup.add(porCiudad);
         label = new JLabel("Motivo de Migracion");
@@ -56,15 +57,15 @@ public class PestaniaEstadistico extends JPanel{
         comboMotivo.addItem("Familiar");
         comboMotivo.addItem("Economico");
         comboMotivo.addItem("Otros");
-        comboCiudad.addItem("Cochabamba");
-        comboCiudad.addItem("La Paz");
-        comboCiudad.addItem("Oruro");
-        comboCiudad.addItem("Potosi");
-        comboCiudad.addItem("Santacruz");
-        comboCiudad.addItem("Beni");
-        comboCiudad.addItem("Tarija");
-        comboCiudad.addItem("Chuquisaca");
-        comboCiudad.addItem("Pando");
+        comboCiudad.addItem("cochabamba");
+        comboCiudad.addItem("la paz");
+        comboCiudad.addItem("oruro");
+        comboCiudad.addItem("potosi");
+        comboCiudad.addItem("santa cruz");
+        comboCiudad.addItem("beni");
+        comboCiudad.addItem("tarija");
+        comboCiudad.addItem("chuquisaca");
+        comboCiudad.addItem("pando");
 	comboYear.addItem("1993");
 	comboYear.addItem("1994");
 	comboYear.addItem("1995");

@@ -26,6 +26,7 @@ public class GestionDeMigracion {
 		vista.pestaniaEmigrante.setControlador(control);
 		vista.pestaniaCiudad.setControlador(control);
 		vista.pestaniaMapa.setControlador(control);
+		vista.pestaniaFuncionarios.setControlador(control);
 		//Relacionamos el control con las clases
 		control.setModeloPrincipal(modelo);
 		control.setVentanaPrincipal(vista);
@@ -33,6 +34,7 @@ public class GestionDeMigracion {
 		control.setPanelRegistroEmigrante(vista.pestaniaEmigrante);
 		control.setPestaniaCiudad(vista.pestaniaCiudad);
 		control.setPestaniaMapa(vista.pestaniaMapa);
+		control.setPestaniaFuncionario(vista.pestaniaFuncionarios);
 		control.setGrafo(grafo);
 		
 		// vista.arranca();

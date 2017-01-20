@@ -65,13 +65,7 @@ public class PestaniaCiudad{
     private String[] cabecera={"NOMBRE","APELLIDOS","CEDULA","ORIGEN","DESTINO","MOTIVO"};
     private String[][] data={};
 
-    private Controlador control;
-
-    Lista<Emigrante> listaPersonaEmigrante;   //lista    
-    String fileName = "dataEmigrantes.ser"; 
-
-    DeserializableGenerico<Lista> deser_gen;  
-
+    private Controlador control; 
 
     public PestaniaCiudad(){
         inicializarRegistroEmigrante();
@@ -80,14 +74,6 @@ public class PestaniaCiudad{
     }
 
     private void inicializarRegistroEmigrante(){
-
-        listaPersonaEmigrante = new Lista<Emigrante>(); 
-        deser_gen = new DeserializableGenerico<Lista>(fileName);
-
-        if(deser_gen.tieneDatos()){
-            listaPersonaEmigrante = deser_gen.deserialize();
-        }
-        System.out.println("tam listaPersonaEmigrante dl arch listaEmigrantes.ser en PestaniaCiudad/// "+listaPersonaEmigrante.getTamanio());
 
         panelGeneral = new JPanel();
         
@@ -280,7 +266,7 @@ public class PestaniaCiudad{
     }
     public void emigrantesEntrantes(String ciudad){
         String aux;
-        for (Emigrante obj:listaPersonaEmigrante) {
+        for (Emigrante obj:control.getListaEmigrante()) {
             aux = obj.getDestino();
             if (aux.equalsIgnoreCase(ciudad)) {
                 System.out.println("entro al if ");    
@@ -300,7 +286,7 @@ public class PestaniaCiudad{
     }
     public void emigrantesSalientes(String ciudad){
         String aux;
-        for (Emigrante obj:listaPersonaEmigrante) {
+        for (Emigrante obj:control.getListaEmigrante()) {
             aux=obj.getOrigen();
             if (aux.equalsIgnoreCase(ciudad)) {
                 String nombre=obj.getNombre();
@@ -318,7 +304,7 @@ public class PestaniaCiudad{
     public void generalEmigrantes(String ciudad){
         String aux1;
         String aux2;
-        for (Emigrante obj:listaPersonaEmigrante) {
+        for (Emigrante obj:control.getListaEmigrante()) {
             aux1=obj.getOrigen();
             aux2=obj.getDestino();
             if (aux1.equalsIgnoreCase(ciudad)||aux2.equalsIgnoreCase(ciudad)) {
@@ -337,7 +323,7 @@ public class PestaniaCiudad{
         String aux1;
         String aux2;
         int salientes=0,entrantes=0,total=0;
-        for (Emigrante obj:listaPersonaEmigrante) {
+        for (Emigrante obj:control.getListaEmigrante()) {
             aux1=obj.getOrigen();
             aux2=obj.getDestino();
 

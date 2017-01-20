@@ -24,17 +24,17 @@ public class Modelo{
 
 	Controlador control;
 
-	Lista<Funcionario> listaFuncionario; 
-    String fileName = "dataFuncionarios.ser"; 
+	// Lista<Funcionario> control.getListaFuncionario(); 
+ //    String fileName = "dataFuncionarios.ser"; 
 
     DeserializableGenerico<Lista> deser_gen;  
 
 	public Modelo(){
-    	listaFuncionario = new Lista<Funcionario>();
-            deser_gen = new DeserializableGenerico<Lista>(fileName);
-            if(deser_gen.tieneDatos()){
-                listaFuncionario = deser_gen.deserialize();
-            }        
+    	// control.getListaFuncionario() = new Lista<Funcionario>();
+     //        deser_gen = new DeserializableGenerico<Lista>(fileName);
+     //        if(deser_gen.tieneDatos()){
+     //            control.getListaFuncionario() = deser_gen.deserialize();
+     //        }        
 	}
 
 	public void setControlador(Controlador control){
@@ -54,7 +54,7 @@ public class Modelo{
 		String retorno="";
 		switch(index){
 			case ADMINISTRADOR:
-                                if(deser_gen.tieneDatos()){
+                                if(control.tieneDatosDataFuncionario()){
                                     if (validarPasswordFromFile("Administrador",user,pass)) {
                                             retorno="Administrador";	
                                     }else{
@@ -69,7 +69,7 @@ public class Modelo{
                                 }
 			break;
 			case USUARIO:
-                                if(deser_gen.tieneDatos()){
+                                if(control.tieneDatosDataFuncionario()){
                                     if (validarPasswordFromFile("Usuario",user,pass)) {
                                             retorno="Usuario";	
                                     }else{
@@ -91,7 +91,7 @@ public class Modelo{
 		String rol;
 		String us;
 		String pass;
-		for (Funcionario obj:listaFuncionario) {
+		for (Funcionario obj:control.getListaFuncionario()) {
 			rol=obj.getRol();
 			us=obj.getNombreUsuario();
 			pass=obj.getContrasenia();

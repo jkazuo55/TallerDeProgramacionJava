@@ -14,31 +14,100 @@ import java.util.Hashtable;
 
 public class Controlador{
 
-	private VentanaPrincipal vista;
-	private Modelo modelo;
-	private VentanaLogin login;
-	private PestaniaEmigrante pestaniaEmigrante;
+    private VentanaPrincipal vista;
+    private Modelo modelo;
+    private VentanaLogin login;
+    private PestaniaEmigrante pestaniaEmigrante;
     private PestaniaCiudad pestaniaCiudad;
-	private PestaniaMapa pestaniaMapa;
-	private GrafoND grafo;
-	private Hashtable<String,Integer> tablaCiudadCodigo;
-	private Hashtable<Integer,String> tablaCodigoCiudad;
+    private PestaniaMapa pestaniaMapa;
+    private PestaniaFuncionarios pestaniaFuncionarios;
+    private GrafoND grafo;
+    private Hashtable<String,Integer> tablaCiudadCodigo;
+    private Hashtable<Integer,String> tablaCodigoCiudad;
 
-    Lista<Emigrante> listaPersonaEmigrante;
-    String fileName = "dataHistorialEmigrantes.ser"; 
-    DeserializableGenerico<Lista> deser_gen;  
+    Lista<Emigrante> listaEmigrante;   //lista    
+    Lista<Emigrante> listaGeneralEmigrantes;   //lista    
+    Lista<Funcionario> listaFuncionario;   //lista    
+
+    String fileEmigrantes     = "dataEmigrantes.bin"; 
+    String fileGnrlEmigrantes = "dataHistorialEmigrantes.bin"; 
+    String fileFuncionario = "dataFuncionarios.bin"; 
+
+    SerializableGenerico<Lista> serListEmigrante; 
+    SerializableGenerico<Lista> serListGnrlEmigrante;
+    SerializableGenerico<Lista> serListFuncionario;
+
+    DeserializableGenerico<Lista> deserListEmigrante;  
+    DeserializableGenerico<Lista> deserListGnrlEmigrante;  
+    DeserializableGenerico<Lista> deserListFuncionario;  
 
 	public Controlador(){
-        listaPersonaEmigrante = new Lista<Emigrante>(); 
-            deser_gen = new DeserializableGenerico<Lista>(fileName); 
-            if(deser_gen.tieneDatos()){       
-                listaPersonaEmigrante = deser_gen.deserialize();
-            }
 
-		tablaCiudadCodigo = new Hashtable<String,Integer>();
-		tablaCodigoCiudad = new Hashtable<Integer,String>();
-		grafo = new GrafoND<Integer>();
-	}	
+        tablaCiudadCodigo = new Hashtable<String,Integer>();
+        tablaCodigoCiudad = new Hashtable<Integer,String>();
+        grafo = new GrafoND<Integer>();
+
+        listaEmigrante = new Lista<Emigrante>(); 
+        listaGeneralEmigrantes = new Lista<Emigrante>();
+        listaFuncionario = new Lista<Funcionario>();
+
+        serListEmigrante = new SerializableGenerico<Lista>(fileEmigrantes,listaEmigrante);
+        serListGnrlEmigrante = new SerializableGenerico<Lista>(fileGnrlEmigrantes,listaGeneralEmigrantes);
+        serListFuncionario = new SerializableGenerico<Lista>(fileFuncionario,listaFuncionario);
+
+        deserListEmigrante = new DeserializableGenerico<Lista>(fileEmigrantes);
+        deserListGnrlEmigrante = new DeserializableGenerico<Lista>(fileGnrlEmigrantes);
+        deserListFuncionario = new DeserializableGenerico<Lista>(fileFuncionario);
+        
+        System.out.println("cargar la lista de del archivo serializado");
+        listaEmigrante = deserListEmigrante.deserialize(listaEmigrante);
+        listaGeneralEmigrantes = deserListGnrlEmigrante.deserialize(listaGeneralEmigrantes);
+        listaFuncionario = deserListFuncionario.deserialize(listaFuncionario);
+
+        System.out.println("tam listaEmigrante/"+listaEmigrante.getTamanio());
+        System.out.println("tam listaGeneralEmigrantes/"+listaGeneralEmigrantes.getTamanio());
+
+
+    }
+    public void serializarTodo(){
+        System.out.println("+++++++++++++++++++++++++");
+        for (Emigrante obj:listaEmigrante ) {
+            System.out.println(obj.toString());
+        }
+        System.out.println("+++++++++++++++++++++++++");
+
+        serListEmigrante.serialize(listaEmigrante);
+        serListGnrlEmigrante.serialize(listaGeneralEmigrantes);
+        serListFuncionario.serializeFuncionario(listaFuncionario);
+    }
+
+    public Lista<Emigrante> getListaEmigrante(){
+        return listaEmigrante;
+    }
+    public Lista<Emigrante> getListaGeneralEmigrante(){
+        return listaGeneralEmigrantes;
+    }
+    public Lista<Funcionario> getListaFuncionario(){
+        return listaFuncionario;
+    }
+
+    public SerializableGenerico<Lista> setSerListEmigrante(){
+        return serListEmigrante;
+    } 
+    public SerializableGenerico<Lista> setSerListGnrlEmigrante(){
+        return serListGnrlEmigrante;
+    }
+    public SerializableGenerico<Lista> setSerListFuncionario(){
+        return serListFuncionario;
+    }
+
+    public boolean tieneDatosDataFuncionario(){
+        if (listaFuncionario.equals("")) {
+            return true;
+        }
+        return false;
+    }
+    	
 	public Controlador(VentanaPrincipal vista, Modelo modelo){
 		this.vista = vista;
 		this.modelo = modelo;
@@ -58,8 +127,11 @@ public class Controlador{
 	public void setPestaniaCiudad(PestaniaCiudad pestaniaCiudad){  
         this.pestaniaCiudad = pestaniaCiudad ; 
     }
-    public void setPestaniaMapa(PestaniaMapa pestaniaMapa){	
-		this.pestaniaMapa = pestaniaMapa ; 
+    public void setPestaniaMapa(PestaniaMapa pestaniaMapa){ 
+        this.pestaniaMapa = pestaniaMapa ; 
+    }
+    public void setPestaniaFuncionario(PestaniaFuncionarios pestaniaFuncionarios){	
+		this.pestaniaFuncionarios = pestaniaFuncionarios ; 
 	}
 	public void setGrafo(GrafoND grafo){
 		this.grafo=grafo;
@@ -196,7 +268,7 @@ public class Controlador{
         int cont=0;
         String aux1;        
         String aux2;        
-        for (Emigrante obj:listaPersonaEmigrante) {
+        for (Emigrante obj:listaGeneralEmigrantes) {
             // System.out.println(obj.toString());
             aux1=obj.getOrigen();
             aux2=obj.getDestino();

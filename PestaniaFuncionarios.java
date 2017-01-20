@@ -92,18 +92,15 @@ public class PestaniaFuncionarios{
     private JButton btnLimpiar;
     private JButton btnBorrar;
 
+    private Controlador control;
+
     ReglasFormulario validarDatos;
 
     //datosPersonales
 
 
     Funcionario perFuncionario;
-    
-    Lista<Funcionario> listaFuncionario;   //lista    
-    String fileName = "dataFuncionarios.ser"; 
 
-    SerializableGenerico<Lista> ser_gen; 
-    DeserializableGenerico<Lista> deser_gen;  
     public PestaniaFuncionarios(){ 
         inicializarRegistroFuncionario();
     }   
@@ -111,19 +108,6 @@ public class PestaniaFuncionarios{
     private void inicializarRegistroFuncionario(){
 
         validarDatos = new ReglasFormulario(); 
-        listaFuncionario = new Lista<Funcionario>(); 
-
-        ser_gen = new SerializableGenerico<Lista>(fileName,listaFuncionario);
-
-        deser_gen = new DeserializableGenerico<Lista>(fileName);
-        
-
-        System.out.println("llegoHasta aki 1 PestaniaFuncionarios");
-        if(deser_gen.tieneDatos()){
-            listaFuncionario = deser_gen.deserialize();
-        }      
-        System.out.println("llegoHasta aki 2 PestaniaFuncionarios");
-
         //DatosPersonales
         panelGeneral = new JPanel();
         
@@ -460,7 +444,7 @@ public class PestaniaFuncionarios{
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {
         if(validarFormulario()){
             guardar();
-            ser_gen.serialize();
+            // ser_gen.serialize();
             escribir("Empleado registrado exitosamente");    
         }else{
             escribir("no puede dejar los campos vacios");
@@ -488,13 +472,13 @@ public class PestaniaFuncionarios{
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {
         borrar();
-        ser_gen.serialize();       
+        // ser_gen.serialize();       
     }
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {
         if (validarFormulario()) {
             modificar();
-            ser_gen.serialize();
+            // ser_gen.serialize();
             escribir("Empleado modifcado exitosamente!");
         }else{
             escribir("Antes debe hacer la busqueda");
@@ -530,7 +514,7 @@ public class PestaniaFuncionarios{
                 }else{
                     System.out.println("LA PERSONA A REGISTRARSE ES: ");
 
-                    listaFuncionario.insertarAlFinal(perFuncionario);
+                    control.getListaFuncionario().insertarAlFinal(perFuncionario);
                     System.out.println(perFuncionario.toString());
                     
                     //obj.grabar();
@@ -553,12 +537,12 @@ public class PestaniaFuncionarios{
         System.out.println("########## El numero a buscar  : "+cedula);
         int i=0;
 
-        // while(i<=listaFuncionario.getTamanio()){
+        // while(i<=control.getListaFuncionario().getTamanio()){
         if (buscarPersonaEmigrante(cedula)) {
 
-            for(Funcionario objEmigrante:listaFuncionario){
+            for(Funcionario objEmigrante:control.getListaFuncionario()){
                     // System.out.println(i);
-                    // Funcionario objEmigrante = listaFuncionario.get(i);
+                    // Funcionario objEmigrante = control.getListaFuncionario().get(i);
 
                     System.out.println("entroo al for De busqueda");
              
@@ -640,14 +624,14 @@ public class PestaniaFuncionarios{
                     perFuncionario = new Funcionario(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,funcionario ,contrasenia,rol);
                     
                     if(!buscarPersonaEmigrante(cedula)){
-                        listaFuncionario.insertarAlFinal(perFuncionario);
+                        control.getListaFuncionario().insertarAlFinal(perFuncionario);
                     }else{
-                        for(Funcionario objEmigrante:listaFuncionario){
+                        for(Funcionario objEmigrante:control.getListaFuncionario()){
                             long ci = objEmigrante.getCedula();
                             if (ci==cedula) {
-                                int indice = listaFuncionario.getIndice(objEmigrante);
+                                int indice = control.getListaFuncionario().getIndice(objEmigrante);
                                 System.out.println("el indice antes de modificar"+indice);
-                                listaFuncionario.set(indice,perFuncionario);                    
+                                control.getListaFuncionario().set(indice,perFuncionario);                    
                             }
                         }    
                         limpiar();
@@ -680,8 +664,8 @@ public class PestaniaFuncionarios{
 
         boolean encontrado =false;
         int i=0;
-        while(encontrado == false && i<listaFuncionario.getTamanio()){
-            if (listaFuncionario.get(i).getCedula() == cedula) {
+        while(encontrado == false && i<control.getListaFuncionario().getTamanio()){
+            if (control.getListaFuncionario().get(i).getCedula() == cedula) {
                 encontrado=true;
             }else{
                 i++;
@@ -696,7 +680,7 @@ public class PestaniaFuncionarios{
         if(!buscarPersonaEmigrante(op)){
             escribir("Empleado no existe");
         }else{
-            for(Funcionario objEmigrante:listaFuncionario){
+            for(Funcionario objEmigrante:control.getListaFuncionario()){
                     System.out.println("entroo al for De busqueda");
              
                     if (objEmigrante.getCedula() == op) {
@@ -704,7 +688,7 @@ public class PestaniaFuncionarios{
 
                         int i = JOptionPane.showConfirmDialog(null,"Estas seguro de borrar...");
                         if(i==0){           
-                            listaFuncionario.eliminar(listaFuncionario.getIndice(objEmigrante));
+                            control.getListaFuncionario().eliminar(control.getListaFuncionario().getIndice(objEmigrante));
                             escribir("Empleado eliminado exitosamente!");
                         }else if(i==1){
                             escribir("Vuela a intentarlo");
@@ -736,6 +720,9 @@ public class PestaniaFuncionarios{
     public boolean validarBusqueda(){
         String busqueda = textFildCi.getText();
         return validarDatos.validarCampoBusqueda(busqueda);
+    }
+    public void setControlador(Controlador control) {
+        this.control=control;
     }
     
 }

@@ -141,6 +141,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
         if (usuario.equals("Usuario")) {
             pestanias.setEnabledAt(pestanias.getTabCount()-1, false);
             pestanias.setEnabledAt(pestanias.getTabCount()-2, false);
+        }else{
+            pestanias.setEnabledAt(pestanias.getTabCount()-1, true);
+            pestanias.setEnabledAt(pestanias.getTabCount()-2, true);
         }
     }
 

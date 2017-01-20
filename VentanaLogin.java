@@ -184,6 +184,8 @@ public class VentanaLogin extends JDialog implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent evento) {
 		if (evento.getSource()==comboUsuarios) {
+            System.out.println("se preciono el combobox");
+            System.out.println("se seleccino"+comboUsuarios.getSelectedIndex());
 			mostrarElementos();
 		}
 

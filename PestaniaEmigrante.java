@@ -26,8 +26,10 @@ import javax.swing.table.*;
 import javax.swing.JScrollPane;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class PestaniaEmigrante{
+public class PestaniaEmigrante implements ActionListener{
 
     //paneles de PestaniaEmigrante 
     public JPanel  panelGeneral;
@@ -278,6 +280,8 @@ public class PestaniaEmigrante{
         comboBoxOrigen.addItem("chuquisaca");
         comboBoxOrigen.addItem("tarija");
 
+        comboBoxOrigen.addActionListener(this);
+
         comboBoxDestino.addItem("Seleccionar");
         comboBoxDestino.addItem("la paz");
         comboBoxDestino.addItem("pando");
@@ -496,6 +500,17 @@ public class PestaniaEmigrante{
         panelGeneral.setPreferredSize(new Dimension(1100, 600));
     }
 
+    @SuppressWarnings("deprecation")
+    @Override
+    public void actionPerformed(ActionEvent evento) {
+        if (evento.getSource()==comboBoxOrigen) {
+            System.out.println("holamundo");
+            System.out.println("se selecciiono :"+comboBoxOrigen.getSelectedIndex());
+            comboBoxDestino.removeItemAt(comboBoxOrigen.getSelectedIndex());
+        }
+                
+    }
+
     private void numeroKeyTyped(java.awt.event.KeyEvent evt) {                                     
         char c;
         c = evt.getKeyChar();
@@ -622,9 +637,7 @@ public class PestaniaEmigrante{
         
         control.getListaGeneralEmigrante().insertarAlFinal(perEmigrante);
         escribir("emigracion exitosa");
-        // System.out.println(perEmigrante.toString());
         limpiar();
-        // System.out.println("llamando al tamanioListageralPersonaEmigrante : "+control.getListaGeneralEmigrante().getTamanio());
     }
 
     public void filtrar(){

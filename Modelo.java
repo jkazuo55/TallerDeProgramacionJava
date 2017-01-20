@@ -52,6 +52,7 @@ public class Modelo{
 	}
 	private String validarPass(int index,String user,String pass){
 		String retorno="";
+		System.out.println("acseso : "+control.tieneDatosDataFuncionario());
 		switch(index){
 			case ADMINISTRADOR:
                                 if(control.tieneDatosDataFuncionario()){

@@ -152,6 +152,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
     //         control.serializarTodo();            
     //         System.exit(0);
     // }
+
+  
+    
     public void close(){
         Object [] opciones ={"Aceptar","Cancelar"};
         int eleccion = JOptionPane.showOptionDialog(rootPane,"En realidad desea realizar cerrar la aplicacion","Mensaje de Confirmacion",

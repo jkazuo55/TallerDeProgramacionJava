@@ -733,7 +733,7 @@ public class PestaniaEmigrante{
                             comboBoxMotivoDeMigracion.setSelectedIndex(1);
                         }else if(motivo.equalsIgnoreCase("Academico")){
                             comboBoxMotivoDeMigracion.setSelectedIndex(2);
-                        }else if(motivo.equalsIgnoreCase("Familia")){
+                        }else if(motivo.equalsIgnoreCase("Familiar")){
                             comboBoxMotivoDeMigracion.setSelectedIndex(3);
                         }else if(motivo.equalsIgnoreCase("Economico")){
                             comboBoxMotivoDeMigracion.setSelectedIndex(4);

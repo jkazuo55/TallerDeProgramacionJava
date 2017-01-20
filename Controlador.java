@@ -103,9 +103,9 @@ public class Controlador{
 
     public boolean tieneDatosDataFuncionario(){
         if (listaFuncionario.equals("")) {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
     	
 	public Controlador(VentanaPrincipal vista, Modelo modelo){

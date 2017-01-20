@@ -444,8 +444,6 @@ public class PestaniaFuncionarios{
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {
         if(validarFormulario()){
             guardar();
-            // ser_gen.serialize();
-            escribir("Empleado registrado exitosamente");    
         }else{
             escribir("no puede dejar los campos vacios");
         }
@@ -456,11 +454,9 @@ public class PestaniaFuncionarios{
                 consultar();
                         
             }else{
-                escribir("cedula demasiada grande");
+                textFildCi.setText(" ");
+                escribir("cedula no valida");
             }
-
-            //vaciar_tabla();
-            //filtrar();
         }else{
             escribir("Debe ingresar una Cedula ");
         }
@@ -478,8 +474,6 @@ public class PestaniaFuncionarios{
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {
         if (validarFormulario()) {
             modificar();
-            // ser_gen.serialize();
-            escribir("Empleado modifcado exitosamente!");
         }else{
             escribir("Antes debe hacer la busqueda");
         }
@@ -493,40 +487,43 @@ public class PestaniaFuncionarios{
 
             String nombre   = textNombre.getText();
             String apellidos= textApellidos.getText();
+
             long   cedula   = Long.parseLong(textCedula.getText());
+
             String sexo     = comboBoxSexo.getSelectedItem().toString();
             String nacidoEn = textNacidoEn.getText();
             String direccion= textDireccion.getText();
             long telefono =   Long.parseLong(textTelefono.getText());
+
             String correo   = textCorreo.getText();
 
             String funcionario = textNombreUsuario.getText();
             String contrasenia    = textContrasenia.getText();
             String rol   = comboBoxRol.getSelectedItem().toString();
 
-            if (validarDatos.validateEmail(correo)) {
+            if ( validarDatos.validarTamanioCelular( textTelefono.getText() ) ) {                    
+                if (validarDatos.validateEmail(correo)) {
+                    perFuncionario = new Funcionario(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,funcionario ,contrasenia,rol);
+                    //condicion del arreglo buscar el objeto con el codiog que se acaba de colocar
 
-                perFuncionario = new Funcionario(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,funcionario ,contrasenia,rol);
-                //condicion del arreglo buscar el objeto con el codiog que se acaba de colocar
+                    if(buscarPersonaEmigrante(cedula)){
+                        escribir("Hay otra persona registrada con el numero de cedula Cambie la Cedula de Identidad");
+                    }else{
+                        System.out.println("LA PERSONA A REGISTRARSE ES: ");
 
-                if(buscarPersonaEmigrante(cedula)){
-                    escribir("Hay otra persona registrada con el numero de cedula Cambie la Cedula de Identidad");
+                        control.getListaFuncionario().insertarAlFinal(perFuncionario);
+                        System.out.println(perFuncionario.toString());
+                       limpiar();
+                       escribir("Empleado registrado exitosamente");
+                    }
                 }else{
-                    System.out.println("LA PERSONA A REGISTRARSE ES: ");
-
-                    control.getListaFuncionario().insertarAlFinal(perFuncionario);
-                    System.out.println(perFuncionario.toString());
-                    
-                    //obj.grabar();
-                    //actualizar();
-                   limpiar();
-                   escribir("persona registrada exitosamente");
-                }
+                    escribir("correo invalido");
+                }    
             }else{
-                escribir("correo invalido");
-            }    
+                escribir("telefono celular no valido"); 
+            }
         }else{
-            escribir("la cedula de identidad exede los 7 digitos");
+            escribir("la cedula de identidad no valida");
         }    
     }
 
@@ -631,7 +628,8 @@ public class PestaniaFuncionarios{
                             if (ci==cedula) {
                                 int indice = control.getListaFuncionario().getIndice(objEmigrante);
                                 System.out.println("el indice antes de modificar"+indice);
-                                control.getListaFuncionario().set(indice,perFuncionario);                    
+                                control.getListaFuncionario().set(indice,perFuncionario);
+                                escribir("Empleado modifcado exitosamente!");                    
                             }
                         }    
                         limpiar();
@@ -717,6 +715,7 @@ public class PestaniaFuncionarios{
 
         return validarDatos.validaDatosEmpleado(nombre,apellidos,cedula,sexo,nacidoEn,direccion,telefono,correo,usuario,contrasenia,rol);
     }
+
     public boolean validarBusqueda(){
         String busqueda = textFildCi.getText();
         return validarDatos.validarCampoBusqueda(busqueda);

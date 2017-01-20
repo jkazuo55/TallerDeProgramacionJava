@@ -292,7 +292,7 @@ public class PestaniaEmigrante{
         comboBoxMotivoDeMigracion.addItem("Seleccionar");
         comboBoxMotivoDeMigracion.addItem("Trabajo");
         comboBoxMotivoDeMigracion.addItem("Academico");
-        comboBoxMotivoDeMigracion.addItem("Familia");
+        comboBoxMotivoDeMigracion.addItem("Familiar");
         comboBoxMotivoDeMigracion.addItem("Economico");
         comboBoxMotivoDeMigracion.addItem("Otros");
 

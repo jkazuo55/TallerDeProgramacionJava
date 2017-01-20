@@ -147,10 +147,23 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
         }
     }
 
-    private void close(){
-        if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente salir del sistema?","Salir del sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-            control.serializarTodo();            
+    // private void close(){
+    //     if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente salir del sistema?","Salir del sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+    //         control.serializarTodo();            
+    //         System.exit(0);
+    // }
+    public void close(){
+        Object [] opciones ={"Aceptar","Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane,"En realidad desea realizar cerrar la aplicacion","Mensaje de Confirmacion",
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION)
+        {
+            control.serializarTodo();
             System.exit(0);
+        }else{
+            System.out.println("canselado");
+        }
     }
 
     @Override
